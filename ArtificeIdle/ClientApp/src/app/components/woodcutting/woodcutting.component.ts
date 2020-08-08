@@ -1,8 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
 import Skills from '../../assets/Skills.json';
-import { PlayerService } from '../services/player/player.service';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
-import { Skill, SkillEnum } from '../models/Skill';
+import { PlayerService } from '../../services/player/player.service';
+import { Skill, SkillEnum } from '../../models/Skill';
 
 @Component({
   selector: 'app-woodcutting',
