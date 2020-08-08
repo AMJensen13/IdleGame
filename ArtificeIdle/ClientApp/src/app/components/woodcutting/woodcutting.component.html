@@ -1,0 +1,4 @@
+<app-skill-title [name]="pageTitle" (toggleNav)="toggleNav.emit()"></app-skill-title>
+<p color="primary" *ngFor="let action of woodSkill.actions">
+    {{ action.name }}
+</p>

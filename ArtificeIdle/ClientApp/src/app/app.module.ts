@@ -9,17 +9,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatButtonModule } from '@angular/material/button';
 import { PlayerService } from './services/player/player.service';
-import { WoodcuttingComponent } from './woodcutting/woodcutting.component';
+import { WoodcuttingComponent } from './components/woodcutting/woodcutting.component';
+ import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     WoodcuttingComponent,
+    SkillTitleComponent,
   ],
   imports: [
     BrowserModule,
