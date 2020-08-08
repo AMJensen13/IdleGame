@@ -1,0 +1,47 @@
+@import '~@angular/material/theming';
+@import '../app/app.component.scss';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$accent: (
+ Main:#0d1b2a,
+ Light:#354153,
+ Dark: #000000,
+ contrast: (
+  Main: #fff,
+  Light: #fff,
+  Dark: #fff
+ ));
+$primary: (
+ Main: #01d2ba,
+ Light: #63ffec,
+ Dark: #00a08a,
+ contrast: (
+   Main: #fff,
+   Light: #fff,
+   Dark: #fff
+  ));
+$warn:$mat-red;
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$artifice-primary: mat-palette($primary, Main, Light, Dark);
+$artifice-accent: mat-palette($accent, Main, Light, Dark);
+
+// The warn palette is optional (defaults to red).
+$artifice-warn: mat-palette($warn);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$artifice-dark: mat-dark-theme($artifice-primary, $artifice-accent, $artifice-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($artifice-dark);
+@include sidenav-component-theme($artifice-dark);

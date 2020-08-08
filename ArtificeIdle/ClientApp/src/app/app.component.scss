@@ -1,0 +1,49 @@
+@mixin sidenav-component-theme($theme) {
+
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .mat-drawer{
+        color: mat-color($foreground, text);
+
+        &[color=primary]{
+            background-color: mat-color($primary, Main);
+            color: mat-color($foreground, text);
+        }
+        &[color=primary-light]{
+            background-color: mat-color($primary, Light);
+            color: mat-color($foreground, text);
+        }
+        &[color=primary-dark]{
+            background-color: mat-color($primary, Dark);
+            color: mat-color($foreground, text);
+        }
+        &[color=accent]{
+            background-color: mat-color($accent, Main);
+            color: mat-color($foreground, text);
+        }
+        &[color=accent-light]{
+            background-color: mat-color($accent, Light);
+            color: mat-color($foreground, text);
+        }
+        &[color=accent-dark]{
+            background-color: mat-color($accent, Dark);
+            color: mat-color($foreground, text);
+        }
+        &[color=warn]{
+            background-color: mat-color($warn, Main);
+            color: mat-color($foreground, text);
+        }
+        &[color=warn-light]{
+            background-color: mat-color($warn, Light);
+            color: mat-color($foreground, text);
+        }
+        &[color=warn-dark]{
+            background-color: mat-color($warn, Dark);
+            color: mat-color($foreground, text);
+        }
+    }
+}

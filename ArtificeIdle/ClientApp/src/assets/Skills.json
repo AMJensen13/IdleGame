@@ -1,0 +1,16 @@
+[
+    {
+        "id": 0,
+        "name": "Woodcutting",
+        "actions": [
+            {
+                "id": 0,
+                "name": "Tree",
+                "levelRequirement": 1,
+                "product": "Logs",
+                "baseExperience": 10,
+                "baseInterval": 2000
+            }
+        ]
+    }
+]
