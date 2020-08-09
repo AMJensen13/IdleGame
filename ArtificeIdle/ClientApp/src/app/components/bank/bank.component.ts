@@ -18,11 +18,6 @@ export class BankComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.playerService.addItemToBank(0, 1);
-    this.playerService.addItemToBank(1, 1);
-    this.playerService.addItemToBank(2, 1);
-    this.playerService.addItemToBank(3, 1);
-    this.playerService.addItemToBank(4, 1);
   }
 
   GetColCount(){
