@@ -9,7 +9,7 @@ export class Skill {
 export class SkillAction {
     id: number;
     name: string;
-    product: Item;
+    productId: number;
     levelRequirement: number;
     baseExperience: number;
     baseInterval: number;

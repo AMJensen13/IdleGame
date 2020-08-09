@@ -7,7 +7,39 @@
                 "id": 0,
                 "name": "Tree",
                 "levelRequirement": 1,
-                "product": "Logs",
+                "productId": 0,
+                "baseExperience": 10,
+                "baseInterval": 2000
+            },
+            {
+                "id": 1,
+                "name": "Oak Tree",
+                "levelRequirement": 15,
+                "productId": 1,
+                "baseExperience": 10,
+                "baseInterval": 2000
+            },
+            {
+                "id": 2,
+                "name": "Willow Tree",
+                "levelRequirement": 30,
+                "productId": 2,
+                "baseExperience": 10,
+                "baseInterval": 2000
+            },
+            {
+                "id": 3,
+                "name": "Teak Tree",
+                "levelRequirement": 35,
+                "productId": 3,
+                "baseExperience": 10,
+                "baseInterval": 2000
+            },
+            {
+                "id": 4,
+                "name": "Maple Tree",
+                "levelRequirement": 40,
+                "productId": 4,
                 "baseExperience": 10,
                 "baseInterval": 2000
             }

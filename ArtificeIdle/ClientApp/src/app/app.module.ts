@@ -12,9 +12,13 @@ import { MatDividerModule } from '@angular/material/divider';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { PlayerService } from './services/player/player.service';
 import { WoodcuttingComponent } from './components/woodcutting/woodcutting.component';
- import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
+import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
+import { BankComponent } from './components/bank/bank.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,7 @@ import { WoodcuttingComponent } from './components/woodcutting/woodcutting.compo
     HomeComponent,
     WoodcuttingComponent,
     SkillTitleComponent,
+    BankComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,10 @@ import { WoodcuttingComponent } from './components/woodcutting/woodcutting.compo
     MatListModule,
     MatIconModule,
     MatDividerModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule,
+    MatCardModule,
+    FlexLayoutModule
   ],
   providers: [ PlayerService ],
   bootstrap: [AppComponent]

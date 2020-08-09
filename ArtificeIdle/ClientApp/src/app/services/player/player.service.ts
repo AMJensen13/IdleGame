@@ -2,6 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { Player } from '../../models/Player';
 import { LocalStorageService } from 'angular-web-storage';
 import { SkillEnum } from 'src/app/models/Skill';
+import { BankItem, Item } from 'src/app/models/Item';
+import Items from '../../../assets/Items.json';
 
 const SAVE_KEY = 'userAccount';
 
@@ -10,18 +12,46 @@ const SAVE_KEY = 'userAccount';
 })
 export class PlayerService {
   public playerSave: Player;
-
+  public items: Array<Item>;
+  
   constructor(private localStorage: LocalStorageService) 
   { 
     this.loadPlayerData();
+    this.items = Items;
   }
 
   hasLevel(skillId: number, levelRequired: number){
 
   }
+  
+  getBankItems(){
+    return this.playerSave.bank.items;
+  }
+
+  addItemToBank(id: number, quantity: number){
+    let item = this.items.find(x => x.id === id);
+    if (!item){
+      console.error("Invalid Item Id");
+      return;
+    }
+
+    var itemInBank = this.playerSave.bank.items.find(x => x.itemId === id);
+
+    if (itemInBank){
+      itemInBank.quantity += quantity;
+    } else{
+      this.playerSave.bank.items.push(new BankItem(item, quantity));
+    }
+    this.savePlayerData();
+  }
+
+  savePlayerData(){
+    this.localStorage.set(SAVE_KEY, JSON.stringify(this.playerSave));
+  }
 
   addXP(experience: number, skillId: SkillEnum){
     this.playerSave.skills[skillId].experience += experience;
+    this.savePlayerData();
   }
 
   private loadPlayerData(){
@@ -36,6 +66,6 @@ export class PlayerService {
 
   private createPlayerSave(){
     this.playerSave = new Player("test");
-    this.localStorage.set(SAVE_KEY, JSON.stringify(this.playerSave));
+    this.savePlayerData();
   }
 }

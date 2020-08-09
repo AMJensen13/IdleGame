@@ -1,0 +1,11 @@
+<app-skill-title [name]="pageTitle" (toggleNav)="toggleNav.emit()"></app-skill-title>
+
+
+<div class="bankItemsContainer" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <mat-card class="card-picture" *ngFor="let item of GetBankItems()">
+        <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            <span>{{ item.itemName }}</span>
+        </mat-card-title>
+        <mat-card-footer style="text-align: center;">{{ item.quantity }}</mat-card-footer>
+    </mat-card>
+</div>
