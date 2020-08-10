@@ -13,6 +13,7 @@ export class SkillAction {
     levelRequirement: number;
     baseExperience: number;
     baseInterval: number;
+    icon: string;
 }
 
 export enum SkillEnum {

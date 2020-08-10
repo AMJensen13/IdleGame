@@ -9,7 +9,8 @@
                 "levelRequirement": 1,
                 "productId": 0,
                 "baseExperience": 10,
-                "baseInterval": 2000
+                "baseInterval": 2000,
+                "icon": "tree"
             },
             {
                 "id": 1,
@@ -17,7 +18,8 @@
                 "levelRequirement": 15,
                 "productId": 1,
                 "baseExperience": 10,
-                "baseInterval": 2000
+                "baseInterval": 2000,
+                "icon": "tree"
             },
             {
                 "id": 2,
@@ -25,7 +27,8 @@
                 "levelRequirement": 30,
                 "productId": 2,
                 "baseExperience": 10,
-                "baseInterval": 2000
+                "baseInterval": 2000,
+                "icon": "tree"
             },
             {
                 "id": 3,
@@ -33,7 +36,8 @@
                 "levelRequirement": 35,
                 "productId": 3,
                 "baseExperience": 10,
-                "baseInterval": 2000
+                "baseInterval": 2000,
+                "icon": "tree"
             },
             {
                 "id": 4,
@@ -41,7 +45,8 @@
                 "levelRequirement": 40,
                 "productId": 4,
                 "baseExperience": 10,
-                "baseInterval": 2000
+                "baseInterval": 2000,
+                "icon": "tree"
             }
         ]
     }

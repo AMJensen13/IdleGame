@@ -19,6 +19,7 @@ import { WoodcuttingComponent } from './components/woodcutting/woodcutting.compo
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
 import { BankComponent } from './components/bank/bank.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,

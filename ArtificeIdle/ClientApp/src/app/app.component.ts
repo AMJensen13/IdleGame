@@ -19,6 +19,7 @@ export class AppComponent {
               private playerService: PlayerService)
   {
     this.iconRegistry.addSvgIcon('bank', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/bank.svg'));
+    this.iconRegistry.addSvgIcon('tree', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/tree.svg'));
   }
 
   onActivate(componentReference) {

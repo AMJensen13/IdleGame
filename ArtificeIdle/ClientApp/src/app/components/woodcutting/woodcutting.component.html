@@ -1,4 +1,9 @@
 <app-skill-title [name]="pageTitle" (toggleNav)="toggleNav.emit()"></app-skill-title>
-<p color="primary" *ngFor="let action of woodSkill.actions">
-    {{ action.name }}
-</p>
+
+<div class="actionsContainer" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div class="actionButtonContainer" *ngFor="let action of woodSkill.actions">
+        <button class="actionButton" fxLayout.gt-xs="row" fxLayout.xs="column" mat-raised-button>
+            <mat-icon svgIcon="{{action.icon}}"></mat-icon>
+        </button>
+    </div>
+</div>
