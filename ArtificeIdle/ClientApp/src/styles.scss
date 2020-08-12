@@ -1,3 +1,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.snackBarInfo{
+    max-width: 4rem !important;
+    min-width: 4rem !important;
+    min-height: 4rem !important;
+    max-height: 4rem !important;
+    background-color: #babbbb;
+    font-size: .75rem;
+    justify-content: center;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

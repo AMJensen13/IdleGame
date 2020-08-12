@@ -9,7 +9,21 @@
     width: 20%;
 }
 
-.actionButton {
+.mat-button-base {
     height: 100%;
     width: 100%
+}
+
+.progress {
+    width: 100%;
+    background-color: #babbbb;
+}
+
+.progress-bar {
+    background-color: #00a08a;
+}
+
+.skillIcon {
+    width: 45%;
+    height: 45%;
 }

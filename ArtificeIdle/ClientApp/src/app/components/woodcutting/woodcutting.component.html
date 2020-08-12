@@ -2,8 +2,12 @@
 
 <div class="actionsContainer" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <div class="actionButtonContainer" *ngFor="let action of woodSkill.actions">
-        <button class="actionButton" fxLayout.gt-xs="row" fxLayout.xs="column" mat-raised-button>
-            <mat-icon svgIcon="{{action.icon}}"></mat-icon>
+        <button fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center center" (click)="ToggleWoodcutting(action)" mat-raised-button>
+            <mat-icon class="skillIcon" svgIcon="{{ action.icon }}"></mat-icon>
+            
+            <div class="progress">
+                <div class="progress-bar" id="action{{action.id}}" #actionProgress role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
         </button>
     </div>
 </div>

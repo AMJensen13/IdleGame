@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from "@angular/platform-browser";
 import { PlayerService } from './services/player/player.service';
+import { SkillService } from './services/skill/skill.service';
+import { SkillAction, Skill } from './models/Skill';
 
 @Component({
   selector: 'app-root',
@@ -16,15 +18,21 @@ export class AppComponent {
 
   constructor(private iconRegistry: MatIconRegistry, 
               private domSanitizer: DomSanitizer,
-              private playerService: PlayerService)
+              private playerService: PlayerService,
+              private skillService: SkillService)
   {
     this.iconRegistry.addSvgIcon('bank', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/bank.svg'));
     this.iconRegistry.addSvgIcon('tree', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/tree.svg'));
+    this.iconRegistry.addSvgIcon('logs', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/logs.svg'));
   }
 
   onActivate(componentReference) {
     componentReference.toggleNav.subscribe(() => {
        this.opened = !this.opened;
     })
- }
+  }
+
+  ngOnDestroy(): void{
+    this.skillService.StopAction();
+  }
 }

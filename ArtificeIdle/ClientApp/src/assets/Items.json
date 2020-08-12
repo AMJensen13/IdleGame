@@ -2,26 +2,31 @@
     {
         "id": 0,
         "name": "Logs",
-        "value": 10
+        "value": 10,
+        "icon": "logs"
     },
     {
         "id": 1,
         "name": "Oak Logs",
-        "value": 10
+        "value": 10,
+        "icon": "logs"
     },
     {
         "id": 2,
         "name": "Willow Logs",
-        "value": 10
+        "value": 10,
+        "icon": "logs"
     },
     {
         "id": 3,
         "name": "Teak Logs",
-        "value": 10
+        "value": 10,
+        "icon": "logs"
     },
     {
         "id": 4,
         "name": "Maple Logs",
-        "value": 10
+        "value": 10,
+        "icon": "logs"
     }
 ]

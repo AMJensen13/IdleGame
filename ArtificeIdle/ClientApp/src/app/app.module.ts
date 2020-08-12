@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,6 +19,9 @@ import { SkillTitleComponent } from './components/shared/skill-title/skill-title
 import { BankComponent } from './components/bank/bank.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { AddItemComponent } from './components/shared/add-item/add-item.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { CommonModule } from '@angular/common';
     WoodcuttingComponent,
     SkillTitleComponent,
     BankComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,9 +46,15 @@ import { CommonModule } from '@angular/common';
     MatButtonModule,
     MatGridListModule,
     MatCardModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgbModule,
+    MatSnackBarModule
   ],
-  providers: [ PlayerService ],
+  providers: 
+  [ 
+    PlayerService,
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 1500, panelClass: ['snackBarInfo']}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
