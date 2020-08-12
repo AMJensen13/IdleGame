@@ -1,0 +1,36 @@
+.skillInfoContainer {
+    background-color: #00a08a;
+    border-radius: 4px;
+    width: 100%;
+    padding-top: .5rem;
+    font-size: 1.5rem;
+}
+
+.infoRow {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.progressRow {
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.progress {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+}
+
+.lvlCol {
+    padding-left: 0;
+}
+
+.xpCol {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 0;
+}

@@ -13,16 +13,16 @@ export class WoodcuttingComponent implements OnInit {
   @Output() toggleNav: EventEmitter<any> = new EventEmitter();
   @ViewChildren('actionProgress') progressBars: QueryList<ElementRef>;
   pageTitle: string = 'Woodcutting';
-  woodSkill: Skill;
+  skill: Skill;
   actionSubscription: Subscription;
 
   constructor(private skillService: SkillService) 
   {
-    this.woodSkill = Skills[SkillEnum.Woodcutting];
+    this.skill = Skills[SkillEnum.Woodcutting];
   }
 
   ngOnInit(): void {
-    if (this.skillService.hasActiveAction && this.skillService.currentSkill.id === this.woodSkill.id) {
+    if (this.skillService.hasActiveAction && this.skillService.currentSkill.id === this.skill.id) {
       this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessWoodcutting());
     }
   }
@@ -37,7 +37,7 @@ export class WoodcuttingComponent implements OnInit {
       return;
     }
 
-    this.skillService.StartAction(this.woodSkill, action);
+    this.skillService.StartAction(this.skill, action);
     this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessWoodcutting());
     this.animateProgressBar();
   }

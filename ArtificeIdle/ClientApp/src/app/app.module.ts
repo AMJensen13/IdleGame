@@ -22,6 +22,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { AddItemComponent } from './components/shared/add-item/add-item.component';
+import { SkillInfoComponent } from './components/shared/skill-info/skill-info.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AddItemComponent } from './components/shared/add-item/add-item.componen
     SkillTitleComponent,
     BankComponent,
     AddItemComponent,
+    SkillInfoComponent,
   ],
   imports: [
     BrowserModule,

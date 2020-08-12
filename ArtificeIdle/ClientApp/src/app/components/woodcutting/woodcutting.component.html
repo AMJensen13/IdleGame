@@ -1,13 +1,17 @@
 <app-skill-title [name]="pageTitle" (toggleNav)="toggleNav.emit()"></app-skill-title>
 
-<div class="actionsContainer" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div class="actionButtonContainer" *ngFor="let action of woodSkill.actions">
-        <button fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center center" (click)="ToggleWoodcutting(action)" mat-raised-button>
-            <mat-icon class="skillIcon" svgIcon="{{ action.icon }}"></mat-icon>
-            
-            <div class="progress">
-                <div class="progress-bar" id="action{{action.id}}" #actionProgress role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-        </button>
+<div class="skillPage">
+    <app-skill-info [skill]="skill"></app-skill-info>
+
+    <div class="actionsContainer" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+        <div class="actionButtonContainer" *ngFor="let action of skill.actions">
+            <button fxLayout.gt-xs="row" fxLayout.xs="column" fxLayoutAlign="center center" (click)="ToggleWoodcutting(action)" mat-raised-button>
+                <mat-icon class="skillIcon" svgIcon="{{ action.icon }}"></mat-icon>
+                
+                <div class="progress">
+                    <div class="progress-bar" id="action{{action.id}}" #actionProgress role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </button>
+        </div>
     </div>
 </div>
