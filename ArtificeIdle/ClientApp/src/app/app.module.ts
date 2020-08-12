@@ -55,7 +55,7 @@ import { SkillInfoComponent } from './components/shared/skill-info/skill-info.co
   providers: 
   [ 
     PlayerService,
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 1500, panelClass: ['snackBarInfo']}}
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1500, panelClass: ['snackBarInfo'] } }
   ],
   bootstrap: [AppComponent]
 })

@@ -9,20 +9,23 @@
       </a>
       <mat-divider></mat-divider>
       <h3 matSubheader>V0.0.1 Alpha</h3>
-      <a mat-list-item routerLink="/shop" routerLinkActive="active">
+      <a mat-list-item (click)="SetCurrentPage('shop')">
         <mat-icon>store</mat-icon> Shop
       </a>
-      <a mat-list-item routerLink="/bank" routerLinkActive="active">
+      <a mat-list-item  (click)="SetCurrentPage('bank')">
         <mat-icon>attach_money</mat-icon> Bank
       </a>
-      <a mat-list-item routerLink="/woodcutting" routerLinkActive="active">
+      <a mat-list-item  (click)="SetCurrentPage('woodcutting')">
         <mat-icon>nature</mat-icon> Woodcutting
       </a>
     </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <router-outlet (activate)="onActivate($event)"></router-outlet>
+    <!-- <router-outlet (activate)="onActivate($event)"></router-outlet> -->
+    <app-home [style.display]="GetPageDisplay('home')"></app-home>
+    <app-bank [style.display]="GetPageDisplay('bank')"></app-bank>
+    <app-woodcutting [style.display]="GetPageDisplay('woodcutting')"></app-woodcutting>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

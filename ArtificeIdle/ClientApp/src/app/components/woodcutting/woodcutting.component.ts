@@ -49,6 +49,7 @@ export class WoodcuttingComponent implements OnInit {
   animateProgressBar(){
     let action = this.skillService.currentAction;
     var currentProgress = this.progressBars.find(x => x.nativeElement.id === `action${action.id}`);
+    currentProgress.nativeElement.getAnimations().forEach(animation => animation.cancel());
     currentProgress.nativeElement.animate([{ width: '100%' }, {width: '0%'}], {duration: 0, easing: 'linear'});
     currentProgress.nativeElement.animate([{width: '0%'}, { width: '100%' }], {duration: action.baseInterval, easing: 'linear'});
   }

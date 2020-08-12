@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from "@angular/platform-browser";
-import { PlayerService } from './services/player/player.service';
 import { SkillService } from './services/skill/skill.service';
 
 @Component({
@@ -14,6 +13,7 @@ export class AppComponent {
   title = 'ArtificeIdle';
   isHandset$ = false;
   opened = true;
+  currentPage: string = 'home';
 
   constructor(private iconRegistry: MatIconRegistry, 
               private domSanitizer: DomSanitizer,
@@ -32,5 +32,17 @@ export class AppComponent {
 
   ngOnDestroy(): void{
     this.skillService.StopAction();
+  }
+
+  SetCurrentPage(page: string){
+    this.currentPage = page;
+  }
+
+  GetPageDisplay(page: string) {
+      if (this.currentPage === page) {
+          return '';
+      } else {
+          return 'none';
+      }
   }
 }
