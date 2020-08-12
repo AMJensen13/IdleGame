@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { PlayerService } from 'src/app/services/player/player.service';
-import { MatGridList } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-bank',

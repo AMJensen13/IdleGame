@@ -1,11 +1,8 @@
-import { Component, OnInit, EventEmitter, Output, ViewChildren, ElementRef, QueryList, Renderer2 } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import Skills from '../../../assets/Skills.json';
-import { PlayerService } from '../../services/player/player.service';
 import { SkillService } from 'src/app/services/skill/skill.service';
 import { Skill, SkillEnum, SkillAction } from '../../models/Skill';
-import { interval, Subscription } from 'rxjs';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { AddItemComponent } from 'src/app/components/shared/add-item/add-item.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-woodcutting',
