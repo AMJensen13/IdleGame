@@ -35,18 +35,18 @@ export class PlayerService {
     var level = Math.floor((Math.sqrt((XP_CONSTANT*XP_CONSTANT)+(4*XP_CONSTANT*xp))-XP_CONSTANT)/(2*XP_CONSTANT));
 
     // minimum level is 1 not 0
-    return level + 1;
+    return level;
   }
 
   GetCurrentLevelXP(skillId: number){
-      var currentLevel = this.GetSkillLevel(skillId) - 1;
+      var currentLevel = this.GetSkillLevel(skillId);
 
       return XP_CONSTANT*currentLevel*(1+currentLevel);
   }
 
   GetNextLevelXP(skillId: number) {
     var xp = this.GetCurrentXP(skillId);
-    var currentLevel = this.GetSkillLevel(skillId) - 1;
+    var currentLevel = this.GetSkillLevel(skillId);
 
     return Math.floor(XP_CONSTANT*(currentLevel+1)*(currentLevel+2));
   }

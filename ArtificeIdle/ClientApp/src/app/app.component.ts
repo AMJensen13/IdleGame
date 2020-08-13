@@ -1,7 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from "@angular/platform-browser";
 import { SkillService } from './services/skill/skill.service';
+import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +12,12 @@ import { SkillService } from './services/skill/skill.service';
 })
 export class AppComponent {
   @Input() navColor = 'accent-light';
+  @ViewChild(SkillTitleComponent) titleBar: SkillTitleComponent;
   title = 'ArtificeIdle';
   isHandset$ = false;
   opened = true;
   currentPage: string = 'home';
+  toggleNavSubscription: Subscription;
 
   constructor(private iconRegistry: MatIconRegistry, 
               private domSanitizer: DomSanitizer,
@@ -26,14 +30,18 @@ export class AppComponent {
 
   }
 
-  onActivate(componentReference) {
-    componentReference.toggleNav.subscribe(() => {
-       this.opened = !this.opened;
-    })
+  ngOnInit(){
+  }
+
+  ngAfterViewInit() {
+    this.toggleNavSubscription = this.titleBar.toggleNav.subscribe(() => {
+        this.opened = !this.opened;
+    });
   }
 
   ngOnDestroy(): void{
     this.skillService.StopAction();
+    this.toggleNavSubscription.unsubscribe();
   }
 
   SetCurrentPage(page: string){
