@@ -1,15 +1,15 @@
 <div class="skillInfoContainer col-12">
     <div class="row infoRow">
         <div class="col-6 lvlCol">
-            <span>Level: 12</span>
+            <span>Level: {{ GetLevel() }}</span>
         </div>
         <div class="col-6 xpCol">
-            <span>XP: 123 / 456</span>
+            <span>XP: {{ GetCurrentXP() }} / {{ GetNextLevelXP() }}</span>
         </div>
     </div>
     <div class="row progressRow">
         <div class="progress">
-            <div class="progress-bar" role="progressbar"></div>
+            <div class="progress-bar" [style.width]="GetCurrentLevelUpProgress()" role="progressbar"></div>
         </div>
     </div>
 </div>

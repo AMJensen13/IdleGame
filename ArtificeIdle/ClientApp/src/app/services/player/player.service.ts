@@ -6,6 +6,7 @@ import { BankItem, Item } from 'src/app/models/Item';
 import Items from '../../../assets/Items.json';
 
 const SAVE_KEY = 'userAccount';
+const XP_CONSTANT = 500;
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,29 @@ export class PlayerService {
 
   hasLevel(skillId: number, levelRequired: number){
 
+  }
+
+  GetCurrentXP(skillId: number){
+      return this.playerSave.skills[skillId].experience;
+  }
+
+  GetSkillLevel(skillId: number) {
+    var xp = this.GetCurrentXP(skillId);
+
+    return Math.floor((Math.sqrt((XP_CONSTANT*XP_CONSTANT)+(4*XP_CONSTANT*xp))-XP_CONSTANT)/(2*XP_CONSTANT));
+  }
+
+  GetCurrentLevelXP(skillId: number){
+      var currentLevel = this.GetSkillLevel(skillId);
+
+      return XP_CONSTANT*currentLevel*(1+currentLevel);
+  }
+
+  GetNextLevelXP(skillId: number) {
+    var xp = this.GetCurrentXP(skillId);
+    var currentLevel = this.GetSkillLevel(skillId);
+
+    return Math.floor(XP_CONSTANT*(currentLevel+1)*(currentLevel+2));
   }
   
   getBankItems(){
