@@ -5,7 +5,7 @@
         "actions": [
             {
                 "id": 0,
-                "name": "Tree",
+                "name": "Balsa Tree",
                 "levelRequirement": 1,
                 "productId": 0,
                 "baseExperience": 10,
@@ -14,39 +14,81 @@
             },
             {
                 "id": 1,
-                "name": "Oak Tree",
+                "name": "Pine Tree",
                 "levelRequirement": 15,
                 "productId": 1,
-                "baseExperience": 10,
+                "baseExperience": 20,
                 "baseInterval": 2000,
                 "icon": "tree"
             },
             {
                 "id": 2,
-                "name": "Willow Tree",
+                "name": "Maple Tree",
                 "levelRequirement": 30,
                 "productId": 2,
-                "baseExperience": 10,
+                "baseExperience": 30,
                 "baseInterval": 2000,
                 "icon": "tree"
             },
             {
                 "id": 3,
-                "name": "Teak Tree",
+                "name": "Mahogany Tree",
                 "levelRequirement": 35,
                 "productId": 3,
-                "baseExperience": 10,
+                "baseExperience": 40,
                 "baseInterval": 2000,
                 "icon": "tree"
             },
             {
                 "id": 4,
-                "name": "Maple Tree",
-                "levelRequirement": 40,
+                "name": "Oak Tree",
+                "levelRequirement": 0,
                 "productId": 4,
-                "baseExperience": 10,
+                "baseExperience": 50,
                 "baseInterval": 2000,
                 "icon": "tree"
+            },
+            {
+                "id": 5,
+                "name": "Teak Tree",
+                "levelRequirement": 0,
+                "productId": 5,
+                "baseExperience": 60,
+                "baseInterval": 2000,
+                "icon": "tree"
+            },
+            {
+                "id": 6,
+                "name": "Rosewood Tree",
+                "levelRequirement": 0,
+                "productId": 6,
+                "baseExperience": 70,
+                "baseInterval": 2000,
+                "icon": "tree"
+            },
+            {
+                "id": 7,
+                "name": "Ebony Tree",
+                "levelRequirement": 0,
+                "productId": 7,
+                "baseExperience": 80,
+                "baseInterval": 2000,
+                "icon": "tree"
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Mining",
+        "actions": [
+            {
+                "id": 0,
+                "name": "Copper",
+                "levelRequirement": 1,
+                "productId": 8,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
             }
         ]
     }

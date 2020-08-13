@@ -1,31 +1,31 @@
-import { Component, OnInit, EventEmitter, Output, ViewChildren, ElementRef, QueryList } from '@angular/core';
+import { Component, OnInit, Output, ViewChildren, EventEmitter, QueryList, ElementRef } from '@angular/core';
+import { SkillAction, SkillEnum, Skill } from 'src/app/models/Skill';
 import Skills from '../../../assets/Skills.json';
 import { SkillService } from 'src/app/services/skill/skill.service';
-import { Skill, SkillEnum, SkillAction } from '../../models/Skill';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-woodcutting',
-  templateUrl: './woodcutting.component.html',
-  styleUrls: ['./woodcutting.component.scss']
+  selector: 'app-mining',
+  templateUrl: './mining.component.html',
+  styleUrls: ['./mining.component.scss']
 })
-export class WoodcuttingComponent implements OnInit {
+export class MiningComponent implements OnInit {
   @Output() toggleNav: EventEmitter<any> = new EventEmitter();
   @ViewChildren('actionProgress') progressBars: QueryList<ElementRef>;
-  pageTitle: string = 'Woodcutting';
-  skill: Skill;
+  pageTitle: string = 'Mining';
   actionSubscription: Subscription;
+  skill: Skill;
   Math: Math;
 
-  constructor(private skillService: SkillService) 
-  {
-    this.skill = Skills[SkillEnum.Woodcutting];
+  constructor(private skillService: SkillService) { 
+    this.skill = Skills[SkillEnum.Mining];
     this.Math = Math;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
-  ToggleWoodcutting(action: SkillAction)
+  ToggleMining(action: SkillAction)
   {
     if (this.skillService.hasActiveAction)
     {
@@ -36,11 +36,11 @@ export class WoodcuttingComponent implements OnInit {
     }
 
     this.skillService.StartAction(this.skill, action);
-    this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessWoodcutting());
+    this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessMining());
     this.animateProgressBar();
   }
 
-  ProcessWoodcutting(){
+  ProcessMining(){
     this.animateProgressBar();
   }
 
@@ -59,7 +59,4 @@ export class WoodcuttingComponent implements OnInit {
     currentProgress.nativeElement.animate([{ width: '100%' }, {width: '0%'}], {duration: 0, easing: 'linear'});
   }
 
-  ngOnDestroy(): void {
-    if (this.actionSubscription) this.actionSubscription.unsubscribe();
-  }
 }

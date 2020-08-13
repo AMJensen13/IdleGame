@@ -1,12 +1,12 @@
-import { Injectable, Inject } from '@angular/core';
-import { Player } from '../../models/Player';
+import { Injectable } from '@angular/core';
+import { Player, PlayerSkill } from '../../models/Player';
 import { LocalStorageService } from 'angular-web-storage';
 import { SkillEnum } from 'src/app/models/Skill';
 import { BankItem, Item } from 'src/app/models/Item';
 import Items from '../../../assets/Items.json';
 
 const SAVE_KEY = 'userAccount';
-const XP_CONSTANT = 500;
+const XP_CONSTANT = 25;
 
 @Injectable({
   providedIn: 'root',
@@ -32,18 +32,21 @@ export class PlayerService {
   GetSkillLevel(skillId: number) {
     var xp = this.GetCurrentXP(skillId);
 
-    return Math.floor((Math.sqrt((XP_CONSTANT*XP_CONSTANT)+(4*XP_CONSTANT*xp))-XP_CONSTANT)/(2*XP_CONSTANT));
+    var level = Math.floor((Math.sqrt((XP_CONSTANT*XP_CONSTANT)+(4*XP_CONSTANT*xp))-XP_CONSTANT)/(2*XP_CONSTANT));
+
+    // minimum level is 1 not 0
+    return level + 1;
   }
 
   GetCurrentLevelXP(skillId: number){
-      var currentLevel = this.GetSkillLevel(skillId);
+      var currentLevel = this.GetSkillLevel(skillId) - 1;
 
       return XP_CONSTANT*currentLevel*(1+currentLevel);
   }
 
   GetNextLevelXP(skillId: number) {
     var xp = this.GetCurrentXP(skillId);
-    var currentLevel = this.GetSkillLevel(skillId);
+    var currentLevel = this.GetSkillLevel(skillId) - 1;
 
     return Math.floor(XP_CONSTANT*(currentLevel+1)*(currentLevel+2));
   }
@@ -83,8 +86,18 @@ export class PlayerService {
     if (saveString)
     {
       this.playerSave = JSON.parse(saveString);
+      this.VerifyPlayerSave();
     } else {
       this.createPlayerSave();
+    }
+  }
+
+  private VerifyPlayerSave(){
+    if (!this.playerSave.skills.find(x => x.skillId == SkillEnum.Woodcutting)){
+        this.playerSave.skills.push(new PlayerSkill(SkillEnum.Woodcutting));
+    }
+    if (!this.playerSave.skills.find(x => x.skillId == SkillEnum.Mining)){
+        this.playerSave.skills.push(new PlayerSkill(SkillEnum.Mining));
     }
   }
 

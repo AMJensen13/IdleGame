@@ -17,5 +17,6 @@ export class SkillAction {
 }
 
 export enum SkillEnum {
-    Woodcutting = 0
+    Woodcutting = 0,
+    Mining = 1
 }

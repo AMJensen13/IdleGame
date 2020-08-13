@@ -18,6 +18,9 @@
       <a mat-list-item  (click)="SetCurrentPage('woodcutting')">
         <mat-icon>nature</mat-icon> Woodcutting
       </a>
+      <a mat-list-item  (click)="SetCurrentPage('mining')">
+        <mat-icon>terrain</mat-icon> Mining
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -26,6 +29,7 @@
     <app-home [style.display]="GetPageDisplay('home')"></app-home>
     <app-bank [style.display]="GetPageDisplay('bank')"></app-bank>
     <app-woodcutting [style.display]="GetPageDisplay('woodcutting')"></app-woodcutting>
+    <app-mining [style.display]="GetPageDisplay('mining')"></app-mining>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

@@ -19,10 +19,11 @@ import { SkillTitleComponent } from './components/shared/skill-title/skill-title
 import { BankComponent } from './components/bank/bank.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { AddItemComponent } from './components/shared/add-item/add-item.component';
 import { SkillInfoComponent } from './components/shared/skill-info/skill-info.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MiningComponent } from './components/mining/mining.component'
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { SkillInfoComponent } from './components/shared/skill-info/skill-info.co
     BankComponent,
     AddItemComponent,
     SkillInfoComponent,
+    MiningComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,8 +51,8 @@ import { SkillInfoComponent } from './components/shared/skill-info/skill-info.co
     MatGridListModule,
     MatCardModule,
     FlexLayoutModule,
-    NgbModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: 
   [ 

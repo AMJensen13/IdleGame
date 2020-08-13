@@ -1,32 +1,56 @@
 [
     {
         "id": 0,
-        "name": "Logs",
+        "name": "Balsa Logs",
         "value": 10,
         "icon": "logs"
     },
     {
         "id": 1,
-        "name": "Oak Logs",
+        "name": "Pine Logs",
         "value": 10,
         "icon": "logs"
     },
     {
         "id": 2,
-        "name": "Willow Logs",
+        "name": "Maple Logs",
         "value": 10,
         "icon": "logs"
     },
     {
         "id": 3,
-        "name": "Teak Logs",
+        "name": "Mahogany Logs",
         "value": 10,
         "icon": "logs"
     },
     {
         "id": 4,
-        "name": "Maple Logs",
+        "name": "Oak Logs",
         "value": 10,
         "icon": "logs"
+    },
+    {
+        "id": 5,
+        "name": "Teak Logs",
+        "value": 10,
+        "icon": "logs"
+    },
+    {
+        "id": 6,
+        "name": "Rosewood Logs",
+        "value": 10,
+        "icon": "logs"
+    },
+    {
+        "id": 7,
+        "name": "Ebony Logs",
+        "value": 10,
+        "icon": "logs"
+    },
+    {
+        "id": 8,
+        "name": "Copper Ore",
+        "value": 5,
+        "icon": "rock"
     }
 ]
