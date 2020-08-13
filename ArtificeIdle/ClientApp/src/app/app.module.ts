@@ -8,7 +8,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
-import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from "@angular/common/http";
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -28,7 +27,6 @@ import { MiningComponent } from './components/mining/mining.component'
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     WoodcuttingComponent,
     SkillTitleComponent,
     BankComponent,

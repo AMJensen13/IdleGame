@@ -22,9 +22,8 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <app-skill-title [name]="currentPage" (toggleNav)="toggleNav.emit()"></app-skill-title>
+    <app-skill-title [name]="currentPage"></app-skill-title>
 
-    <app-home [style.display]="GetPageDisplay('Home')"></app-home>
     <app-bank [style.display]="GetPageDisplay('Bank')"></app-bank>
     <app-woodcutting [style.display]="GetPageDisplay('Woodcutting')"></app-woodcutting>
     <app-mining [style.display]="GetPageDisplay('Mining')"></app-mining>

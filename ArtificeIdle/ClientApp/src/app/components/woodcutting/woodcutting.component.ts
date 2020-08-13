@@ -27,12 +27,17 @@ export class WoodcuttingComponent implements OnInit {
 
   ToggleWoodcutting(action: SkillAction)
   {
-    if (this.skillService.hasActiveAction)
+    if (this.skillService.hasActiveAction && this.skillService.currentAction.id === action.id)
     {
       this.actionSubscription.unsubscribe();
       this.stopProgressBar();
       this.skillService.StopAction();
       return;
+    } else if (this.skillService.hasActiveAction && this.skillService.currentAction.id !== action.id) 
+    {
+        this.actionSubscription.unsubscribe();
+        this.stopProgressBar();
+        this.skillService.StopAction();
     }
 
     this.skillService.StartAction(this.skill, action);

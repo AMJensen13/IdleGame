@@ -16,7 +16,7 @@ export class AppComponent {
   title = 'ArtificeIdle';
   isHandset$ = false;
   opened = true;
-  currentPage: string = 'home';
+  currentPage: string = 'Bank';
   toggleNavSubscription: Subscription;
 
   constructor(private iconRegistry: MatIconRegistry, 
