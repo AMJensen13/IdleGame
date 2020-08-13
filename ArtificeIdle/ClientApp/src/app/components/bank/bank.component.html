@@ -1,10 +1,10 @@
 <div class="bankItemsContainer" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    <div class="bankItem" *ngFor="let item of bankItems$ | async; trackBy: trackBy">
-        <mat-card class="card-picture" matTooltip="{{item.name}}">
+    <div class="bankItem" *ngFor="let item of bankItems$ | async">
+        <mat-card class="card-picture" #tooltip="matTooltip" matTooltip="{{GetItemName(item.itemId)}}">
             <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-                <mat-icon svgIcon="{{item.icon}}"></mat-icon>
+                <mat-icon svgIcon="{{GetItemIcon(item.itemId)}}"></mat-icon>
             </mat-card-title>
-            <mat-card-footer style="text-align: center;">{{ item.quantity }}</mat-card-footer>
+            <mat-card-footer style="text-align: center;">{{ GetDisplayQuantity(item.quantity) }}</mat-card-footer>
         </mat-card>
     </div>
 </div>
