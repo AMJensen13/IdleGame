@@ -25,10 +25,6 @@ export class BankComponent implements OnInit {
     this.bankItems$ = of(this.playerService.playerSave.bank.items);
   }
 
-  GetBankItems() {
-      return this.playerService.playerSave.bank.items;
-  }
-
   trackBy(index: number, item: BankItem) {
       return `${item.itemId}:${item.quantity}`;
   }
