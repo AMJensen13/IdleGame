@@ -38,6 +38,10 @@ export class BankComponent implements OnInit {
       return Items[itemId].icon;
   }
 
+  GetItemValue(itemId: number) {
+      return Items[itemId].value;
+  }
+
   GetDisplayQuantity(value: number){
       if (value <= 9999){
           return `${value}`;
