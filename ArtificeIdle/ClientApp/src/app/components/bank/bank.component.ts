@@ -7,8 +7,7 @@ import Items from '../../../assets/Items.json';
 @Component({
   selector: 'app-bank',
   templateUrl: './bank.component.html',
-  styleUrls: ['./bank.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./bank.component.scss']
 })
 export class BankComponent implements OnInit {
   @Output() toggleNav = new EventEmitter<any>();
@@ -26,8 +25,12 @@ export class BankComponent implements OnInit {
     this.bankItems$ = of(this.playerService.playerSave.bank.items);
   }
 
-  trackBy(index: number, item: any) {
-      return index;
+  GetBankItems() {
+      return this.playerService.playerSave.bank.items;
+  }
+
+  trackBy(index: number, item: BankItem) {
+      return `${item.itemId}:${item.quantity}`;
   }
 
   GetItemName(itemId: number) {
