@@ -27,15 +27,15 @@ export class WoodcuttingComponent implements OnInit {
 
   ToggleWoodcutting(action: SkillAction)
   {
-    if (this.skillService.hasActiveAction && this.skillService.currentAction.id === action.id)
+    if (this.skillService.hasActiveAction && this.skill.id === this.skillService.currentSkill.id && this.skillService.currentAction.id === action.id)
     {
       this.actionSubscription.unsubscribe();
       this.stopProgressBar();
       this.skillService.StopAction();
       return;
-    } else if (this.skillService.hasActiveAction && this.skillService.currentAction.id !== action.id) 
+    } else if (this.skillService.hasActiveAction && (this.skillService.currentAction.id !== action.id || this.skillService.currentSkill.id === this.skill.id)) 
     {
-        this.actionSubscription.unsubscribe();
+        if (this.actionSubscription && !this.actionSubscription.closed) this.actionSubscription.unsubscribe();
         this.stopProgressBar();
         this.skillService.StopAction();
     }
@@ -46,7 +46,12 @@ export class WoodcuttingComponent implements OnInit {
   }
 
   ProcessWoodcutting(){
-    this.animateProgressBar();
+    if (this.skillService.currentSkill.id === this.skill.id){
+        this.animateProgressBar();
+    } else {
+        this.actionSubscription.unsubscribe();
+        this.stopProgressBar();
+    }
   }
 
   animateProgressBar(){

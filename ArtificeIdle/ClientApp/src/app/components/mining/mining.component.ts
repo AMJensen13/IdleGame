@@ -27,12 +27,17 @@ export class MiningComponent implements OnInit {
 
   ToggleMining(action: SkillAction)
   {
-    if (this.skillService.hasActiveAction)
+    if (this.skillService.hasActiveAction && this.skill.id === this.skillService.currentSkill.id && this.skillService.currentAction.id === action.id)
     {
       this.actionSubscription.unsubscribe();
       this.stopProgressBar();
       this.skillService.StopAction();
       return;
+    } else if (this.skillService.hasActiveAction && (this.skillService.currentAction.id !== action.id || this.skillService.currentAction.id === this.skill.id)) 
+    {
+        if (this.actionSubscription && !this.actionSubscription.closed) this.actionSubscription.unsubscribe();
+        this.stopProgressBar();
+        this.skillService.StopAction();
     }
 
     this.skillService.StartAction(this.skill, action);
@@ -41,7 +46,12 @@ export class MiningComponent implements OnInit {
   }
 
   ProcessMining(){
-    this.animateProgressBar();
+    if (this.skillService.currentSkill.id === this.skill.id){
+        this.animateProgressBar();
+    } else {
+        this.actionSubscription.unsubscribe();
+        this.stopProgressBar();
+    }
   }
 
   animateProgressBar(){
