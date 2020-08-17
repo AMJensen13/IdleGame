@@ -1,6 +1,6 @@
 <div class="bankItemsContainer" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <div class="bankItem" *ngFor="let item of bankItems$ | async; trackBy: trackBy">
-        <mat-card class="card-picture" #tooltip="matTooltip" matTooltip="{{GetItemName(item.itemId)}}  {{GetItemValue(item.itemId)}}gp">
+        <mat-card class="card-picture" attr.bankTippy="{{item.itemId}}" >
             <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
                 <mat-icon svgIcon="{{GetItemIcon(item.itemId)}}"></mat-icon>
             </mat-card-title>

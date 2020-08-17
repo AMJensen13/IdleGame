@@ -3,6 +3,7 @@ import { PlayerService } from 'src/app/services/player/player.service';
 import { Observable, of, Subscription } from 'rxjs';
 import { BankItem, Item } from 'src/app/models/Item';
 import Items from '../../../assets/Items.json';
+import tippy from 'tippy.js';
 
 @Component({
   selector: 'app-bank',
@@ -23,6 +24,23 @@ export class BankComponent implements OnInit {
 
   ngOnInit(): void {
     this.bankItems$ = of(this.playerService.playerSave.bank.items);
+  }
+
+  ngAfterViewInit() {
+    var self = this;
+    tippy('[bankTippy]', 
+    {
+        content(reference) {
+            const id = +reference.getAttribute('bankTippy');
+            var itemName = self.GetItemName(id);
+            var itemValue = self.GetItemValue(id);
+            return `<div><span>${itemName} : ${itemValue}gp</span></div>`;
+        },
+        arrow: false,
+        placement: 'bottom',
+        theme: 'material',
+        allowHTML: true
+    });
   }
 
   trackBy(index: number, item: BankItem) {
