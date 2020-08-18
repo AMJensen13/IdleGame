@@ -26,6 +26,7 @@ import { MiningComponent } from './components/mining/mining.component';
 import { BankItemComponent } from './components/bank-item/bank-item.component'
 import { OrderModule } from 'ngx-order-pipe';
 import { InvocationComponent } from './components/invocation/invocation.component';
+import { FishingComponent } from './components/fishing/fishing.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { InvocationComponent } from './components/invocation/invocation.componen
     MiningComponent,
     BankItemComponent,
     InvocationComponent,
+    FishingComponent,
   ],
   imports: [
     BrowserModule,

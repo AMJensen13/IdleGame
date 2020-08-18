@@ -216,5 +216,20 @@
                 "icon":"wateraether"
             }
         ]
+    },
+    {
+        "id": 3,
+        "name": "Fishing",
+        "actions": [
+            {
+                "id": 0,
+                "name": "Shrimp",
+                "levelRequirement": 1,
+                "productId": 22,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            }
+        ]
     }
 ]

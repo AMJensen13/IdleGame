@@ -130,5 +130,11 @@
         "name": "Blood Aether",
         "value": 5,
         "icon": "wateraether"
+    },
+    {
+        "id": 22,
+        "name": "Shrimp",
+        "value": 5,
+        "icon": "fishing"
     }
 ]
