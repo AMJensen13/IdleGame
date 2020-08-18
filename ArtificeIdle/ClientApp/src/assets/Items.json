@@ -94,5 +94,11 @@
         "name": "Coal",
         "value": 5,
         "icon": "rock"
+    },
+    {
+        "id": 16,
+        "name": "Air Aether",
+        "value": 5,
+        "icon": "vial"
     }
 ]

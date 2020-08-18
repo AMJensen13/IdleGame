@@ -156,5 +156,20 @@
 
             
         ]
+    },
+    {
+        "id": 2,
+        "name": "Invocation",
+        "actions": [
+            {
+                "id": 0,
+                "name": "Air Aether",
+                "levelRequirement": 1,
+                "productId": 16,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "vial"
+            }
+        ]
     }
 ]

@@ -28,6 +28,7 @@ export class AppComponent {
     this.iconRegistry.addSvgIcon('tree', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/tree.svg'));
     this.iconRegistry.addSvgIcon('logs', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/logs.svg'));
     this.iconRegistry.addSvgIcon('rock', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/rock.svg'));
+    this.iconRegistry.addSvgIcon('vial', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/vial.svg'));
 
   }
 

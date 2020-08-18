@@ -1,0 +1,18 @@
+<div class="skillPage">
+    <app-skill-info [skill]="skill"></app-skill-info>
+    <mat-grid-list cols="4" gutterSize="3rem" class="actionsContainer">
+        <mat-grid-tile class="actionButtonContainer" *ngFor="let action of skill.actions | orderBy: 'levelRequirement'">
+            <button class="button" (click)="ToggleInvocation(action)" mat-raised-button>
+                <div>
+                    <h3>{{ action.name }}</h3>
+                    <span>{{action.baseExperience}}xp / {{Math.floor(action.baseInterval/1000)}}s</span>
+                </div>
+                <mat-icon class="skillIcon" svgIcon="{{ action.icon }}"></mat-icon>
+                
+                <div class="progress">
+                    <div class="progress-bar" id="action{{action.id}}" #actionProgress role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

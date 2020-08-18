@@ -93,12 +93,11 @@ export class PlayerService {
   }
 
   private VerifyPlayerSave(){
-    if (!this.playerSave.skills.find(x => x.skillId == SkillEnum.Woodcutting)){
-        this.playerSave.skills.push(new PlayerSkill(SkillEnum.Woodcutting));
-    }
-    if (!this.playerSave.skills.find(x => x.skillId == SkillEnum.Mining)){
-        this.playerSave.skills.push(new PlayerSkill(SkillEnum.Mining));
-    }
+    Object.keys(SkillEnum).map(x => {
+        if (!this.playerSave.skills.find(pSkill => pSkill.skillId === SkillEnum[x])){
+            this.playerSave.skills.push(new PlayerSkill(SkillEnum[x]));
+        }
+    })
   }
 
   private createPlayerSave(){

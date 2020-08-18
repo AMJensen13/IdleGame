@@ -25,6 +25,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MiningComponent } from './components/mining/mining.component';
 import { BankItemComponent } from './components/bank-item/bank-item.component'
 import { OrderModule } from 'ngx-order-pipe';
+import { InvocationComponent } from './components/invocation/invocation.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { OrderModule } from 'ngx-order-pipe';
     SkillInfoComponent,
     MiningComponent,
     BankItemComponent,
+    InvocationComponent,
   ],
   imports: [
     BrowserModule,

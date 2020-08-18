@@ -10,13 +10,16 @@
       <mat-divider></mat-divider>
       <h3 matSubheader>V0.0.1 Alpha</h3>
       <a mat-list-item  (click)="SetCurrentPage('Bank')">
-        <mat-icon>attach_money</mat-icon> Bank
+        <mat-icon class="navIcon">attach_money</mat-icon> Bank
       </a>
       <a mat-list-item  (click)="SetCurrentPage('Woodcutting')">
-        <mat-icon>nature</mat-icon> Woodcutting
+        <mat-icon class="navIcon" svgIcon="tree"></mat-icon> Woodcutting
       </a>
       <a mat-list-item  (click)="SetCurrentPage('Mining')">
-        <mat-icon>terrain</mat-icon> Mining
+        <mat-icon class="navIcon" svgIcon="rock"></mat-icon> Mining
+      </a>
+      <a mat-list-item  (click)="SetCurrentPage('Invocation')">
+        <mat-icon class="navIcon" svgIcon="vial"></mat-icon> Invocation
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -27,6 +30,7 @@
     <app-bank [style.display]="GetPageDisplay('Bank')"></app-bank>
     <app-woodcutting [style.display]="GetPageDisplay('Woodcutting')"></app-woodcutting>
     <app-mining [style.display]="GetPageDisplay('Mining')"></app-mining>
+    <app-invocation [style.display]="GetPageDisplay('Invocation')"></app-invocation>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
