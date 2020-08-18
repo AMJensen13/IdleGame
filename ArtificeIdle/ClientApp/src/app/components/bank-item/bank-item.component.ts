@@ -29,7 +29,8 @@ export class BankItemComponent implements OnInit {
         },
         arrow: false,
         placement: 'bottom',
-        theme: 'material',
+        theme: 'light',
+        duration: 0,
         allowHTML: true
     });
   }

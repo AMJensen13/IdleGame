@@ -1,6 +1,7 @@
-<mat-card class="card-picture" attr.bankTippy="{{bankItem.itemId}}" >
-    <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+<mat-card class="bankCard" attr.bankTippy="{{bankItem.itemId}}" >
+    <mat-card-content>
         <mat-icon svgIcon="{{GetItemIcon(bankItem.itemId)}}"></mat-icon>
-    </mat-card-title>
-    <mat-card-footer style="text-align: center;">{{ GetDisplayQuantity(bankItem.quantity) }}</mat-card-footer>
+        <br />
+        <span class="quantityDisplay">{{ GetDisplayQuantity(bankItem.quantity) }}</span>
+    </mat-card-content>
 </mat-card>
