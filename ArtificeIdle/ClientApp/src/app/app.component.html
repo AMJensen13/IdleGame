@@ -3,15 +3,14 @@
     [attr.color]="navColor"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'">
+    <h1 class="logo">Artifice Idle</h1>
+    <mat-divider></mat-divider>
     <mat-nav-list>
-      <a mat-list-item routerLink="/home" routerLinkActive="active">
-        <mat-icon>home</mat-icon> Artifice Idle
-      </a>
-      <mat-divider></mat-divider>
-      <h3 matSubheader>V0.0.1 Alpha</h3>
       <a mat-list-item  (click)="SetCurrentPage('Bank')">
         <mat-icon class="navIcon">attach_money</mat-icon> Bank
       </a>
+      <!-- <mat-divider></mat-divider> -->
+      <h3 matSubheader>Skills</h3>
       <a mat-list-item  (click)="SetCurrentPage('Woodcutting')">
         <mat-icon class="navIcon" svgIcon="tree"></mat-icon> Woodcutting
       </a>

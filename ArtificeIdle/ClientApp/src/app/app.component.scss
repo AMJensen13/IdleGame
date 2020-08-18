@@ -48,10 +48,18 @@
     }
 }
 
+.logo {
+    margin-top: 1rem;
+}
+
 .navIcon {
     padding-right: .25rem;
 }
 
 mat-sidenav-container {
     height: 100%;
+}
+
+mat-sidenav {
+    text-align: center;
 }
