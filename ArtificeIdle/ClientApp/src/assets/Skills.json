@@ -168,7 +168,16 @@
                 "productId": 16,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "vial"
+                "icon": "airaether"
+            },
+            {
+                "id": 1,
+                "name": "Water Aether",
+                "levelRequirement": 5,
+                "productId": 17,
+                "baseExperience": 10,
+                "baseInterval":2000,
+                "icon":"wateraether"
             }
         ]
     }
