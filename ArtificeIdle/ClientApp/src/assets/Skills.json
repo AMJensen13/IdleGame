@@ -89,7 +89,26 @@
                 "baseExperience": 10,
                 "baseInterval": 2000,
                 "icon": "rock"
+            },
+            {
+                "id": 1,
+                "name": "Tin",
+                "levelRequirement": 1,
+                "productId": 9,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
+            },
+            {
+                "id": 2,
+                "name": "Iron",
+                "levelRequirement": 1,
+                "productId": 10,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
             }
+            
         ]
     }
 ]

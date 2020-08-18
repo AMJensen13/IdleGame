@@ -52,5 +52,17 @@
         "name": "Copper Ore",
         "value": 5,
         "icon": "rock"
+    },
+    {
+        "id": 9,
+        "name": "Tin Ore",
+        "value": 5,
+        "icon": "rock"
+    },
+    {
+        "id": 10,
+        "name": "Iron Ore",
+        "value": 5,
+        "icon": "rock"
     }
 ]

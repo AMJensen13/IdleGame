@@ -1,10 +1,5 @@
 <div class="bankItemsContainer" fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
     <div class="bankItem" *ngFor="let item of bankItems$ | async; trackBy: trackBy">
-        <mat-card class="card-picture" attr.bankTippy="{{item.itemId}}" >
-            <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-                <mat-icon svgIcon="{{GetItemIcon(item.itemId)}}"></mat-icon>
-            </mat-card-title>
-            <mat-card-footer style="text-align: center;">{{ GetDisplayQuantity(item.quantity) }}</mat-card-footer>
-        </mat-card>
+        <app-bank-item [bankItem]="item"></app-bank-item>
     </div>
 </div>

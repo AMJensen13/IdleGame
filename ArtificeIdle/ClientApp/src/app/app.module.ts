@@ -22,7 +22,8 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { AddItemComponent } from './components/shared/add-item/add-item.component';
 import { SkillInfoComponent } from './components/shared/skill-info/skill-info.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MiningComponent } from './components/mining/mining.component'
+import { MiningComponent } from './components/mining/mining.component';
+import { BankItemComponent } from './components/bank-item/bank-item.component'
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MiningComponent } from './components/mining/mining.component'
     AddItemComponent,
     SkillInfoComponent,
     MiningComponent,
+    BankItemComponent,
   ],
   imports: [
     BrowserModule,
