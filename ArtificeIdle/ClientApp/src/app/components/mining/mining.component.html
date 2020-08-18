@@ -1,7 +1,7 @@
 <div class="skillPage">
     <app-skill-info [skill]="skill"></app-skill-info>
     <mat-grid-list cols="4" gutterSize="3rem" class="actionsContainer">
-        <mat-grid-tile class="actionButtonContainer" *ngFor="let action of skill.actions">
+        <mat-grid-tile class="actionButtonContainer" *ngFor="let action of skill.actions | orderBy: 'levelRequirement'">
             <button class="button" (click)="ToggleMining(action)" mat-raised-button>
                 <div>
                     <h3>{{ action.name }}</h3>

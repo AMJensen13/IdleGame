@@ -102,12 +102,76 @@
             {
                 "id": 2,
                 "name": "Iron",
-                "levelRequirement": 1,
+                "levelRequirement": 15,
                 "productId": 10,
                 "baseExperience": 10,
                 "baseInterval": 2000,
                 "icon": "rock"
+            },
+            {
+                "id": 3,
+                "name": "Orichalcum",
+                "levelRequirement": 35,
+                "productId": 11,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
+            },
+            {
+                "id": 4,
+                "name": "Silver",
+                "levelRequirement": 40,
+                "productId": 12,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
+            },
+            {
+                "id": 5,
+                "name": "Gold",
+                "levelRequirement": 45,
+                "productId": 13,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
+            },
+            {
+                "id": 6,
+                "name": "Mithral",
+                "levelRequirement": 55,
+                "productId": 14,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
+            },
+            {
+                "id": 7,
+                "name": "Something better 1",
+                "levelRequirement": 70,
+                "productId": 15,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
+            },
+            {
+                "id": 8,
+                "name": "Something better 2",
+                "levelRequirement": 80,
+                "productId": 16,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
+            },
+            {
+                "id": 9,
+                "name": "Coal",
+                "levelRequirement": 25,
+                "productId": 17,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
             }
+
             
         ]
     }

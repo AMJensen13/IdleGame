@@ -24,6 +24,7 @@ import { SkillInfoComponent } from './components/shared/skill-info/skill-info.co
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MiningComponent } from './components/mining/mining.component';
 import { BankItemComponent } from './components/bank-item/bank-item.component'
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { BankItemComponent } from './components/bank-item/bank-item.component'
     MatCardModule,
     FlexLayoutModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    OrderModule
   ],
   providers: 
   [ 
