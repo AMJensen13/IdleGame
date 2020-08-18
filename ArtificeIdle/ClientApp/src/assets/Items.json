@@ -106,5 +106,29 @@
         "name": "Water Aether",
         "value": 5,
         "icon": "wateraether"
+    },
+    {
+        "id": 18,
+        "name": "Earth Aether",
+        "value": 5,
+        "icon": "wateraether"
+    },
+    {
+        "id": 19,
+        "name": "Fire Aether",
+        "value": 5,
+        "icon": "wateraether"
+    },
+    {
+        "id": 20,
+        "name": "Chaos Aether",
+        "value": 5,
+        "icon": "wateraether"
+    },
+    {
+        "id": 21,
+        "name": "Blood Aether",
+        "value": 5,
+        "icon": "wateraether"
     }
 ]

@@ -163,7 +163,7 @@
         "actions": [
             {
                 "id": 0,
-                "name": "Air Aether",
+                "name": "Air",
                 "levelRequirement": 1,
                 "productId": 16,
                 "baseExperience": 10,
@@ -172,9 +172,45 @@
             },
             {
                 "id": 1,
-                "name": "Water Aether",
+                "name": "Water",
                 "levelRequirement": 5,
                 "productId": 17,
+                "baseExperience": 10,
+                "baseInterval":2000,
+                "icon":"wateraether"
+            },
+            {
+                "id": 2,
+                "name": "Earth",
+                "levelRequirement": 10,
+                "productId": 18,
+                "baseExperience": 10,
+                "baseInterval":2000,
+                "icon":"wateraether"
+            },
+            {
+                "id": 3,
+                "name": "Fire",
+                "levelRequirement": 15,
+                "productId": 19,
+                "baseExperience": 10,
+                "baseInterval":2000,
+                "icon":"wateraether"
+            },
+            {
+                "id": 4,
+                "name": "Chaos",
+                "levelRequirement": 20,
+                "productId": 20,
+                "baseExperience": 10,
+                "baseInterval":2000,
+                "icon":"wateraether"
+            },
+            {
+                "id": 5,
+                "name": "Blood",
+                "levelRequirement": 25,
+                "productId": 21,
                 "baseExperience": 10,
                 "baseInterval":2000,
                 "icon":"wateraether"
