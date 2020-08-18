@@ -91,18 +91,6 @@
     },
     {
         "id": 15,
-        "name": "Something better 1 Ore",
-        "value": 5,
-        "icon": "rock"
-    },
-    {
-        "id": 16,
-        "name": "Something better 2 Ore",
-        "value": 5,
-        "icon": "rock"
-    },
-    {
-        "id": 17,
         "name": "Coal",
         "value": 5,
         "icon": "rock"

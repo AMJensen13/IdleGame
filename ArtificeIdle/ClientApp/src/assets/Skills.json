@@ -42,7 +42,7 @@
             {
                 "id": 4,
                 "name": "Oak Tree",
-                "levelRequirement": 0,
+                "levelRequirement": 45,
                 "productId": 4,
                 "baseExperience": 50,
                 "baseInterval": 2000,
@@ -51,7 +51,7 @@
             {
                 "id": 5,
                 "name": "Teak Tree",
-                "levelRequirement": 0,
+                "levelRequirement": 55,
                 "productId": 5,
                 "baseExperience": 60,
                 "baseInterval": 2000,
@@ -60,7 +60,7 @@
             {
                 "id": 6,
                 "name": "Rosewood Tree",
-                "levelRequirement": 0,
+                "levelRequirement": 65,
                 "productId": 6,
                 "baseExperience": 70,
                 "baseInterval": 2000,
@@ -69,7 +69,7 @@
             {
                 "id": 7,
                 "name": "Ebony Tree",
-                "levelRequirement": 0,
+                "levelRequirement": 75,
                 "productId": 7,
                 "baseExperience": 80,
                 "baseInterval": 2000,
@@ -145,28 +145,10 @@
                 "icon": "rock"
             },
             {
-                "id": 7,
-                "name": "Something better 1",
-                "levelRequirement": 70,
-                "productId": 15,
-                "baseExperience": 10,
-                "baseInterval": 2000,
-                "icon": "rock"
-            },
-            {
-                "id": 8,
-                "name": "Something better 2",
-                "levelRequirement": 80,
-                "productId": 16,
-                "baseExperience": 10,
-                "baseInterval": 2000,
-                "icon": "rock"
-            },
-            {
                 "id": 9,
                 "name": "Coal",
                 "levelRequirement": 25,
-                "productId": 17,
+                "productId": 15,
                 "baseExperience": 10,
                 "baseInterval": 2000,
                 "icon": "rock"
