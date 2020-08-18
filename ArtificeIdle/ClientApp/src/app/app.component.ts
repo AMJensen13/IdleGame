@@ -4,7 +4,6 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { SkillService } from './services/skill/skill.service';
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
 import { Subscription } from 'rxjs';
-import tippy from 'tippy.js';
 
 @Component({
   selector: 'app-root',
