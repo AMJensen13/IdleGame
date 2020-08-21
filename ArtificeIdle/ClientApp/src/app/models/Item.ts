@@ -9,8 +9,8 @@ export class BankItem {
     itemId: number;
     quantity: number;
 
-    constructor(item: Item, quantity: number){
-        this.itemId = item.id;
+    constructor(itemId: number, quantity: number){
+        this.itemId = itemId;
         this.quantity = quantity;
     }
 }

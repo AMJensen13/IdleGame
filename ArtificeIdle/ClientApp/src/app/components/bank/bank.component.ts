@@ -2,6 +2,10 @@ import { Component, OnInit, Output, EventEmitter, ViewChild, ChangeDetectionStra
 import { PlayerService } from 'src/app/services/player/player.service';
 import { Observable, of, Subscription } from 'rxjs';
 import { BankItem } from 'src/app/models/Item';
+import { Store } from '@ngrx/store';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { Bank } from 'src/app/models/Bank';
+import * as BankActions from 'src/app/store/actions/actions';
 
 @Component({
   selector: 'app-bank',
@@ -11,18 +15,32 @@ import { BankItem } from 'src/app/models/Item';
 export class BankComponent implements OnInit {
   @Output() toggleNav = new EventEmitter<any>();
   pageTitle: string = "Bank";
-  playerService: PlayerService;
   maxColCount: number = 6;
   bankItems$: Observable<BankItem[]>;
   bankItemsSubscription: Subscription;
 
-  constructor(playerService: PlayerService) 
+  constructor(private dbService: NgxIndexedDBService, private store: Store<any>) 
   { 
-    this.playerService = playerService;
   }
 
   ngOnInit(): void {
-    this.bankItems$ = of(this.playerService.playerSave.bank.items);
+    this.dbService.getByID('bank', 1).then((bank: Bank) => {
+        if (!bank) {
+            let items = new Array<BankItem>();
+            this.store.dispatch(new BankActions.LoadItems(items));
+            return;
+        }
+        
+        this.store.dispatch(new BankActions.LoadItems(bank.items));
+    });
+    this.bankItems$ = this.store.select('bank');
+    this.bankItemsSubscription = this.bankItems$.subscribe(x => 
+        {
+            if (x) {
+                this.dbService.update('bank', {items: x, id: 1});
+            }
+        }
+    );
   }
 
   trackBy(index: number, item: BankItem) {

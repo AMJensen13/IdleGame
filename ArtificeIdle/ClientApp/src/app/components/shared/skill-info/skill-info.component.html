@@ -1,4 +1,4 @@
-<div class="skillInfoContainer col-12">
+<div class="skillInfoContainer col-12" *ngIf="playerLoaded()">
     <div class="row infoRow">
         <div class="col-6 lvlCol">
             <span>Level: {{ GetLevel() + 1 }}</span>

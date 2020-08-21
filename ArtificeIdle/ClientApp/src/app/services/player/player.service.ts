@@ -4,6 +4,9 @@ import { LocalStorageService } from 'angular-web-storage';
 import { SkillEnum } from 'src/app/models/Skill';
 import { BankItem, Item } from 'src/app/models/Item';
 import Items from '../../../assets/Items.json';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { Store } from '@ngrx/store';
+import * as Bank from 'src/app/store/actions/actions';
 
 const SAVE_KEY = 'userAccount';
 const XP_CONSTANT = 25;
@@ -15,7 +18,7 @@ export class PlayerService {
   public playerSave: Player;
   public items: Array<Item>;
   
-  constructor(private localStorage: LocalStorageService) 
+  constructor(private dbService: NgxIndexedDBService, private store: Store<any>) 
   { 
     this.loadPlayerData();
     this.items = Items;
@@ -50,10 +53,6 @@ export class PlayerService {
 
     return Math.floor(XP_CONSTANT*(currentLevel+1)*(currentLevel+2));
   }
-  
-  getBankItems(){
-    return this.playerSave.bank.items;
-  }
 
   addItemToBank(id: number, quantity: number){
     let item = this.items.find(x => x.id === id);
@@ -62,34 +61,34 @@ export class PlayerService {
       return;
     }
 
-    var itemInBank = this.playerSave.bank.items.find(x => x.itemId === id);
-
-    if (itemInBank){
-      itemInBank.quantity += quantity;
-    } else{
-      this.playerSave.bank.items.push(new BankItem(item, quantity));
-    }
-    this.savePlayerData();
+    this.store.dispatch(new Bank.AddItem(new BankItem(id, quantity)));
+    this.updatePlayerData();
   }
 
-  savePlayerData(){
-    this.localStorage.set(SAVE_KEY, JSON.stringify(this.playerSave));
+  updatePlayerData(){
+    this.dbService.update('player', this.playerSave).catch((ex) => { console.log(ex)});
+  }
+
+  savePlayerData() {
+      this.dbService.add('player', this.playerSave).catch((ex) => {console.log(ex)});
   }
 
   addXP(experience: number, skillId: SkillEnum){
     this.playerSave.skills[skillId].experience += experience;
-    this.savePlayerData();
+    this.updatePlayerData();
   }
 
-  private loadPlayerData(){
-    var saveString = this.localStorage.get(SAVE_KEY);
-    if (saveString)
-    {
-      this.playerSave = JSON.parse(saveString);
-      this.VerifyPlayerSave();
-    } else {
-      this.createPlayerSave();
-    }
+  private async loadPlayerData(){
+    this.dbService.getByID('player', 1).then((player: Player) => {
+        if (player)
+        {
+          this.playerSave = player;
+          this.VerifyPlayerSave();
+        } else {
+          this.createPlayerSave();
+        }
+        //this.store.dispatch(new Bank.LoadItems(this.playerSave.bank.items));
+    });
   }
 
   private VerifyPlayerSave(){

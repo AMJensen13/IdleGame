@@ -27,6 +27,26 @@ import { BankItemComponent } from './components/bank-item/bank-item.component'
 import { OrderModule } from 'ngx-order-pipe';
 import { InvocationComponent } from './components/invocation/invocation.component';
 import { FishingComponent } from './components/fishing/fishing.component';
+import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
+import { StoreModule } from '@ngrx/store';
+import { bankReducer } from './store/reducer';
+
+const dbConfig: DBConfig = {
+    name: "ArtificeDB",
+    version: 1,
+    objectStoresMeta: [
+        {
+            store: 'player',
+            storeConfig: {keyPath: 'id', autoIncrement: true},
+            storeSchema: []
+        },
+        {
+            store: 'bank',
+            storeConfig: {keyPath: 'id', autoIncrement: true},
+            storeSchema: []
+        },
+    ]
+};
 
 @NgModule({
   declarations: [
@@ -58,12 +78,14 @@ import { FishingComponent } from './components/fishing/fishing.component';
     FlexLayoutModule,
     MatSnackBarModule,
     MatTooltipModule,
-    OrderModule
+    OrderModule,
+    NgxIndexedDBModule.forRoot(dbConfig),
+    StoreModule.forRoot({ bank: bankReducer})
   ],
   providers: 
   [ 
     PlayerService,
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1500, panelClass: ['snackBarInfo'] } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 1000, panelClass: ['snackBarInfo'] } }
   ],
   bootstrap: [AppComponent]
 })

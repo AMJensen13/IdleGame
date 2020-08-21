@@ -3,6 +3,7 @@ import Skills from '../../assets/Skills.json';
 import { Bank } from './Bank';
 
 export class Player {
+    id: number
     name: string;
     skills: Array<PlayerSkill>;
     bank: Bank;

@@ -14,6 +14,10 @@ export class SkillInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  playerLoaded() {
+      return this.playerService.playerSave !== null && this.playerService.playerSave !== undefined;
+  }
+
   GetLevel(){
       return this.playerService.GetSkillLevel(this.skill.id);
   }
