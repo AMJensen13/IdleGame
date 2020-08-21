@@ -62,4 +62,22 @@ mat-sidenav-container {
 
 mat-sidenav {
     text-align: center;
+    width: 200px;
+}
+
+.mat-expansion-panel {
+    background: transparent !important;
+}
+
+.mat-expansion-panel-header {
+    padding: 0 16px !important;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.levelDisplay {
+    margin-left: auto;    
+    color: darkgray;
 }

@@ -5,6 +5,9 @@ import { SkillService } from './services/skill/skill.service';
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
 import { Subscription } from 'rxjs';
 import { PlayerService } from './services/player/player.service';
+import { Store } from '@ngrx/store';
+import { PlayerSkill } from './models/Player';
+import { SkillEnum } from './models/Skill';
 
 @Component({
   selector: 'app-root',
@@ -19,10 +22,14 @@ export class AppComponent {
   opened = true;
   currentPage: string = 'Bank';
   toggleNavSubscription: Subscription;
+  skillLevelSubscription: Subscription;
+  skillLevels: { [id: number]: number } = {};
+  skillEnums = SkillEnum;
 
   constructor(private iconRegistry: MatIconRegistry, 
               private domSanitizer: DomSanitizer,
               private skillService: SkillService,
+              private store: Store<any>,
               private playerService: PlayerService)
   {
     // edit icons with https://boxy-svg.com/
@@ -39,6 +46,11 @@ export class AppComponent {
   }
 
   ngOnInit(){
+    this.skillLevelSubscription = this.store.select('skills').subscribe((skills : PlayerSkill[]) => {
+        for(let skill of skills) {
+            this.skillLevels[skill.skillId] = this.skillService.GetSkillLevel(skill.experience);
+        }
+    });
   }
 
   ngAfterViewInit() {

@@ -9,20 +9,30 @@
       <a mat-list-item  (click)="SetCurrentPage('Bank')">
         <mat-icon class="navIcon">attach_money</mat-icon> Bank
       </a>
-      <!-- <mat-divider></mat-divider> -->
-      <h3 matSubheader>Skills</h3>
-      <a mat-list-item  (click)="SetCurrentPage('Woodcutting')">
-        <mat-icon class="navIcon" svgIcon="tree"></mat-icon> Woodcutting
-      </a>
-      <a mat-list-item  (click)="SetCurrentPage('Mining')">
+      
+    <mat-expansion-panel [class.mat-elevation-z0]="true" [expanded]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Skills
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <a mat-list-item class="skill" (click)="SetCurrentPage('Woodcutting')">
+            <mat-icon class="navIcon" svgIcon="tree"></mat-icon> Woodcutting
+            <span class="levelDisplay">{{ skillLevels[skillEnums.Woodcutting] + 1 }}</span>
+        </a>
+        <a mat-list-item class="skill" (click)="SetCurrentPage('Mining')">
         <mat-icon class="navIcon" svgIcon="rock"></mat-icon> Mining
-      </a>
-      <a mat-list-item  (click)="SetCurrentPage('Invocation')">
+        <span class="levelDisplay">{{ skillLevels[skillEnums.Mining] + 1 }}</span>
+        </a>
+        <a mat-list-item class="skill" (click)="SetCurrentPage('Invocation')">
         <mat-icon class="navIcon" svgIcon="vial"></mat-icon> Invocation
-      </a>
-      <a mat-list-item  (click)="SetCurrentPage('Fishing')">
+        <span class="levelDisplay">{{ skillLevels[skillEnums.Invocation] + 1 }}</span>
+        </a>
+        <a mat-list-item class="skill" (click)="SetCurrentPage('Fishing')">
         <mat-icon class="navIcon" svgIcon="fishing"></mat-icon> Fishing
-      </a>
+        <span class="levelDisplay">{{ skillLevels[skillEnums.Fishing] + 1 }}</span>
+        </a>
+    </mat-expansion-panel>
     </mat-nav-list>
   </mat-sidenav>
 
