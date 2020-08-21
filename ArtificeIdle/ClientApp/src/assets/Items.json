@@ -136,5 +136,17 @@
         "name": "Shrimp",
         "value": 5,
         "icon": "fishing"
+    },
+    {
+        "id": 23,
+        "name": "Turtle",
+        "value": 5,
+        "icon": "fishing"
+    },
+    {
+        "id": 24,
+        "name": "Oregano",
+        "value": 5,
+        "icon": "grass"
     }
 ]

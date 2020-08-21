@@ -20,5 +20,6 @@ export enum SkillEnum {
     Woodcutting = 0,
     Mining = 1,
     Invocation = 2,
-    Fishing = 3
+    Fishing = 3,
+    Foraging = 4
 }

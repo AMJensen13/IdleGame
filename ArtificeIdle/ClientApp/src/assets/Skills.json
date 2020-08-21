@@ -229,6 +229,30 @@
                 "baseExperience": 10,
                 "baseInterval": 2000,
                 "icon": "fishing"
+            },
+            {
+                "id": 1,
+                "name": "Turtle",
+                "levelRequirement": 1,
+                "productId": 23,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Foraging",
+        "actions": [
+            {
+                "id": 0,
+                "name": "Oregano",
+                "levelRequirement": 1,
+                "productId": 24,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "grass"
             }
         ]
     }

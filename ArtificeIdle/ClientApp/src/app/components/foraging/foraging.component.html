@@ -1,8 +1,8 @@
 <div class="skillPage">
     <app-skill-info [skill]="skill"></app-skill-info>
-    <mat-grid-list cols="4" gutterSize="50px" class="actionsContainer">
+    <mat-grid-list cols="4" gutterSize="3rem" class="actionsContainer">
         <mat-grid-tile class="actionButtonContainer" *ngFor="let action of skill.actions | orderBy: 'levelRequirement'">
-            <button class="button" (click)="ToggleWoodcutting(action)" mat-raised-button>
+            <button class="button" (click)="ToggleForaging(action)" mat-raised-button>
                 <div>
                     <h3>{{ action.name }}</h3>
                     <span>{{action.baseExperience}}xp / {{Math.floor(action.baseInterval/1000)}}s</span>

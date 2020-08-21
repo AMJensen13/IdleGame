@@ -42,6 +42,7 @@ export class AppComponent {
     this.iconRegistry.addSvgIcon('airaether', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/air-aether.svg'));
     this.iconRegistry.addSvgIcon('wateraether', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/water-aether.svg'));
     this.iconRegistry.addSvgIcon('fishing', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/fishing.svg'));
+    this.iconRegistry.addSvgIcon('grass', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/grass.svg'));
 
   }
 

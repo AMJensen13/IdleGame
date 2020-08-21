@@ -32,6 +32,10 @@
         <mat-icon class="navIcon" svgIcon="fishing"></mat-icon> Fishing
         <span class="levelDisplay">{{ skillLevels[skillEnums.Fishing] + 1 }}</span>
         </a>
+        <a mat-list-item class="skill" (click)="SetCurrentPage('Foraging')">
+        <mat-icon class="navIcon" svgIcon="grass"></mat-icon> Foraging
+        <span class="levelDisplay">{{ skillLevels[skillEnums.Foraging] + 1 }}</span>
+        </a>
     </mat-expansion-panel>
     </mat-nav-list>
   </mat-sidenav>
@@ -44,6 +48,7 @@
     <app-mining [style.display]="GetPageDisplay('Mining')"></app-mining>
     <app-invocation [style.display]="GetPageDisplay('Invocation')"></app-invocation>
     <app-fishing [style.display]="GetPageDisplay('Fishing')"></app-fishing>
+    <app-foraging [style.display]="GetPageDisplay('Foraging')"></app-foraging>
   </mat-sidenav-content>
 </mat-sidenav-container>
 
