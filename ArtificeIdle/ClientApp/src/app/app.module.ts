@@ -29,7 +29,8 @@ import { InvocationComponent } from './components/invocation/invocation.componen
 import { FishingComponent } from './components/fishing/fishing.component';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 import { StoreModule } from '@ngrx/store';
-import { bankReducer } from './store/reducer';
+import { bankReducer } from './store/bank/reducer';
+import { skillsReducer } from './store/skills/reducer';
 
 const dbConfig: DBConfig = {
     name: "ArtificeDB",
@@ -42,6 +43,11 @@ const dbConfig: DBConfig = {
         },
         {
             store: 'bank',
+            storeConfig: {keyPath: 'id', autoIncrement: true},
+            storeSchema: []
+        },
+        {
+            store: 'skills',
             storeConfig: {keyPath: 'id', autoIncrement: true},
             storeSchema: []
         },
@@ -80,7 +86,7 @@ const dbConfig: DBConfig = {
     MatTooltipModule,
     OrderModule,
     NgxIndexedDBModule.forRoot(dbConfig),
-    StoreModule.forRoot({ bank: bankReducer})
+    StoreModule.forRoot({ bank: bankReducer, skills: skillsReducer })
   ],
   providers: 
   [ 

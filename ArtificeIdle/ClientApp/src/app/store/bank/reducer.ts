@@ -1,5 +1,5 @@
-import { BankActions, BankActionTypes } from "./actions/actions";
-import { BankItem } from '../models/Item';
+import { BankActions, BankActionTypes } from "./actions";
+import { BankItem } from '../../models/Item';
 
 export let initialState: BankItem[] = [];
 

@@ -1,10 +1,10 @@
-<div class="skillInfoContainer col-12" *ngIf="playerLoaded()">
+<div class="skillInfoContainer col-12" *ngIf="loaded">
     <div class="row infoRow">
         <div class="col-6 lvlCol">
-            <span>Level: {{ GetLevel() + 1 }}</span>
+            <span>Level: {{ currentLevel + 1 }}</span>
         </div>
         <div class="col-6 xpCol">
-            <span>XP: {{ GetCurrentXP() }} / {{ GetNextLevelXP() }}</span>
+            <span>XP: {{ currentXP }} / {{ nextLevelXP }}</span>
         </div>
     </div>
     <div class="row progressRow">

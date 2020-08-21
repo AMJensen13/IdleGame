@@ -5,7 +5,7 @@ import { BankItem } from 'src/app/models/Item';
 import { Store } from '@ngrx/store';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Bank } from 'src/app/models/Bank';
-import * as BankActions from 'src/app/store/actions/actions';
+import * as BankActions from 'src/app/store/bank/actions';
 
 @Component({
   selector: 'app-bank',

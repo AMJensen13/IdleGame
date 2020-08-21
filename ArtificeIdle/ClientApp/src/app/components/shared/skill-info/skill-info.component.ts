@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Skill } from 'src/app/models/Skill';
 import { PlayerService } from 'src/app/services/player/player.service';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import { PlayerSkill } from 'src/app/models/Player';
+import { SkillService } from 'src/app/services/skill/skill.service';
 
 @Component({
   selector: 'app-skill-info',
@@ -9,34 +13,40 @@ import { PlayerService } from 'src/app/services/player/player.service';
 })
 export class SkillInfoComponent implements OnInit {
   @Input() skill: Skill;
-  constructor(private playerService: PlayerService) { }
+  skillInfoSub: Subscription;
+  currentLevel: number;
+  currentXP: number;
+  currentLevelXP: number;
+  nextLevelXP: number;
+  loaded: boolean = false;
+
+  constructor(private store: Store<any>, private skillService: SkillService) { }
 
   ngOnInit(): void {
-  }
+      this.store.select('skills').subscribe((skills: PlayerSkill[]) => {
+        let currentSkill = skills.find(x=> x.skillId === this.skill.id);
 
-  playerLoaded() {
-      return this.playerService.playerSave !== null && this.playerService.playerSave !== undefined;
-  }
+        if (!currentSkill) return;
+        this.loaded = true
 
-  GetLevel(){
-      return this.playerService.GetSkillLevel(this.skill.id);
-  }
+        if (this.currentXP === currentSkill.experience){
+            return;
+        }
 
-  GetCurrentLevelXP() {
-    return this.playerService.GetCurrentLevelXP(this.skill.id);
-  }
+        this.currentXP = currentSkill.experience;
+        this.currentLevelXP = this.skillService.GetCurrentLevelXP(this.currentXP);
 
-  GetNextLevelXP() {
-      return this.playerService.GetNextLevelXP(this.skill.id);
-  }
+        var updatedLevel = this.skillService.GetSkillLevel(this.currentXP);
+        if (updatedLevel === this.currentLevel) {
+            return;
+        }
 
-  GetCurrentXP() {
-      return this.playerService.GetCurrentXP(this.skill.id);
+        this.currentLevel = updatedLevel;
+        this.nextLevelXP = this.skillService.GetNextLevelXP(this.currentXP);
+      });
   }
 
   GetCurrentLevelUpProgress() {
-      var currentLevelXP = this.GetCurrentLevelXP();
-
-      return `${(((this.GetCurrentXP()-currentLevelXP)/(this.GetNextLevelXP()-currentLevelXP)) * 100)}%`;
+      return `${(((this.currentXP-this.currentLevelXP)/(this.nextLevelXP-this.currentLevelXP)) * 100)}%`;
   }
 }

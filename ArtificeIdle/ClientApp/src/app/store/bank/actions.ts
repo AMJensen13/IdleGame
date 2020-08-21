@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store'
-import { BankItem } from '../../models/Item';
 
 export enum BankActionTypes {
     ADD_ITEM = 'ADD_ITEM',
