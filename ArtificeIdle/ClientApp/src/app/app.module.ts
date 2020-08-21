@@ -31,6 +31,7 @@ import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 import { StoreModule } from '@ngrx/store';
 import { bankReducer } from './store/bank/reducer';
 import { skillsReducer } from './store/skills/reducer';
+import { playerReducer } from './store/player/reducer';
 
 const dbConfig: DBConfig = {
     name: "ArtificeDB",
@@ -86,7 +87,7 @@ const dbConfig: DBConfig = {
     MatTooltipModule,
     OrderModule,
     NgxIndexedDBModule.forRoot(dbConfig),
-    StoreModule.forRoot({ bank: bankReducer, skills: skillsReducer })
+    StoreModule.forRoot({ bank: bankReducer, skills: skillsReducer, player: playerReducer })
   ],
   providers: 
   [ 

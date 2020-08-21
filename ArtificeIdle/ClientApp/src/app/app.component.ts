@@ -4,6 +4,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { SkillService } from './services/skill/skill.service';
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
 import { Subscription } from 'rxjs';
+import { PlayerService } from './services/player/player.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,8 @@ export class AppComponent {
 
   constructor(private iconRegistry: MatIconRegistry, 
               private domSanitizer: DomSanitizer,
-              private skillService: SkillService)
+              private skillService: SkillService,
+              private playerService: PlayerService)
   {
     // edit icons with https://boxy-svg.com/
     this.iconRegistry.addSvgIcon('bank', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/bank.svg'));

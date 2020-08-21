@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Player, PlayerSkill } from '../../models/Player';
-import { SkillEnum } from 'src/app/models/Skill';
+import { Player } from '../../models/Player';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
+import * as PlayerActions from 'src/app/store/player/actions';
 
 const SAVE_KEY = 'userAccount';
 
@@ -9,34 +11,26 @@ const SAVE_KEY = 'userAccount';
   providedIn: 'root',
 })
 export class PlayerService {
-  public playerSave: Player;
-  
-  constructor(private dbService: NgxIndexedDBService) 
+  public player: Player;
+  public player$: Observable<any>;
+  public playerSubscription: Subscription;
+
+  constructor(private dbService: NgxIndexedDBService, private store: Store<any>) 
   { 
-    this.loadPlayerData();
-  }
-
-  updatePlayerData(){
-    this.dbService.update('player', this.playerSave).catch((ex) => { console.log(ex)});
-  }
-
-  savePlayerData() {
-      this.dbService.add('player', this.playerSave).catch((ex) => {console.log(ex)});
-  }
-
-  private async loadPlayerData(){
-    this.dbService.getByID('player', 1).then((player: Player) => {
-        if (player)
-        {
-          this.playerSave = player;
-        } else {
-          this.createPlayerSave();
+    this.dbService.getByID('player', 1).then((x : Player) => {
+        let currentPlayer = new Player("default");
+        if (x) {
+            currentPlayer = x;
         }
-    });
-  }
 
-  private createPlayerSave(){
-    this.playerSave = new Player("test");
-    this.savePlayerData();
+        this.store.dispatch(new PlayerActions.LoadPlayer(currentPlayer));
+    })
+    this.player$ = this.store.select('player');
+    this.player$.subscribe(x => this.player = x);
+    this.playerSubscription = this.player$.subscribe(x => {
+        if (x && x.name !== '') {
+            this.dbService.update('player', x);
+        }
+    })
   }
 }

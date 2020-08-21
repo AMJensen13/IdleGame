@@ -17,7 +17,7 @@ export class PlayerSkill {
     }
 }
 
-export class PlayerSkills {
+export class PlayerSkillsEntity {
     id: number;
     skills: PlayerSkill[];
 }
