@@ -110,7 +110,7 @@
             },
             {
                 "id": 3,
-                "name": "Orichalcum",
+                "name": "Vetrium",
                 "levelRequirement": 35,
                 "productId": 11,
                 "baseExperience": 10,
@@ -149,6 +149,15 @@
                 "name": "Coal",
                 "levelRequirement": 25,
                 "productId": 15,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "rock"
+            },
+            {
+                "id": 10,
+                "name": "Sulfur",
+                "levelRequirement": 25,
+                "productId": 29,
                 "baseExperience": 10,
                 "baseInterval": 2000,
                 "icon": "rock"
@@ -235,6 +244,42 @@
                 "name": "Turtle",
                 "levelRequirement": 1,
                 "productId": 23,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            },
+            {
+                "id": 2,
+                "name": "Crab",
+                "levelRequirement": 1,
+                "productId": 25,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            },
+            {
+                "id": 3,
+                "name": "Shark",
+                "levelRequirement": 1,
+                "productId": 26,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            },
+            {
+                "id": 4,
+                "name": "Whale",
+                "levelRequirement": 1,
+                "productId": 27,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            },
+            {
+                "id": 5,
+                "name": "Fish",
+                "levelRequirement": 1,
+                "productId": 28,
                 "baseExperience": 10,
                 "baseInterval": 2000,
                 "icon": "fishing"

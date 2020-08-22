@@ -67,7 +67,7 @@
     },
     {
         "id": 11,
-        "name": "Orichalcum Ore",
+        "name": "Vetrium Ore",
         "value": 5,
         "icon": "rock"
     },
@@ -148,5 +148,35 @@
         "name": "Oregano",
         "value": 5,
         "icon": "grass"
+    },
+    {
+        "id": 25,
+        "name": "Crab",
+        "value": 5,
+        "icon": "fishing"
+    },
+    {
+        "id": 26,
+        "name": "Shark",
+        "value": 5,
+        "icon": "fishing"
+    },
+    {
+        "id": 27,
+        "name": "Whale",
+        "value": 5,
+        "icon": "fishing"
+    },
+    {
+        "id": 28,
+        "name": "Fish",
+        "value": 5,
+        "icon": "fishing"
+    },
+    {
+        "id": 29,
+        "name": "Sulfur",
+        "value": 5,
+        "icon": "rock"
     }
 ]
