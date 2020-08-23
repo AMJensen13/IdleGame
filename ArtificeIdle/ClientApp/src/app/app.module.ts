@@ -35,6 +35,7 @@ import { StoreModule } from '@ngrx/store';
 import { bankReducer } from './store/bank/reducer';
 import { skillsReducer } from './store/skills/reducer';
 import { playerReducer } from './store/player/reducer';
+import { ShopComponent } from './components/shop/shop.component';
 
 const dbConfig: DBConfig = {
     name: "ArtificeDB",
@@ -70,7 +71,8 @@ const dbConfig: DBConfig = {
     BankItemComponent,
     InvocationComponent,
     FishingComponent,
-    ForagingComponent
+    ForagingComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
