@@ -20,15 +20,16 @@ export class PlayerService {
         if (x) {
             currentPlayer = x;
         }
-
+        
+        if (currentPlayer.currency === undefined) currentPlayer.currency = 0;
         this.store.dispatch(new PlayerActions.LoadPlayer(currentPlayer));
-    })
-    this.player$ = this.store.select('player');
-    this.player$.subscribe(x => this.player = x);
-    this.playerSubscription = this.player$.subscribe(x => {
+    });
+    this.playerSubscription = this.store.select('player').subscribe((x: Player) => {
         if (x && x.name !== '') {
             this.dbService.update('player', x);
+            this.player = x;
         }
-    })
+    });
+    
   }
 }

@@ -1,7 +1,8 @@
 import { Action } from '@ngrx/store'
 
 export enum PlayerActionTypes {
-    LOAD_PLAYER = 'LOAD_PLAYER'
+    LOAD_PLAYER = 'LOAD_PLAYER',
+    ADD_CURRENCY = 'ADD_CURRENCY'
 }
 
 export class LoadPlayer implements Action {
@@ -9,4 +10,9 @@ export class LoadPlayer implements Action {
     constructor(public payload: any) {}
 }
 
-export type PlayerActions = LoadPlayer;
+export class AddCurrency implements Action {
+    readonly type = PlayerActionTypes.ADD_CURRENCY;
+    constructor(public payload: any) {}
+}
+
+export type PlayerActions = LoadPlayer | AddCurrency;

@@ -7,7 +7,7 @@
     <mat-divider></mat-divider>
     <mat-nav-list>
       <a mat-list-item  (click)="SetCurrentPage('Bank')">
-        <mat-icon class="navIcon">attach_money</mat-icon> Bank
+        <mat-icon class="navIcon">attach_money</mat-icon> Bank <span class="currencyDisplay">{{GetCurrencyDisplay()}} s</span>
       </a>
       
     <mat-expansion-panel [class.mat-elevation-z0]="true" [expanded]="true">

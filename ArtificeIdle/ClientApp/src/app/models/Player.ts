@@ -1,6 +1,7 @@
 export class Player {
     id: number
     name: string;
+    currency: number = 0;
 
     constructor(name: string){
         this.name = name;

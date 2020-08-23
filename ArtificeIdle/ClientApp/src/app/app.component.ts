@@ -6,7 +6,7 @@ import { SkillTitleComponent } from './components/shared/skill-title/skill-title
 import { Subscription } from 'rxjs';
 import { PlayerService } from './services/player/player.service';
 import { Store } from '@ngrx/store';
-import { PlayerSkill } from './models/Player';
+import { PlayerSkill, Player } from './models/Player';
 import { SkillEnum } from './models/Skill';
 
 @Component({
@@ -22,6 +22,8 @@ export class AppComponent {
   opened = true;
   currentPage: string = 'Bank';
   toggleNavSubscription: Subscription;
+  playerCurrencySubscription: Subscription;
+  playerCurrency: number;
   skillLevelSubscription: Subscription;
   skillLevels: { [id: number]: number } = {};
   skillEnums = SkillEnum;
@@ -47,11 +49,16 @@ export class AppComponent {
   }
 
   ngOnInit(){
+    this.playerCurrency = 0;
     this.skillLevelSubscription = this.store.select('skills').subscribe((skills : PlayerSkill[]) => {
         for(let skill of skills) {
             this.skillLevels[skill.skillId] = this.skillService.GetSkillLevel(skill.experience);
         }
     });
+
+    this.playerCurrencySubscription = this.store.select('player').subscribe((player: Player) => {
+        if (player.currency !== undefined) this.playerCurrency = player.currency;
+    })
   }
 
   ngAfterViewInit() {
@@ -75,5 +82,22 @@ export class AppComponent {
       } else {
           return 'none';
       }
+  }
+
+  GetCurrencyDisplay(){
+    let value = this.playerCurrency;
+    if (value <= 9999){
+        return `${value}`;
+    } else if(value >= 10000 && value <= 999999){
+        let thousandValue = value / 1000;
+        return `${this.truncateDecimals(thousandValue)}k`;
+    } else {
+      let milValue = value / 1000000;
+      return `${this.truncateDecimals(milValue)}M`;
+    }
+  }
+
+  private truncateDecimals(value: number) {
+    return value.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
   }
 }

@@ -49,17 +49,17 @@ export class SkillService {
             })
             
             this.store.dispatch(new SkillActions.LoadSkills(pSkills));
+            this.skillsSubscription = this.store.select('skills').subscribe((skills: Array<PlayerSkill>) => 
+                {
+                    if (skills && skills.length >= 0) {
+                        this.dbService.update('skills', { skills, id: 1});
+                        
+                        this.UpdateSkillLevels(skills);
+                    }
+                }
+            );
         });
         
-        this.skillsSubscription = this.store.select('skills').subscribe((skills: Array<PlayerSkill>) => 
-            {
-                if (skills && skills.length >= 0) {
-                    this.dbService.update('skills', { skills, id: 1});
-                    
-                    this.UpdateSkillLevels(skills);
-                }
-            }
-        );
     }
 
     ToggleAction(skill: Skill, action: SkillAction) {

@@ -12,7 +12,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatExpansionModule } from '@angular/material/expansion'
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
 import { PlayerService } from './services/player/player.service';
 import { WoodcuttingComponent } from './components/woodcutting/woodcutting.component';
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
@@ -90,6 +91,7 @@ const dbConfig: DBConfig = {
     MatExpansionModule,
     MatTooltipModule,
     OrderModule,
+    MatMenuModule,
     NgxIndexedDBModule.forRoot(dbConfig),
     StoreModule.forRoot({ bank: bankReducer, skills: skillsReducer, player: playerReducer })
   ],

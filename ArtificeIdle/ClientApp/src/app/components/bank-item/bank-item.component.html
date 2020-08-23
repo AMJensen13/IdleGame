@@ -1,7 +1,14 @@
-<mat-card class="bankCard" attr.bankTippy="{{bankItem.itemId}}" >
-    <mat-card-content>
-        <mat-icon svgIcon="{{GetItemIcon(bankItem.itemId)}}"></mat-icon>
-        <br />
-        <span class="quantityDisplay">{{ GetDisplayQuantity(bankItem.quantity) }}</span>
-    </mat-card-content>
-</mat-card>
+<div attr.bankTippy="{{bankItem.itemId}}">
+    <mat-card [matMenuTriggerFor]="itemMenu" #matTrigger="matMenuTrigger" class="bankCard">
+        <mat-card-content>
+            <mat-icon svgIcon="{{GetItemIcon(bankItem.itemId)}}"></mat-icon>
+            <br />
+            <span class="quantityDisplay">{{ GetDisplayQuantity(bankItem.quantity) }}</span>
+        </mat-card-content>
+        <mat-menu #itemMenu="matMenu">
+            <button mat-menu-item (click)="SellItem(1)">
+                <span>Sell 1</span>
+            </button>
+        </mat-menu>
+    </mat-card>
+</div>

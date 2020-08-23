@@ -3,6 +3,9 @@ import { BankItem } from 'src/app/models/Item';
 
 import Items from '../../../assets/Items.json';
 import tippy from 'tippy.js';
+import { Store } from '@ngrx/store';
+import * as BankActions from 'src/app/store/bank/actions';
+import * as PlayerActions from 'src/app/store/player/actions';
 
 @Component({
   selector: 'app-bank-item',
@@ -12,7 +15,7 @@ import tippy from 'tippy.js';
 export class BankItemComponent implements OnInit {
   @Input('bankItem') bankItem: BankItem;
 
-  constructor() { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit(): void {
   }
@@ -61,6 +64,13 @@ export class BankItemComponent implements OnInit {
 
   private truncateDecimals(value: number) {
     return value.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0];
+  }
+
+  SellItem(quantity: number) {
+      let itemId = this.bankItem.itemId;
+      let currency = this.GetItemValue(itemId) * quantity;
+      this.store.dispatch(new BankActions.RemoveItem({itemId, quantity}));
+      this.store.dispatch(new PlayerActions.AddCurrency(currency));
   }
 
 }
