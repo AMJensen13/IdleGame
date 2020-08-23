@@ -3,7 +3,7 @@ import { SkillAction, Skill, SkillEnum } from 'src/app/models/Skill';
 import { Observable, interval, Subscription } from 'rxjs';
 import { takeWhile } from 'rxjs/operators';
 import { AddItemComponent } from 'src/app/components/shared/add-item/add-item.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Store } from '@ngrx/store';
 import { PlayerSkill, PlayerSkillsEntity } from 'src/app/models/Player';
@@ -12,7 +12,7 @@ import Items from '../../../assets/Items.json';
 import { Item, BankItem } from 'src/app/models/Item';
 import * as Bank from 'src/app/store/bank/actions';
 
-const XP_CONSTANT = 25;
+const XP_CONSTANT = 1313;
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +25,14 @@ export class SkillService {
     hasActiveAction: boolean;
     skillsSubscription: Subscription;
     items: Array<Item>;
+    skillLevels: number[];
 
     constructor(private _snackBar: MatSnackBar, 
                 private dbService: NgxIndexedDBService, 
                 private store: Store<any>) 
     { 
         this.items = Items;
+        this.skillLevels = new Array<number>();
         this.dbService.getByID('skills', 1).then((skills: PlayerSkillsEntity) => {
             let pSkills = new Array<PlayerSkill>();
 
@@ -49,10 +51,12 @@ export class SkillService {
             this.store.dispatch(new SkillActions.LoadSkills(pSkills));
         });
         
-        this.skillsSubscription = this.store.select('skills').subscribe(x => 
+        this.skillsSubscription = this.store.select('skills').subscribe((skills: Array<PlayerSkill>) => 
             {
-                if (x) {
-                    this.dbService.update('skills', {skills: x, id: 1});
+                if (skills && skills.length >= 0) {
+                    this.dbService.update('skills', { skills, id: 1});
+                    
+                    this.UpdateSkillLevels(skills);
                 }
             }
         );
@@ -81,6 +85,10 @@ export class SkillService {
     }
 
     StartAction(skill: Skill, action: SkillAction){
+        if (!this.hasRequiredLevel(skill, action)) {
+            return this.ShowError(skill, 'You do not meet the level requirement to do this action.');
+        }
+
         this.currentAction = action;
         this.currentSkill = skill;
         this.currentActionInterval = interval(action.baseInterval).pipe(takeWhile(() => skill.id === this.currentSkill.id && action.id === this.currentAction.id));
@@ -94,6 +102,23 @@ export class SkillService {
             this.addItemToBank(action.productId, 1);
             this._snackBar.openFromComponent(AddItemComponent, { data: {productId: action.productId, quantity: 1} });
         }
+    }
+
+    hasRequiredLevel (skill: Skill, action: SkillAction) {
+        return this.skillLevels[skill.id] >= action.levelRequirement;
+    }
+
+    UpdateSkillLevels(skills: PlayerSkill[]) {
+        for (let skill of skills) {
+            this.skillLevels[skill.skillId] = this.GetSkillLevel(skill.experience) + 1;
+        }
+    }
+
+    ShowError(skill: Skill, message: string) {
+        const snackConfig = new MatSnackBarConfig();
+        snackConfig.panelClass = ['background-red'];
+        snackConfig.duration = 1500;
+        this._snackBar.open(message, null, snackConfig);
     }
 
     addXP(id: number, xp: number) {
