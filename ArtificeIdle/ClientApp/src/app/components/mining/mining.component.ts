@@ -41,8 +41,10 @@ export class MiningComponent implements OnInit {
     }
 
     this.skillService.StartAction(this.skill, action);
-    this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessMining());
-    this.animateProgressBar();
+    if (this.skillService.hasActiveAction){
+      this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessMining());
+      this.animateProgressBar();
+    }
   }
 
   ProcessMining(){

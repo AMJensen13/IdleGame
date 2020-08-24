@@ -12,10 +12,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
 }
 
-.background-red {
-    background-color: #c56464;
-    color: #fff;
-}
 /* Importing Bootstrap SCSS file. */
 //@import '~bootstrap/scss/bootstrap';
 @import '~bootstrap/scss/bootstrap-grid';

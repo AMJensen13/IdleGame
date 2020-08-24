@@ -12,6 +12,7 @@ export class PlayerService {
   public player: Player;
   public player$: Observable<any>;
   public playerSubscription: Subscription;
+  playerCurrency: number;
 
   constructor(private dbService: NgxIndexedDBService, private store: Store<any>) 
   { 
@@ -28,8 +29,13 @@ export class PlayerService {
         if (x && x.name !== '') {
             this.dbService.update('player', x);
             this.player = x;
+            this.playerCurrency = x.currency;
         }
     });
     
+  }
+
+  GetPlayerCurrency() {
+    return this.playerCurrency;
   }
 }

@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { PlayerService } from './services/player/player.service';
 import { WoodcuttingComponent } from './components/woodcutting/woodcutting.component';
@@ -25,7 +26,7 @@ import { AddItemComponent } from './components/shared/add-item/add-item.componen
 import { SkillInfoComponent } from './components/shared/skill-info/skill-info.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MiningComponent } from './components/mining/mining.component';
-import { BankItemComponent } from './components/bank-item/bank-item.component';
+import { BankItemComponent } from './components/bank/bank-item/bank-item.component';
 import { ForagingComponent } from './components/foraging/foraging.component';
 import { OrderModule } from 'ngx-order-pipe';
 import { InvocationComponent } from './components/invocation/invocation.component';
@@ -35,7 +36,9 @@ import { StoreModule } from '@ngrx/store';
 import { bankReducer } from './store/bank/reducer';
 import { skillsReducer } from './store/skills/reducer';
 import { playerReducer } from './store/player/reducer';
-import { ShopComponent } from './components/shop/shop.component';
+import { ShopComponent, BuyItemDialog } from './components/shop/shop.component';
+import { CostComponent } from './components/shop/cost/cost.component';
+import { ErrorComponent } from './components/shared/error/error.component';
 
 const dbConfig: DBConfig = {
     name: "ArtificeDB",
@@ -72,7 +75,10 @@ const dbConfig: DBConfig = {
     InvocationComponent,
     FishingComponent,
     ForagingComponent,
-    ShopComponent
+    ShopComponent,
+    CostComponent,
+    BuyItemDialog,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +98,7 @@ const dbConfig: DBConfig = {
     MatSnackBarModule,
     MatExpansionModule,
     MatTooltipModule,
+    MatDialogModule,
     OrderModule,
     MatMenuModule,
     NgxIndexedDBModule.forRoot(dbConfig),

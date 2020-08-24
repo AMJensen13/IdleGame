@@ -8,9 +8,10 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Store } from '@ngrx/store';
 import { PlayerSkill, PlayerSkillsEntity } from 'src/app/models/Player';
 import * as SkillActions from 'src/app/store/skills/actions';
-import Items from '../../../assets/Items.json';
-import { Item, BankItem } from 'src/app/models/Item';
+import { BankItem } from 'src/app/models/Item';
 import * as Bank from 'src/app/store/bank/actions';
+import { ItemService } from '../item/item.service';
+import { ErrorComponent } from 'src/app/components/shared/error/error.component';
 
 const XP_CONSTANT = 1313;
 
@@ -24,14 +25,13 @@ export class SkillService {
     currentActionSubscriber: Subscription;
     hasActiveAction: boolean;
     skillsSubscription: Subscription;
-    items: Array<Item>;
     skillLevels: number[];
 
     constructor(private _snackBar: MatSnackBar, 
                 private dbService: NgxIndexedDBService, 
-                private store: Store<any>) 
+                private store: Store<any>,
+                private itemService: ItemService) 
     { 
-        this.items = Items;
         this.skillLevels = new Array<number>();
         this.dbService.getByID('skills', 1).then((skills: PlayerSkillsEntity) => {
             let pSkills = new Array<PlayerSkill>();
@@ -62,31 +62,10 @@ export class SkillService {
         
     }
 
-    ToggleAction(skill: Skill, action: SkillAction) {
-        if (!this.hasActiveAction) {
-            this.StartAction(skill, action);
-            return true;
-        }
-
-        if (this.currentSkill.id === skill.id) {
-            if (this.currentAction.id === action.id) {
-                this.StopAction();
-                return false;
-            }
-            
-            this.StopAction();
-            this.StartAction(skill, action);
-            return true;
-        }
-
-        this.StopAction();
-        this.StartAction(skill, action);
-        return true;
-    }
-
     StartAction(skill: Skill, action: SkillAction){
         if (!this.hasRequiredLevel(skill, action)) {
-            return this.ShowError(skill, 'You do not meet the level requirement to do this action.');
+            this.ShowError(skill, 'You do not meet the level requirement to do this action.');
+            return false;
         }
 
         this.currentAction = action;
@@ -100,7 +79,13 @@ export class SkillService {
         if (this.currentSkill.id === skill.id && this.currentAction.id === action.id){
             this.addXP(this.currentSkill.id, action.baseExperience);
             this.addItemToBank(action.productId, 1);
-            this._snackBar.openFromComponent(AddItemComponent, { data: {productId: action.productId, quantity: 1} });
+
+            let snackConfig = new MatSnackBarConfig();
+            snackConfig.panelClass = ['addItemContainer'];
+            snackConfig.duration = 1000;
+            snackConfig.data = {productId: action.productId, quantity: 1};
+
+            this._snackBar.openFromComponent(AddItemComponent, snackConfig);
         }
     }
 
@@ -115,10 +100,11 @@ export class SkillService {
     }
 
     ShowError(skill: Skill, message: string) {
-        const snackConfig = new MatSnackBarConfig();
+        let snackConfig = new MatSnackBarConfig();
         snackConfig.panelClass = ['background-red'];
         snackConfig.duration = 1500;
-        this._snackBar.open(message, null, snackConfig);
+        snackConfig.data = { message: message };
+        this._snackBar.openFromComponent(ErrorComponent, snackConfig);
     }
 
     addXP(id: number, xp: number) {
@@ -126,10 +112,10 @@ export class SkillService {
     }
 
     addItemToBank(id: number, quantity: number){
-        let item = this.items.find(x => x.id === id);
+        let item = this.itemService.GetById(id);
         if (!item){
-        console.error("Invalid Item Id");
-        return;
+            console.error("Invalid Item Id");
+            return;
         }
 
         this.store.dispatch(new Bank.AddItem(new BankItem(id, quantity)));

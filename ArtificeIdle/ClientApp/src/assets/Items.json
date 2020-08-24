@@ -135,7 +135,7 @@
         "id": 22,
         "name": "Shrimp",
         "value": 5,
-        "icon": "fishing"
+        "icon": "shrimp"
     },
     {
         "id": 23,
@@ -153,7 +153,7 @@
         "id": 25,
         "name": "Crab",
         "value": 5,
-        "icon": "fishing"
+        "icon": "crab"
     },
     {
         "id": 26,

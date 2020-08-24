@@ -1,1 +1,18 @@
-<p>shop works!</p>
+<div class="shopsContainer">
+    <mat-expansion-panel *ngFor="let shop of shops">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                {{ shop.name }}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-grid-list cols="4" gutterSize="3rem">
+            <mat-grid-tile *ngFor="let item of shop.items">
+                <button mat-stroked-button class="itemButton" (click)="BuyItemCheck(item)">
+                    <h3>{{ item.name }}</h3>
+                    <mat-icon class="itemIcon" svgIcon="{{item.icon}}"></mat-icon>
+                    <app-cost [cost]="item.cost"></app-cost>
+                </button>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-expansion-panel>
+</div>

@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BankItem } from 'src/app/models/Item';
 
-import Items from '../../../assets/Items.json';
 import tippy from 'tippy.js';
 import { Store } from '@ngrx/store';
 import * as BankActions from 'src/app/store/bank/actions';
 import * as PlayerActions from 'src/app/store/player/actions';
+import { ItemService } from 'src/app/services/item/item.service';
 
 @Component({
   selector: 'app-bank-item',
@@ -15,7 +15,7 @@ import * as PlayerActions from 'src/app/store/player/actions';
 export class BankItemComponent implements OnInit {
   @Input('bankItem') bankItem: BankItem;
 
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<any>, private itemService: ItemService) { }
 
   ngOnInit(): void {
   }
@@ -39,15 +39,15 @@ export class BankItemComponent implements OnInit {
   }
   
   GetItemName(itemId: number) {
-    return Items[itemId].name;
+    return this.itemService.GetItemName(itemId);
   }
 
   GetItemIcon(itemId: number) {
-      return Items[itemId].icon;
+      return this.itemService.GetItemIcon(itemId);
   }
 
   GetItemValue(itemId: number) {
-      return Items[itemId].value;
+      return this.itemService.GetItemValue(itemId);
   }
 
   GetDisplayQuantity(value: number){

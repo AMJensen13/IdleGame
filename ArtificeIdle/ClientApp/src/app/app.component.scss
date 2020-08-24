@@ -65,15 +65,15 @@ mat-sidenav {
     width: 200px;
 }
 
-.mat-expansion-panel {
+.navExpansionPanel {
     background: transparent !important;
 }
 
-.mat-expansion-panel-header {
+.navExpansionPanel .mat-expansion-panel-header {
     padding: 0 16px !important;
 }
 
-.mat-expansion-panel-body {
+.navExpansionPanel .mat-expansion-panel-body {
     padding: 0 !important;
 }
 
