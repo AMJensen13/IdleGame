@@ -1,10 +1,11 @@
 <mat-sidenav-container class="sidenav-container" autosize>
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [(opened)]="opened"
+  <mat-sidenav #drawer class="sidenav" [(opened)]="opened"
     [attr.color]="navColor"
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'">
     <h1 class="logo">Artifice Idle</h1>
     <mat-divider></mat-divider>
+    <ng-scrollbar>
     <mat-nav-list>
         <a mat-list-item  (click)="SetCurrentPage('Shop')">
           <mat-icon class="navIcon">store</mat-icon> Shop
@@ -65,18 +66,20 @@
         <button mat-raised-button (click)="AddCurrency()">Add Money</button>
       </mat-expansion-panel>
     </ng-container>
-
+  </ng-scrollbar>
   </mat-sidenav>
   <mat-sidenav-content>
     <app-skill-title [name]="currentPage"></app-skill-title>
-
-    <app-shop [style.display]="GetPageDisplay('Shop')"></app-shop>
-    <app-bank [style.display]="GetPageDisplay('Bank')"></app-bank>
-    <app-woodcutting [style.display]="GetPageDisplay('Woodcutting')"></app-woodcutting>
-    <app-mining [style.display]="GetPageDisplay('Mining')"></app-mining>
-    <app-invocation [style.display]="GetPageDisplay('Invocation')"></app-invocation>
-    <app-fishing [style.display]="GetPageDisplay('Fishing')"></app-fishing>
-    <app-foraging [style.display]="GetPageDisplay('Foraging')"></app-foraging>
+    
+    <ng-scrollbar>
+      <app-shop [style.display]="GetPageDisplay('Shop')"></app-shop>
+      <app-bank [style.display]="GetPageDisplay('Bank')"></app-bank>
+      <app-woodcutting [style.display]="GetPageDisplay('Woodcutting')"></app-woodcutting>
+      <app-mining [style.display]="GetPageDisplay('Mining')"></app-mining>
+      <app-invocation [style.display]="GetPageDisplay('Invocation')"></app-invocation>
+      <app-fishing [style.display]="GetPageDisplay('Fishing')"></app-fishing>
+      <app-foraging [style.display]="GetPageDisplay('Foraging')"></app-foraging>
+  </ng-scrollbar>
   </mat-sidenav-content>
 </mat-sidenav-container>
 

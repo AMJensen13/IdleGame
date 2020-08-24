@@ -64,7 +64,14 @@ mat-sidenav-container {
 mat-sidenav {
     text-align: center;
     width: 200px;
+}
+
+.mat-drawer-content {
     overflow: hidden;
+}
+
+.mat-drawer-inner-container {
+    overflow: hidden !important;
 }
 
 .navExpansionPanel {

@@ -42,6 +42,7 @@ import { ShopComponent, BuyItemDialog } from './components/shop/shop.component';
 import { CostComponent } from './components/shop/cost/cost.component';
 import { ErrorComponent } from './components/shared/error/error.component';
 import { FormsModule } from '@angular/forms';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 const dbConfig: DBConfig = {
     name: "ArtificeDB",
@@ -107,6 +108,7 @@ const dbConfig: DBConfig = {
     OrderModule,
     MatMenuModule,
     MatFormFieldModule,
+    NgScrollbarModule.withConfig({ visibility: "hover" }),
     NgxIndexedDBModule.forRoot(dbConfig),
     StoreModule.forRoot({ bank: bankReducer, skills: skillsReducer, player: playerReducer })
   ],
