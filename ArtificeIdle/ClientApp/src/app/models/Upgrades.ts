@@ -1,5 +1,6 @@
-export enum Upgrades {
+export enum WoodcuttingUpgrade {
 
     // Woodcutting
-    IronAxe = 0
+    IronAxe = "IronAxe",
+    SteelAxe = "SteelAxe"
 }

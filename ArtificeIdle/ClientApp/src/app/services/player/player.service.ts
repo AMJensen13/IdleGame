@@ -4,6 +4,8 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import * as PlayerActions from 'src/app/store/player/actions';
+import { WoodcuttingUpgrade } from 'src/app/models/Upgrades';
+import { SkillEnum } from 'src/app/models/Skill';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +25,7 @@ export class PlayerService {
         }
         
         if (currentPlayer.currency === undefined) currentPlayer.currency = 0;
-        if (currentPlayer.upgrades === undefined) currentPlayer.upgrades = [];
+        if (currentPlayer.woodCuttingUpgrades === undefined) currentPlayer.woodCuttingUpgrades = new Map<WoodcuttingUpgrade, boolean>();
         this.store.dispatch(new PlayerActions.LoadPlayer(currentPlayer));
     });
     this.playerSubscription = this.store.select('player').subscribe((x: Player) => {
@@ -36,8 +38,15 @@ export class PlayerService {
     
   }
 
-  HasUpgrade(upgradeId: number) {
-    return this.player?.upgrades[upgradeId] === true;
+  HasUpgrade(upgrade: WoodcuttingUpgrade, skill: SkillEnum) {
+    let hasUpgrade = false;
+    switch(skill) {
+      case SkillEnum.Woodcutting:
+        hasUpgrade = this.player?.woodCuttingUpgrades.get(upgrade) === true;
+        break;
+    }
+
+    return hasUpgrade;
   }
 
   GetPlayerCurrency() {

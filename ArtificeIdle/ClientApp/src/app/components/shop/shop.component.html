@@ -6,15 +6,25 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-grid-list cols="4" gutterSize="3rem">
+            <ng-container *ngFor="let upgrade of shop.upgrades">
+                <mat-grid-tile *ngIf="ShowUpgrade(upgrade)">
+                    <button mat-stroked-button class="itemButton" (click)="BuyUpgrade(upgrade)">
+                        <h3>{{ upgrade.name }}</h3>
+                        <img type="image/svg+xml" class="itemIcon" src='../../../assets/{{upgrade.icon}}.svg'/>
+                        <app-cost [cost]="upgrade.cost"></app-cost>
+                    </button>
+                </mat-grid-tile>
+            </ng-container>
             <ng-container *ngFor="let item of shop.items">
-                <mat-grid-tile *ngIf="ShowItem(item)">
-                    <button mat-stroked-button class="itemButton" (click)="BuyItemCheck(item)">
+                <mat-grid-tile>
+                    <button mat-stroked-button class="itemButton" (click)="BuyItem(item)">
                         <h3>{{ item.name }}</h3>
-                        <img class="itemIcon" src='../../../assets/{{item.icon}}.svg'/>
+                        <img type="image/svg+xml" class="itemIcon" src='../../../assets/{{item.icon}}.svg'/>
                         <app-cost [cost]="item.cost"></app-cost>
                     </button>
                 </mat-grid-tile>
             </ng-container>
+
         </mat-grid-list>
     </mat-expansion-panel>
 </div>

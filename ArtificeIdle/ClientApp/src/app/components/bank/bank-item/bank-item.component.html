@@ -1,7 +1,7 @@
 <div attr.bankTippy="{{bankItem.itemId}}">
     <mat-card [matMenuTriggerFor]="itemMenu" #matTrigger="matMenuTrigger" class="bankCard">
         <mat-card-content>
-            <img src='../../../../assets/{{GetItemIcon(bankItem.itemId)}}.svg' />
+            <img type="image/svg+xml" src='../../../../assets/{{GetItemIcon(bankItem.itemId)}}.svg' />
             <br />
             <span class="quantityDisplay">{{ GetDisplayQuantity(bankItem.quantity) }}</span>
         </mat-card-content>

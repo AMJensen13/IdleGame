@@ -12,6 +12,8 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ErrorComponent } from '../shared/error/error.component';
 import { SkillService } from 'src/app/services/skill/skill.service';
 import { SkillEnum } from 'src/app/models/Skill';
+import { ShopUpgrade } from 'src/app/models/Shop/ShopUpgrade';
+import { WoodcuttingUpgrade } from 'src/app/models/Upgrades';
 
 @Component({
   selector: 'app-shop',
@@ -22,20 +24,32 @@ export class ShopComponent implements OnInit {
   shops: Shop[] = [
     {
         name: "Lumberjack",
-        items: [
+        items: [ ],
+        upgrades: [
+          {
+            name: "Iron Axe",
+            icon: "ironaxe",
+            skill: SkillEnum.Woodcutting,
+            upgrade: WoodcuttingUpgrade.IronAxe,
+            previousUpgrade: null,
+            cost:
             {
-                name: "Iron Axe",
-                icon: "ironaxe",
-                isUpgrade: true,
-                levelRequirement: 1,
-                skill: SkillEnum.Woodcutting,
-                upgradeId: 0,
-                cost: 
-                {
-                    currency: 100,
-                    items: [ { itemId: 10, quantity: 5 }, { itemId: 0, quantity: 5 }]
-                }
+              currency: 100,
+              items: [ { itemId: 10, quantity: 5 }, { itemId: 0, quantity: 5 } ]
             }
+          },
+          {
+            name: "Steel Axe",
+            icon: "ironaxe",
+            skill: SkillEnum.Woodcutting,
+            upgrade: WoodcuttingUpgrade.SteelAxe,
+            previousUpgrade: WoodcuttingUpgrade.IronAxe,
+            cost:
+            {
+              currency: 0,
+              items: [ { itemId: 10, quantity: 5 }, { itemId: 15, quantity: 5 }, { itemId: 1, quantity: 5 } ]
+            }
+          }
         ]
     }
   ];
@@ -50,20 +64,39 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ShowItem(item: ShopItem){
-    if (item.isUpgrade){
-      return !this.playerService.HasUpgrade(item.upgradeId);
+  ShowUpgrade(upgrade: ShopUpgrade){
+    let showUpgrade = true;
+
+    if (upgrade.previousUpgrade !== null) {
+      showUpgrade = this.playerService.HasUpgrade(upgrade.previousUpgrade, upgrade.skill);
     }
 
-    return true;
+    return showUpgrade && !this.playerService.HasUpgrade(upgrade.upgrade, upgrade.skill);
   }
 
-  BuyItemCheck(item: ShopItem, quantity: number = 1) {
-    if (item.isUpgrade && item.levelRequirement && this.skillService.GetSkillLevelById(item.skill) != item.levelRequirement) {
+  BuyUpgrade(upgrade: ShopUpgrade) {
+    if (upgrade.levelRequired && this.skillService.GetSkillLevelById(upgrade.skill) != upgrade.levelRequired) {
         this.ShowErrorDialog('You do not meet the requirements to purchase this.');
         return;
     }
+    
+    if (!this.HasAllItems(upgrade.cost)) {
+      this.ShowErrorDialog('You do not meet the requirements to purchase this.');
+      return;
+    }
 
+    let dialogRef = this.dialog.open(BuyItemDialog, { data: { item: upgrade } });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.RemoveItems(upgrade.cost);
+
+        this.store.dispatch(new PlayerActions.AddUpgrade({upgrade: upgrade.upgrade, skill: upgrade.skill}));
+      }
+    });
+  }
+
+  BuyItem(item: ShopItem, quantity: number = 1) {
     if (!this.HasAllItems(item.cost)) {
       this.ShowErrorDialog('You do not meet the requirements to purchase this.');
       return;
@@ -75,13 +108,7 @@ export class ShopComponent implements OnInit {
       if (result) {
         this.RemoveItems(item.cost);
 
-        if (item.isUpgrade) {
-          this.store.dispatch(new PlayerActions.AddUpgrade({upgradeId: item.upgradeId}));
-        } 
-        else
-        {
-          this.store.dispatch(new BankActions.AddItem({itemId: item.itemId, quantity: quantity}))
-        }
+        this.store.dispatch(new BankActions.AddItem({itemId: item.itemId, quantity: quantity}));
       }
     })
   }

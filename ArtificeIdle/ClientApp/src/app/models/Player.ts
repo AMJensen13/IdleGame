@@ -1,12 +1,14 @@
+import { WoodcuttingUpgrade } from './Upgrades';
+
 export class Player {
     id: number
     name: string;
     currency: number = 0;
-    upgrades: boolean[];
+    woodCuttingUpgrades: Map<WoodcuttingUpgrade, boolean>;
 
     constructor(name: string){
         this.name = name;
-        this.upgrades = new Array<boolean>();
+        this.woodCuttingUpgrades = new Map<WoodcuttingUpgrade, boolean>();
     }
 }
 
