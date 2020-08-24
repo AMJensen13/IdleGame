@@ -277,12 +277,12 @@
             },
             {
                 "id": 5,
-                "name": "Fish",
+                "name": "Eel",
                 "levelRequirement": 1,
                 "productId": 28,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "fishing"
+                "icon": "eel"
             }
         ]
     },

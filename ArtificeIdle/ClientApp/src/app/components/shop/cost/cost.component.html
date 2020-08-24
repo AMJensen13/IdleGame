@@ -1,7 +1,7 @@
 <div class="costContainer">
     {{ cost.currency }} s 
     <ng-container *ngFor="let item of cost.items">
-        <mat-icon attr.itemTippy="{{item.itemId}}" class="costIcon" svgIcon="{{GetItemIcon(item.itemId)}}"></mat-icon>{{item.quantity}}
+        <img attr.itemTippy="{{item.itemId}}" class="costIcon" src="../../../../assets/{{GetItemIcon(item.itemId)}}.svg"/>{{item.quantity}}
     </ng-container>
 
 </div>

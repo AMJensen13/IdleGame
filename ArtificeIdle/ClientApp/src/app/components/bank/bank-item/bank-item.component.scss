@@ -1,10 +1,15 @@
 .bankCard {
-    width: 4.25em;
-    height: 4.25em;
-    padding: .5rem;
+    width: 4.5em;
+    height: 4.5em;
+    padding: .5em;
     text-align: center;
 }
 
+img {
+    height: 70%;
+    width:70%
+}
+
 .quantityDisplay {
-    padding-top: .25rem;
+    padding-bottom: .25em;
 }

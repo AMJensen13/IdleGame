@@ -9,7 +9,7 @@
             <mat-grid-tile *ngFor="let item of shop.items">
                 <button mat-stroked-button class="itemButton" (click)="BuyItemCheck(item)">
                     <h3>{{ item.name }}</h3>
-                    <mat-icon class="itemIcon" svgIcon="{{item.icon}}"></mat-icon>
+                    <img class="itemIcon" src='../../../assets/{{item.icon}}.svg'/>
                     <app-cost [cost]="item.cost"></app-cost>
                 </button>
             </mat-grid-tile>

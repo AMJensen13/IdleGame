@@ -2,9 +2,11 @@ export class Player {
     id: number
     name: string;
     currency: number = 0;
+    upgrades: boolean[];
 
     constructor(name: string){
         this.name = name;
+        this.upgrades = new Array<boolean>();
     }
 }
 

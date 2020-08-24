@@ -28,31 +28,10 @@ export class AppComponent {
   skillLevels: { [id: number]: number } = {};
   skillEnums = SkillEnum;
 
-  constructor(private iconRegistry: MatIconRegistry, 
-              private domSanitizer: DomSanitizer,
-              private skillService: SkillService,
+  constructor(private skillService: SkillService,
               private store: Store<any>,
               private playerService: PlayerService)
   {
-    // edit icons with https://boxy-svg.com/
-    this.iconRegistry.addSvgIcon('bank', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/bank.svg'));
-
-    this.iconRegistry.addSvgIcon('ironaxe', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/ironaxe.svg'));
-    this.iconRegistry.addSvgIcon('tree', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/tree.svg'));
-    this.iconRegistry.addSvgIcon('logs', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/logs.svg'));
-
-    this.iconRegistry.addSvgIcon('rock', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/rock.svg'));
-    this.iconRegistry.addSvgIcon('vial', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/vial.svg'));
-    this.iconRegistry.addSvgIcon('logo', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/logo.svg'));
-    
-    this.iconRegistry.addSvgIcon('airaether', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/air-aether.svg'));
-    this.iconRegistry.addSvgIcon('wateraether', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/water-aether.svg'));
-
-    this.iconRegistry.addSvgIcon('fishing', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/fishing.svg'));
-    this.iconRegistry.addSvgIcon('crab', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/crab.svg'));
-    this.iconRegistry.addSvgIcon('shrimp', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/shrimp.svg'));
-
-    this.iconRegistry.addSvgIcon('grass', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/grass.svg'));
 
   }
 
