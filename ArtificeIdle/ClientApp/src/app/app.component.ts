@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, isDevMode, enableProdMode } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from "@angular/platform-browser";
 import { SkillService } from './services/skill/skill.service';
@@ -8,6 +8,8 @@ import { PlayerService } from './services/player/player.service';
 import { Store } from '@ngrx/store';
 import { PlayerSkill, Player } from './models/Player';
 import { SkillEnum } from './models/Skill';
+import * as BankActions from './store/bank/actions';
+import * as PlayerActions from './store/player/actions';
 
 @Component({
   selector: 'app-root',
@@ -27,12 +29,26 @@ export class AppComponent {
   skillLevelSubscription: Subscription;
   skillLevels: { [id: number]: number } = {};
   skillEnums = SkillEnum;
+  isDevMode;
+
+  // Dev Form
+  idToAdd: number;
+  quantityToAdd: number;
+  currencyToAdd: number;
 
   constructor(private skillService: SkillService,
               private store: Store<any>,
               private playerService: PlayerService)
   {
+    this.isDevMode = isDevMode();
+  }
 
+  AddItem() {
+    this.store.dispatch(new BankActions.AddItem({itemId: +this.idToAdd, quantity: +this.quantityToAdd}));
+  }
+
+  AddCurrency() {
+    this.store.dispatch(new PlayerActions.AddCurrency(+this.currencyToAdd));
   }
 
   ngOnInit(){

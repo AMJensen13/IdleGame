@@ -64,6 +64,7 @@ mat-sidenav-container {
 mat-sidenav {
     text-align: center;
     width: 200px;
+    overflow: hidden;
 }
 
 .navExpansionPanel {
@@ -86,4 +87,9 @@ mat-sidenav {
 .currencyDisplay {
     margin-left: auto;
     color: goldenrod;
+}
+
+.devInput {
+    width: 80%;
+    padding: 0;
 }

@@ -23,6 +23,7 @@ export class PlayerService {
         }
         
         if (currentPlayer.currency === undefined) currentPlayer.currency = 0;
+        if (currentPlayer.upgrades === undefined) currentPlayer.upgrades = [];
         this.store.dispatch(new PlayerActions.LoadPlayer(currentPlayer));
     });
     this.playerSubscription = this.store.select('player').subscribe((x: Player) => {
@@ -33,6 +34,10 @@ export class PlayerService {
         }
     });
     
+  }
+
+  HasUpgrade(upgradeId: number) {
+    return this.player?.upgrades[upgradeId] === true;
   }
 
   GetPlayerCurrency() {

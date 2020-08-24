@@ -41,8 +41,32 @@
         </a>
     </mat-expansion-panel>
     </mat-nav-list>
-  </mat-sidenav>
 
+    <ng-container *ngIf="isDevMode">
+      <mat-expansion-panel class="navExpansionPanel" [class.mat-elevation-z0]="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Dev Tools
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field class="devInput" appearance="outline">
+          <mat-label>Item Id</mat-label>
+          <input [(ngModel)]="idToAdd" matInput placeholder="Placeholder"/>
+        </mat-form-field>
+        <mat-form-field class="devInput" appearance="outline">
+          <mat-label>Quantity</mat-label>
+          <input [(ngModel)]="quantityToAdd" matInput placeholder="Placeholder"/>
+        </mat-form-field>
+        <button mat-raised-button (click)="AddItem()">Add Item</button>
+        <mat-form-field class="devInput" appearance="outline">
+          <mat-label>Amount</mat-label>
+          <input [(ngModel)]="currencyToAdd" matInput placeholder="Placeholder"/>
+        </mat-form-field>
+        <button mat-raised-button (click)="AddCurrency()">Add Money</button>
+      </mat-expansion-panel>
+    </ng-container>
+
+  </mat-sidenav>
   <mat-sidenav-content>
     <app-skill-title [name]="currentPage"></app-skill-title>
 

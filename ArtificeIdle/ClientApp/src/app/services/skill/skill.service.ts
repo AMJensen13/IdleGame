@@ -130,6 +130,10 @@ export class SkillService {
         this.hasActiveAction = false;
     }
 
+    GetSkillLevelById(skill: SkillEnum) {
+        return this.skillLevels[skill];
+    }
+
     GetSkillLevel(xp: number) {
         var level = Math.floor((Math.sqrt((XP_CONSTANT*XP_CONSTANT)+(4*XP_CONSTANT*xp))-XP_CONSTANT)/(2*XP_CONSTANT));
 

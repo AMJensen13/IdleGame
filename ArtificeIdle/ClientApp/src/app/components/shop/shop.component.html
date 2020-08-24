@@ -6,13 +6,15 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-grid-list cols="4" gutterSize="3rem">
-            <mat-grid-tile *ngFor="let item of shop.items">
-                <button mat-stroked-button class="itemButton" (click)="BuyItemCheck(item)">
-                    <h3>{{ item.name }}</h3>
-                    <img class="itemIcon" src='../../../assets/{{item.icon}}.svg'/>
-                    <app-cost [cost]="item.cost"></app-cost>
-                </button>
-            </mat-grid-tile>
+            <ng-container *ngFor="let item of shop.items">
+                <mat-grid-tile *ngIf="ShowItem(item)">
+                    <button mat-stroked-button class="itemButton" (click)="BuyItemCheck(item)">
+                        <h3>{{ item.name }}</h3>
+                        <img class="itemIcon" src='../../../assets/{{item.icon}}.svg'/>
+                        <app-cost [cost]="item.cost"></app-cost>
+                    </button>
+                </mat-grid-tile>
+            </ng-container>
         </mat-grid-list>
     </mat-expansion-panel>
 </div>

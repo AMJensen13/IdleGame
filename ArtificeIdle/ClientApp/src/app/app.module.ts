@@ -25,6 +25,8 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { AddItemComponent } from './components/shared/add-item/add-item.component';
 import { SkillInfoComponent } from './components/shared/skill-info/skill-info.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MiningComponent } from './components/mining/mining.component';
 import { BankItemComponent } from './components/bank/bank-item/bank-item.component';
 import { ForagingComponent } from './components/foraging/foraging.component';
@@ -39,6 +41,7 @@ import { playerReducer } from './store/player/reducer';
 import { ShopComponent, BuyItemDialog } from './components/shop/shop.component';
 import { CostComponent } from './components/shop/cost/cost.component';
 import { ErrorComponent } from './components/shared/error/error.component';
+import { FormsModule } from '@angular/forms';
 
 const dbConfig: DBConfig = {
     name: "ArtificeDB",
@@ -86,6 +89,7 @@ const dbConfig: DBConfig = {
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
@@ -99,8 +103,10 @@ const dbConfig: DBConfig = {
     MatExpansionModule,
     MatTooltipModule,
     MatDialogModule,
+    MatInputModule,
     OrderModule,
     MatMenuModule,
+    MatFormFieldModule,
     NgxIndexedDBModule.forRoot(dbConfig),
     StoreModule.forRoot({ bank: bankReducer, skills: skillsReducer, player: playerReducer })
   ],

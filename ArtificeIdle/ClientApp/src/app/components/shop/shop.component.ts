@@ -7,8 +7,11 @@ import { BankService } from 'src/app/services/bank/bank.service';
 import { PlayerService } from 'src/app/services/player/player.service';
 import { Store } from '@ngrx/store';
 import * as BankActions from 'src/app/store/bank/actions';
+import * as PlayerActions from 'src/app/store/player/actions';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { ErrorComponent } from '../shared/error/error.component';
+import { SkillService } from 'src/app/services/skill/skill.service';
+import { SkillEnum } from 'src/app/models/Skill';
 
 @Component({
   selector: 'app-shop',
@@ -24,6 +27,8 @@ export class ShopComponent implements OnInit {
                 name: "Iron Axe",
                 icon: "ironaxe",
                 isUpgrade: true,
+                levelRequirement: 1,
+                skill: SkillEnum.Woodcutting,
                 upgradeId: 0,
                 cost: 
                 {
@@ -38,15 +43,29 @@ export class ShopComponent implements OnInit {
   constructor(private dialog: MatDialog, 
               private bankService: BankService,  
               private playerService: PlayerService, 
+              private skillService: SkillService, 
               private store: Store<any>,
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
-  BuyItemCheck(item: ShopItem) {
+  ShowItem(item: ShopItem){
+    if (item.isUpgrade){
+      return !this.playerService.HasUpgrade(item.upgradeId);
+    }
+
+    return true;
+  }
+
+  BuyItemCheck(item: ShopItem, quantity: number = 1) {
+    if (item.isUpgrade && item.levelRequirement && this.skillService.GetSkillLevelById(item.skill) != item.levelRequirement) {
+        this.ShowErrorDialog('You do not meet the requirements to purchase this.');
+        return;
+    }
+
     if (!this.HasAllItems(item.cost)) {
-      this.ShowMissingItemsDialog();
+      this.ShowErrorDialog('You do not meet the requirements to purchase this.');
       return;
     }
 
@@ -54,16 +73,26 @@ export class ShopComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        //remove items
+        this.RemoveItems(item.cost);
 
-        if (item.isUpgrade){
-          alert('Add the freaking upgrade!!!');
-        } else
+        if (item.isUpgrade) {
+          this.store.dispatch(new PlayerActions.AddUpgrade({upgradeId: item.upgradeId}));
+        } 
+        else
         {
-          alert('Add the freaking Item!!!');
+          this.store.dispatch(new BankActions.AddItem({itemId: item.itemId, quantity: quantity}))
         }
       }
     })
+  }
+
+  RemoveItems(cost: Cost) {
+    this.store.dispatch(new PlayerActions.RemoveCurrency(cost.currency));
+
+    for (let item of cost.items) {
+      let itemToRemove = { itemId: item.itemId, quantity: item.quantity };
+      this.store.dispatch(new BankActions.RemoveItem(itemToRemove));
+    }
   }
 
   HasAllItems(cost: Cost): boolean {
@@ -80,11 +109,11 @@ export class ShopComponent implements OnInit {
     return true;
   }
 
-  ShowMissingItemsDialog() {
+  ShowErrorDialog(message: string) {
     let snackConfig = new MatSnackBarConfig();
     snackConfig.panelClass = ['background-red'];
     snackConfig.duration = 1500;
-    snackConfig.data = { message: 'You do not meet the requirements to purchase this.' };
+    snackConfig.data = { message: message };
     this.snackBar.openFromComponent(ErrorComponent, snackConfig);
   }
 

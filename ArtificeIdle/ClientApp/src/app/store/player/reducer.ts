@@ -8,7 +8,15 @@ export function playerReducer(state=initialState, action: PlayerActions) {
         case PlayerActionTypes.LOAD_PLAYER:
             return action.payload;
         case PlayerActionTypes.ADD_CURRENCY:
-            return {name: state.name, id: state.id, currency: state.currency + action.payload} as Player;
+            return Object.assign({}, state, { currency: state.currency + action.payload });
+        case PlayerActionTypes.REMOVE_CURRENCY:
+            return Object.assign({}, state, { currency: state.currency - action.payload });
+        case PlayerActionTypes.ADD_UPGRADE:
+            var newUpgrades = [...state.upgrades];
+
+            newUpgrades[action.payload.upgradeId] = true;
+
+            return Object.assign({}, state, { upgrades: newUpgrades });
         default:
             return state;
     }

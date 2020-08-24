@@ -1,6 +1,5 @@
 <h2 mat-dialog-title>Would you like to buy {{data.item.name}}?</h2>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
   <button mat-button [mat-dialog-close]="true">Buy</button>
+  <button mat-button mat-dialog-close>Cancel</button>
 </mat-dialog-actions>
