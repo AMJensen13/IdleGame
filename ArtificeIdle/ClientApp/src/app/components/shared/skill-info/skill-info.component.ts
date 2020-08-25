@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Skill } from 'src/app/models/Skill';
+import { Skill, SkillEnum } from 'src/app/models/Skill';
 import { PlayerService } from 'src/app/services/player/player.service';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
@@ -20,7 +20,7 @@ export class SkillInfoComponent implements OnInit {
   nextLevelXP: number;
   loaded: boolean = false;
 
-  constructor(private store: Store<any>, private skillService: SkillService) { }
+  constructor(private store: Store<any>, private skillService: SkillService, private playerService: PlayerService) { }
 
   ngOnInit(): void {
       this.store.select('skills').subscribe((skills: PlayerSkill[]) => {
@@ -44,6 +44,23 @@ export class SkillInfoComponent implements OnInit {
         this.currentLevel = updatedLevel;
         this.nextLevelXP = this.skillService.GetNextLevelXP(this.currentXP);
       });
+  }
+
+  GetUpgradeDisplay(){
+    let currentUpgrade = this.playerService.GetLatestSkillUpgrade(this.skill.id as SkillEnum);
+
+    if (!currentUpgrade) {
+      return undefined;
+    }
+
+    return this.GetSkillText() + currentUpgrade;
+  }
+
+  GetSkillText() {
+    switch(this.skill.id as SkillEnum){
+      case SkillEnum.Woodcutting:
+        return 'Current Axe: ';
+    }
   }
 
   GetCurrentLevelUpProgress() {

@@ -3,6 +3,8 @@ import { SkillService } from 'src/app/services/skill/skill.service';
 import { SkillAction, Skill, SkillEnum } from 'src/app/models/Skill';
 import { Subscription } from 'rxjs';
 import Skills from '../../../assets/Skills.json';
+import { PlayerService } from 'src/app/services/player/player.service';
+import { UpgradeService } from 'src/app/services/upgrade/upgrade.service';
 
 @Component({
   selector: 'app-fishing',
@@ -17,7 +19,7 @@ export class FishingComponent implements OnInit {
     skill: Skill;
     Math: Math;
     
-    constructor(private skillService: SkillService) {
+    constructor(private skillService: SkillService, private playerService: PlayerService, private upgradeService: UpgradeService) {
       this.skill = Skills[SkillEnum.Fishing];
       this.Math = Math;
      }
@@ -25,6 +27,20 @@ export class FishingComponent implements OnInit {
   ngOnInit(): void {
   }
   
+  GetActionInterval(action: SkillAction) {
+    var latestUpgrade = this.playerService.GetLatestSkillUpgrade(this.skill.id as SkillEnum)
+
+    let actionInterval = action.baseInterval;
+
+    if (latestUpgrade) {
+        
+        var upgradeDef = this.upgradeService.GetUpgradeDefinition(latestUpgrade);
+        actionInterval = actionInterval * upgradeDef.intervalReduction;
+    }
+
+    return actionInterval/1000;
+  }
+
   ToggleFishing(action: SkillAction)
   {
     if (this.skillService.hasActiveAction && this.skill.id === this.skillService.currentSkill.id && this.skillService.currentAction.id === action.id)
@@ -41,7 +57,7 @@ export class FishingComponent implements OnInit {
     }
 
     this.skillService.StartAction(this.skill, action);
-    this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessFishing());
+    this.actionSubscription = this.skillService.currentActionInterval$.subscribe(() => this.ProcessFishing());
     this.animateProgressBar();
   }
 
@@ -59,7 +75,7 @@ export class FishingComponent implements OnInit {
     var currentProgress = this.progressBars.find(x => x.nativeElement.id === `action${action.id}`);
     currentProgress.nativeElement.getAnimations().forEach(animation => animation.cancel());
     currentProgress.nativeElement.animate([{ width: '100%' }, {width: '0%'}], {duration: 0, easing: 'linear'});
-    currentProgress.nativeElement.animate([{width: '0%'}, { width: '100%' }], {duration: action.baseInterval, easing: 'linear'});
+    currentProgress.nativeElement.animate([{width: '0%'}, { width: '100%' }], {duration: this.skillService.actionInterval, easing: 'linear'});
   }
 
   stopProgressBar() {

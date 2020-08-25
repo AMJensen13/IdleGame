@@ -3,6 +3,8 @@ import Skills from '../../../assets/Skills.json';
 import { SkillService } from 'src/app/services/skill/skill.service';
 import { Skill, SkillEnum, SkillAction } from '../../models/Skill';
 import { Subscription } from 'rxjs';
+import { PlayerService } from 'src/app/services/player/player.service';
+import { UpgradeService } from 'src/app/services/upgrade/upgrade.service';
 
 @Component({
   selector: 'app-woodcutting',
@@ -17,13 +19,27 @@ export class WoodcuttingComponent implements OnInit {
   actionSubscription: Subscription;
   Math: Math;
 
-  constructor(private skillService: SkillService) 
+  constructor(private skillService: SkillService, private playerService: PlayerService, private upgradeService: UpgradeService) 
   {
     this.skill = Skills[SkillEnum.Woodcutting];
     this.Math = Math;
   }
 
   ngOnInit(): void { }
+
+  GetActionInterval(action: SkillAction) {
+    var latestUpgrade = this.playerService.GetLatestSkillUpgrade(this.skill.id as SkillEnum)
+
+    let actionInterval = action.baseInterval;
+
+    if (latestUpgrade) {
+        
+        var upgradeDef = this.upgradeService.GetUpgradeDefinition(latestUpgrade);
+        actionInterval = actionInterval * upgradeDef.intervalReduction;
+    }
+
+    return actionInterval/1000;
+  }
 
   ToggleWoodcutting(action: SkillAction)
   {
@@ -41,7 +57,7 @@ export class WoodcuttingComponent implements OnInit {
     }
 
     this.skillService.StartAction(this.skill, action);
-    this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessWoodcutting());
+    this.actionSubscription = this.skillService.currentActionInterval$.subscribe(() => this.ProcessWoodcutting());
     this.animateProgressBar();
   }
 
@@ -59,7 +75,7 @@ export class WoodcuttingComponent implements OnInit {
     var currentProgress = this.progressBars.find(x => x.nativeElement.id === `action${action.id}`);
     currentProgress.nativeElement.getAnimations().forEach(animation => animation.cancel());
     currentProgress.nativeElement.animate([{ width: '100%' }, {width: '0%'}], {duration: 0, easing: 'linear'});
-    currentProgress.nativeElement.animate([{width: '0%'}, { width: '100%' }], {duration: action.baseInterval, easing: 'linear'});
+    currentProgress.nativeElement.animate([{width: '0%'}, { width: '100%' }], {duration: this.skillService.actionInterval, easing: 'linear'});
   }
 
   stopProgressBar() {

@@ -12,6 +12,8 @@ import { BankItem } from 'src/app/models/Item';
 import * as Bank from 'src/app/store/bank/actions';
 import { ItemService } from '../item/item.service';
 import { ErrorComponent } from 'src/app/components/shared/error/error.component';
+import { UpgradeService } from '../upgrade/upgrade.service';
+import { PlayerService } from '../player/player.service';
 
 const XP_CONSTANT = 1313;
 
@@ -21,7 +23,8 @@ const XP_CONSTANT = 1313;
 export class SkillService {
     currentSkill: Skill;
     currentAction: SkillAction;
-    currentActionInterval: Observable<any>;
+    actionInterval: number;
+    currentActionInterval$: Observable<any>;
     currentActionSubscriber: Subscription;
     hasActiveAction: boolean;
     skillsSubscription: Subscription;
@@ -30,7 +33,9 @@ export class SkillService {
     constructor(private _snackBar: MatSnackBar, 
                 private dbService: NgxIndexedDBService, 
                 private store: Store<any>,
-                private itemService: ItemService) 
+                private itemService: ItemService,
+                private upgradeService: UpgradeService,
+                private playerService: PlayerService) 
     { 
         this.skillLevels = new Array<number>();
         this.dbService.getByID('skills', 1).then((skills: PlayerSkillsEntity) => {
@@ -64,14 +69,24 @@ export class SkillService {
 
     StartAction(skill: Skill, action: SkillAction){
         if (!this.hasRequiredLevel(skill, action)) {
-            this.ShowError(skill, 'You do not meet the level requirement to do this action.');
+            this.ShowError(skill, 'You do not meet the level required to do this action.');
             return false;
+        }
+
+        var latestUpgrade = this.playerService.GetLatestSkillUpgrade(skill.id as SkillEnum)
+
+        this.actionInterval = action.baseInterval;
+
+        if (latestUpgrade) {
+            
+            var upgradeDef = this.upgradeService.GetUpgradeDefinition(latestUpgrade);
+            this.actionInterval = this.actionInterval * upgradeDef.intervalReduction;
         }
 
         this.currentAction = action;
         this.currentSkill = skill;
-        this.currentActionInterval = interval(action.baseInterval).pipe(takeWhile(() => skill.id === this.currentSkill.id && action.id === this.currentAction.id));
-        this.currentActionSubscriber = this.currentActionInterval.subscribe(() => this.ExecuteAction(skill, action));
+        this.currentActionInterval$ = interval(this.actionInterval).pipe(takeWhile(() => skill.id === this.currentSkill.id && action.id === this.currentAction.id));
+        this.currentActionSubscriber = this.currentActionInterval$.subscribe(() => this.ExecuteAction(skill, action));
         this.hasActiveAction = true;
     }
 
@@ -124,7 +139,7 @@ export class SkillService {
     StopAction(){
         if (this.currentActionSubscriber) this.currentActionSubscriber.unsubscribe();
         this.currentActionSubscriber = null;
-        this.currentActionInterval = null;
+        this.currentActionInterval$ = null;
         this.currentAction = null;
         this.currentSkill = null;
         this.hasActiveAction = false;

@@ -1,9 +1,12 @@
 <div class="skillInfoContainer col-12" *ngIf="loaded">
     <div class="row infoRow">
-        <div class="col-6 lvlCol">
+        <div class="col-4 lvlCol">
             <span>Level: {{ currentLevel + 1 }}</span>
         </div>
-        <div class="col-6 xpCol">
+        <div class="col-4 upgradeCol">
+            <span *ngIf="GetUpgradeDisplay()">{{ GetUpgradeDisplay() }}</span>
+        </div>
+        <div class="col-4 xpCol">
             <span>XP: {{ currentXP }} / {{ nextLevelXP }}</span>
         </div>
     </div>

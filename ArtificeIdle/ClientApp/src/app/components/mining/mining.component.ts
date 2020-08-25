@@ -3,6 +3,8 @@ import { SkillAction, SkillEnum, Skill } from 'src/app/models/Skill';
 import Skills from '../../../assets/Skills.json';
 import { SkillService } from 'src/app/services/skill/skill.service';
 import { Subscription } from 'rxjs';
+import { PlayerService } from 'src/app/services/player/player.service';
+import { UpgradeService } from 'src/app/services/upgrade/upgrade.service';
 
 @Component({
   selector: 'app-mining',
@@ -17,12 +19,26 @@ export class MiningComponent implements OnInit {
   skill: Skill;
   Math: Math;
 
-  constructor(private skillService: SkillService) { 
+  constructor(private skillService: SkillService, private playerService: PlayerService, private upgradeService: UpgradeService) { 
     this.skill = Skills[SkillEnum.Mining];
     this.Math = Math;
   }
 
   ngOnInit(): void {
+  }
+
+  GetActionInterval(action: SkillAction) {
+    var latestUpgrade = this.playerService.GetLatestSkillUpgrade(this.skill.id as SkillEnum)
+
+    let actionInterval = action.baseInterval;
+
+    if (latestUpgrade) {
+        
+        var upgradeDef = this.upgradeService.GetUpgradeDefinition(latestUpgrade);
+        actionInterval = actionInterval * upgradeDef.intervalReduction;
+    }
+
+    return actionInterval/1000;
   }
 
   ToggleMining(action: SkillAction)
@@ -42,7 +58,7 @@ export class MiningComponent implements OnInit {
 
     this.skillService.StartAction(this.skill, action);
     if (this.skillService.hasActiveAction){
-      this.actionSubscription = this.skillService.currentActionInterval.subscribe(() => this.ProcessMining());
+      this.actionSubscription = this.skillService.currentActionInterval$.subscribe(() => this.ProcessMining());
       this.animateProgressBar();
     }
   }
@@ -61,7 +77,7 @@ export class MiningComponent implements OnInit {
     var currentProgress = this.progressBars.find(x => x.nativeElement.id === `action${action.id}`);
     currentProgress.nativeElement.getAnimations().forEach(animation => animation.cancel());
     currentProgress.nativeElement.animate([{ width: '100%' }, {width: '0%'}], {duration: 0, easing: 'linear'});
-    currentProgress.nativeElement.animate([{width: '0%'}, { width: '100%' }], {duration: action.baseInterval, easing: 'linear'});
+    currentProgress.nativeElement.animate([{width: '0%'}, { width: '100%' }], {duration: this.skillService.actionInterval, easing: 'linear'});
   }
 
   stopProgressBar() {

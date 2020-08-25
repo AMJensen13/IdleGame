@@ -5,7 +5,7 @@
             <button class="button" (click)="ToggleInvocation(action)" mat-raised-button>
                 <div>
                     <h3>{{ action.name }}</h3>
-                    <span>{{action.baseExperience}}xp / {{Math.floor(action.baseInterval/1000)}}s</span>
+                    <span>{{action.baseExperience}}xp / {{GetActionInterval(action)}}s</span>
                 </div>
                 <img type="image/svg+xml" class="skillIcon" src='../../../assets/{{action.icon}}.svg'/>
                 

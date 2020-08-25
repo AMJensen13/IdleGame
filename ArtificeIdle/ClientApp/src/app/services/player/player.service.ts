@@ -38,6 +38,18 @@ export class PlayerService {
     
   }
 
+  GetLatestSkillUpgrade(skill: SkillEnum) {
+    switch(skill) {
+      case SkillEnum.Woodcutting:
+        if (!this.player?.woodCuttingUpgrades) return undefined;
+        var woodUpgrades = Array.from(this.player.woodCuttingUpgrades);
+        if (woodUpgrades.length > 0) {
+          return woodUpgrades[this.player.woodCuttingUpgrades.size-1][0];
+        }
+        return undefined;
+    }
+  }
+
   HasUpgrade(upgrade: WoodcuttingUpgrade, skill: SkillEnum) {
     let hasUpgrade = false;
     switch(skill) {
