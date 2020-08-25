@@ -139,7 +139,7 @@
     },
     {
         "id": 23,
-        "name": "Turtle",
+        "name": "Sardine",
         "value": 5,
         "icon": "fishing"
     },
@@ -163,7 +163,7 @@
     },
     {
         "id": 27,
-        "name": "Whale",
+        "name": "SwordFish",
         "value": 5,
         "icon": "fishing"
     },
@@ -190,5 +190,29 @@
         "name": "Void Aether",
         "value": 5,
         "icon": "airaether"
+    },
+    {
+        "id": 32,
+        "name": "Marlin",
+        "value": 5,
+        "icon": "fishing"
+    },
+    {
+        "id": 33,
+        "name": "Carp",
+        "value": 5,
+        "icon": "fishing"
+    },
+    {
+        "id": 34,
+        "name": "Squid",
+        "value": 5,
+        "icon": "fishing"
+    },
+    {
+        "id": 35,
+        "name": "Tuna",
+        "value": 5,
+        "icon": "fishing"
     }
 ]

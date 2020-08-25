@@ -259,7 +259,7 @@
             },
             {
                 "id": 1,
-                "name": "Turtle",
+                "name": "Sardine",
                 "levelRequirement": 1,
                 "productId": 23,
                 "baseExperience": 10,
@@ -286,7 +286,7 @@
             },
             {
                 "id": 4,
-                "name": "Whale",
+                "name": "Swordfish",
                 "levelRequirement": 1,
                 "productId": 27,
                 "baseExperience": 10,
@@ -301,6 +301,42 @@
                 "baseExperience": 10,
                 "baseInterval": 2000,
                 "icon": "eel"
+            },
+            {
+                "id": 6,
+                "name": "Marlin",
+                "levelRequirement": 1,
+                "productId": 32,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            },
+            {
+                "id": 7,
+                "name": "Carp",
+                "levelRequirement": 1,
+                "productId": 33,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            },
+            {
+                "id": 8,
+                "name": "Squid",
+                "levelRequirement": 1,
+                "productId": 34,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
+            },
+            {
+                "id": 9,
+                "name": "Tuna",
+                "levelRequirement": 1,
+                "productId": 35,
+                "baseExperience": 10,
+                "baseInterval": 2000,
+                "icon": "fishing"
             }
         ]
     },
