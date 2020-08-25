@@ -16,7 +16,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { PlayerService } from './services/player/player.service';
-import { WoodcuttingComponent } from './components/woodcutting/woodcutting.component';
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
 import { BankComponent } from './components/bank/bank.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -27,12 +26,8 @@ import { SkillInfoComponent } from './components/shared/skill-info/skill-info.co
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MiningComponent } from './components/mining/mining.component';
 import { BankItemComponent } from './components/bank/bank-item/bank-item.component';
-import { ForagingComponent } from './components/foraging/foraging.component';
 import { OrderModule } from 'ngx-order-pipe';
-import { InvocationComponent } from './components/invocation/invocation.component';
-import { FishingComponent } from './components/fishing/fishing.component';
 import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 import { StoreModule } from '@ngrx/store';
 import { bankReducer } from './store/bank/reducer';
@@ -43,6 +38,7 @@ import { CostComponent } from './components/shop/cost/cost.component';
 import { ErrorComponent } from './components/shared/error/error.component';
 import { FormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { GatheringSkillComponent } from './components/gathering-skill/gathering-skill.component';
 
 const dbConfig: DBConfig = {
     name: "ArtificeDB",
@@ -69,20 +65,16 @@ const dbConfig: DBConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    WoodcuttingComponent,
     SkillTitleComponent,
     BankComponent,
     AddItemComponent,
     SkillInfoComponent,
-    MiningComponent,
     BankItemComponent,
-    InvocationComponent,
-    FishingComponent,
-    ForagingComponent,
     ShopComponent,
     CostComponent,
     BuyItemDialog,
-    ErrorComponent
+    ErrorComponent,
+    GatheringSkillComponent
   ],
   imports: [
     BrowserModule,

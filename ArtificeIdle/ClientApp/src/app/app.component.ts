@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { PlayerService } from './services/player/player.service';
 import { Store } from '@ngrx/store';
 import { PlayerSkill, Player } from './models/Player';
-import { SkillEnum } from './models/Skill';
+import { SkillEnum, Skill } from './models/Skill';
 import * as BankActions from './store/bank/actions';
 import * as PlayerActions from './store/player/actions';
 

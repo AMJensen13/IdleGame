@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MiningComponent } from './mining.component';
+import { GatheringSkillComponent } from './gathering-skill.component';
 
-describe('MiningComponent', () => {
-  let component: MiningComponent;
-  let fixture: ComponentFixture<MiningComponent>;
+describe('GatheringSkillComponent', () => {
+  let component: GatheringSkillComponent;
+  let fixture: ComponentFixture<GatheringSkillComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MiningComponent ]
+      declarations: [ GatheringSkillComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MiningComponent);
+    fixture = TestBed.createComponent(GatheringSkillComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

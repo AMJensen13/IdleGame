@@ -1,32 +1,35 @@
-import { Component, OnInit, ViewChildren, Output, EventEmitter, QueryList, ElementRef } from '@angular/core';
-import { SkillService } from 'src/app/services/skill/skill.service';
-import { SkillAction, Skill, SkillEnum } from 'src/app/models/Skill';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, EventEmitter, Output, ViewChildren, ElementRef, QueryList, Input } from '@angular/core';
 import Skills from '../../../assets/Skills.json';
+import { SkillService } from 'src/app/services/skill/skill.service';
+import { Skill, SkillEnum, SkillAction } from '../../models/Skill';
+import { Subscription } from 'rxjs';
 import { PlayerService } from 'src/app/services/player/player.service';
 import { UpgradeService } from 'src/app/services/upgrade/upgrade.service';
 
 @Component({
-  selector: 'app-foraging',
-  templateUrl: './foraging.component.html',
-  styleUrls: ['./foraging.component.scss']
+  selector: 'app-gathering-skill',
+  templateUrl: './gathering-skill.component.html',
+  styleUrls: ['./gathering-skill.component.scss']
 })
-export class ForagingComponent implements OnInit {
-    @Output() toggleNav: EventEmitter<any> = new EventEmitter();
-    @ViewChildren('actionProgress') progressBars: QueryList<ElementRef>; 
-    pageTitle: string = 'Foraging';
-    actionSubscription: Subscription;
-    skill: Skill;
-    Math: Math;
-    
-    constructor(private skillService: SkillService, private playerService: PlayerService, private upgradeService: UpgradeService) {
-      this.skill = Skills[SkillEnum.Foraging];
-      this.Math = Math;
-     }
+export class GatheringSkillComponent implements OnInit {
+  @Input() skillEnum: SkillEnum;
+  @Input() pageTitle: string;
+  @Output() toggleNav: EventEmitter<any> = new EventEmitter();
+  @ViewChildren('actionProgress') progressBars: QueryList<ElementRef>;
+  skill: Skill;
+  actionSubscription: Subscription;
+  Math: Math;
 
-  ngOnInit(): void {
+  constructor(private skillService: SkillService, private playerService: PlayerService, private upgradeService: UpgradeService) 
+  {
   }
-  
+
+  ngOnInit(): void 
+  { 
+    this.skill = Skills[this.skillEnum];
+    this.Math = Math;
+  }
+
   GetActionInterval(action: SkillAction) {
     var latestUpgrade = this.playerService.GetLatestSkillUpgrade(this.skill.id as SkillEnum)
 
@@ -40,8 +43,8 @@ export class ForagingComponent implements OnInit {
 
     return actionInterval/1000;
   }
-  
-  ToggleForaging(action: SkillAction)
+
+  ToggleGathering(action: SkillAction)
   {
     if (this.skillService.hasActiveAction && this.skill.id === this.skillService.currentSkill.id && this.skillService.currentAction.id === action.id)
     {
@@ -49,7 +52,7 @@ export class ForagingComponent implements OnInit {
       this.stopProgressBar();
       this.skillService.StopAction();
       return;
-    } else if (this.skillService.hasActiveAction && (this.skillService.currentAction.id !== action.id || this.skillService.currentAction.id === this.skill.id)) 
+    } else if (this.skillService.hasActiveAction && (this.skillService.currentAction.id !== action.id || this.skillService.currentSkill.id === this.skill.id)) 
     {
         if (this.actionSubscription && !this.actionSubscription.closed) this.actionSubscription.unsubscribe();
         this.stopProgressBar();
@@ -57,11 +60,11 @@ export class ForagingComponent implements OnInit {
     }
 
     this.skillService.StartAction(this.skill, action);
-    this.actionSubscription = this.skillService.currentActionInterval$.subscribe(() => this.ProcessForaging());
+    this.actionSubscription = this.skillService.currentActionInterval$.subscribe(() => this.ProcessGathering());
     this.animateProgressBar();
   }
 
-  ProcessForaging(){
+  ProcessGathering(){
     if (this.skillService.currentSkill.id === this.skill.id){
         this.animateProgressBar();
     } else {
@@ -83,5 +86,9 @@ export class ForagingComponent implements OnInit {
     var currentProgress = this.progressBars.find(x => x.nativeElement.id === `action${action.id}`);
     currentProgress.nativeElement.getAnimations().forEach(animation => animation.cancel());
     currentProgress.nativeElement.animate([{ width: '100%' }, {width: '0%'}], {duration: 0, easing: 'linear'});
+  }
+
+  ngOnDestroy(): void {
+    if (this.actionSubscription) this.actionSubscription.unsubscribe();
   }
 }
