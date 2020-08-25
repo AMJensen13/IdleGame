@@ -268,15 +268,6 @@
             },
             {
                 "id": 2,
-                "name": "Crab",
-                "levelRequirement": 1,
-                "productId": 25,
-                "baseExperience": 10,
-                "baseInterval": 2000,
-                "icon": "crab"
-            },
-            {
-                "id": 3,
                 "name": "Shark",
                 "levelRequirement": 1,
                 "productId": 26,
@@ -285,7 +276,7 @@
                 "icon": "fishing"
             },
             {
-                "id": 4,
+                "id": 3,
                 "name": "Swordfish",
                 "levelRequirement": 1,
                 "productId": 27,
@@ -294,7 +285,7 @@
                 "icon": "fishing"
             },
             {
-                "id": 5,
+                "id": 4,
                 "name": "Eel",
                 "levelRequirement": 1,
                 "productId": 28,
@@ -303,7 +294,7 @@
                 "icon": "eel"
             },
             {
-                "id": 6,
+                "id": 5,
                 "name": "Marlin",
                 "levelRequirement": 1,
                 "productId": 32,
@@ -312,7 +303,7 @@
                 "icon": "fishing"
             },
             {
-                "id": 7,
+                "id": 6,
                 "name": "Carp",
                 "levelRequirement": 1,
                 "productId": 33,
@@ -321,7 +312,7 @@
                 "icon": "fishing"
             },
             {
-                "id": 8,
+                "id": 7,
                 "name": "Squid",
                 "levelRequirement": 1,
                 "productId": 34,
@@ -330,7 +321,7 @@
                 "icon": "fishing"
             },
             {
-                "id": 9,
+                "id": 8,
                 "name": "Tuna",
                 "levelRequirement": 1,
                 "productId": 35,
