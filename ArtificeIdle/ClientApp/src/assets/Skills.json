@@ -15,11 +15,11 @@
             {
                 "id": 1,
                 "name": "Pine Tree",
-                "levelRequirement": 15,
+                "levelRequirement": 5,
                 "productId": 1,
-                "baseExperience": 20,
+                "baseExperience": 200,
                 "baseInterval": 2000,
-                "icon": "tree"
+                "icon": "pinetree"
             },
             {
                 "id": 2,

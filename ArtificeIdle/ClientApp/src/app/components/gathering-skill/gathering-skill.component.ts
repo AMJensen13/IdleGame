@@ -1,10 +1,12 @@
-import { Component, OnInit, EventEmitter, Output, ViewChildren, ElementRef, QueryList, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChildren, ElementRef, QueryList, Input, ViewChild } from '@angular/core';
 import Skills from '../../../assets/Skills.json';
 import { SkillService } from 'src/app/services/skill/skill.service';
 import { Skill, SkillEnum, SkillAction } from '../../models/Skill';
 import { Subscription } from 'rxjs';
 import { PlayerService } from 'src/app/services/player/player.service';
 import { UpgradeService } from 'src/app/services/upgrade/upgrade.service';
+import { MatGridList } from '@angular/material/grid-list';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 
 @Component({
   selector: 'app-gathering-skill',
@@ -16,11 +18,20 @@ export class GatheringSkillComponent implements OnInit {
   @Input() pageTitle: string;
   @Output() toggleNav: EventEmitter<any> = new EventEmitter();
   @ViewChildren('actionProgress') progressBars: QueryList<ElementRef>;
+  @ViewChild('grid') grid: MatGridList;
   skill: Skill;
   actionSubscription: Subscription;
   Math: Math;
 
-  constructor(private skillService: SkillService, private playerService: PlayerService, private upgradeService: UpgradeService) 
+  gridByBreakpoint = {
+    xl: 4,
+    lg: 3,
+    md: 2,
+    sm: 1,
+    xs: 1
+  }
+
+  constructor(private skillService: SkillService, private playerService: PlayerService, private upgradeService: UpgradeService, private mediaObserver: MediaObserver) 
   {
   }
 
@@ -28,6 +39,13 @@ export class GatheringSkillComponent implements OnInit {
   { 
     this.skill = Skills[this.skillEnum];
     this.Math = Math;
+  }
+
+  ngAfterContentInit() {
+    this.mediaObserver.media$.subscribe((change: MediaChange) => {
+      this.grid.cols = this.gridByBreakpoint[change.mqAlias];
+
+    });
   }
 
   GetActionInterval(action: SkillAction) {
