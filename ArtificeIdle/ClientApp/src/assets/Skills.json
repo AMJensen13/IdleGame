@@ -223,6 +223,24 @@
                 "baseExperience": 10,
                 "baseInterval":2000,
                 "icon":"wateraether"
+            },
+            {
+                "id": 6,
+                "name": "Void",
+                "levelRequirement": 1,
+                "productId": 30,
+                "baseExperience": 10,
+                "baseInterval":2000,
+                "icon":"airaether"
+            },
+            {
+                "id": 7,
+                "name": "Spirit",
+                "levelRequirement": 1,
+                "productId": 31,
+                "baseExperience": 10,
+                "baseInterval":2000,
+                "icon":"airaether"
             }
         ]
     },

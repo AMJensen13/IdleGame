@@ -97,25 +97,25 @@
     },
     {
         "id": 16,
-        "name": "Air Aether",
+        "name": "Aero Aether",
         "value": 5,
         "icon": "airaether"
     },
     {
         "id": 17,
-        "name": "Water Aether",
+        "name": "Aqua Aether",
         "value": 5,
         "icon": "wateraether"
     },
     {
         "id": 18,
-        "name": "Earth Aether",
+        "name": "Terra Aether",
         "value": 5,
         "icon": "wateraether"
     },
     {
         "id": 19,
-        "name": "Fire Aether",
+        "name": "Pyr Aether",
         "value": 5,
         "icon": "wateraether"
     },
@@ -178,5 +178,17 @@
         "name": "Sulfur",
         "value": 5,
         "icon": "rock"
+    },
+    {
+        "id": 30,
+        "name": "Spirit Aether",
+        "value": 5,
+        "icon": "airaether"
+    },
+    {
+        "id": 31,
+        "name": "Void Aether",
+        "value": 5,
+        "icon": "airaether"
     }
 ]
