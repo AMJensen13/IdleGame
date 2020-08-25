@@ -59,9 +59,11 @@ export class GatheringSkillComponent implements OnInit {
         this.skillService.StopAction();
     }
 
-    this.skillService.StartAction(this.skill, action);
-    this.actionSubscription = this.skillService.currentActionInterval$.subscribe(() => this.ProcessGathering());
-    this.animateProgressBar();
+    let started = this.skillService.StartAction(this.skill, action);
+    if (started) {
+      this.actionSubscription = this.skillService.currentActionInterval$.subscribe(() => this.ProcessGathering());
+      this.animateProgressBar();
+    }
   }
 
   ProcessGathering(){

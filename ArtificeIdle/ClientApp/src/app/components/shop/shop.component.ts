@@ -30,6 +30,7 @@ export class ShopComponent implements OnInit {
             name: "Iron Axe",
             icon: "ironaxe",
             skill: SkillEnum.Woodcutting,
+            levelRequired: 5,
             upgrade: WoodcuttingUpgrade.IronAxe,
             previousUpgrade: null,
             cost:
@@ -42,6 +43,7 @@ export class ShopComponent implements OnInit {
             name: "Steel Axe",
             icon: "ironaxe",
             skill: SkillEnum.Woodcutting,
+            levelRequired: 15,
             upgrade: WoodcuttingUpgrade.SteelAxe,
             previousUpgrade: WoodcuttingUpgrade.IronAxe,
             cost:

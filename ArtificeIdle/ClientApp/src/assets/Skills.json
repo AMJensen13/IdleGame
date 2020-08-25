@@ -8,7 +8,7 @@
                 "name": "Balsa Tree",
                 "levelRequirement": 1,
                 "productId": 0,
-                "baseExperience": 10,
+                "baseExperience": 150,
                 "baseInterval": 2000,
                 "icon": "tree"
             },

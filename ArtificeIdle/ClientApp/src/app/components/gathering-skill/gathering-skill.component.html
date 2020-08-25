@@ -4,8 +4,8 @@
         <mat-grid-tile class="actionButtonContainer" *ngFor="let action of skill.actions | orderBy: 'levelRequirement'">
             <button class="button" (click)="ToggleGathering(action)" mat-raised-button>
                 <div>
-                    <h3>{{ action.name }}</h3>
-                    <span>{{action.baseExperience}}xp / {{GetActionInterval(action)}}s</span>
+                    <h2 style="margin: 0">{{ action.name }}</h2>
+                    <span class="actionDescription">Level: {{action.levelRequirement}}<br>{{action.baseExperience}}xp / {{GetActionInterval(action)}}s</span>
                 </div>
                 <img type="image/svg+xml" class="skillIcon" src='../../../assets/{{action.icon}}.svg'/>
                 

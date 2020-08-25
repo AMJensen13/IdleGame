@@ -85,9 +85,10 @@ export class SkillService {
 
         this.currentAction = action;
         this.currentSkill = skill;
-        this.currentActionInterval$ = interval(this.actionInterval).pipe(takeWhile(() => skill.id === this.currentSkill.id && action.id === this.currentAction.id));
+        this.currentActionInterval$ = interval(this.actionInterval).pipe(takeWhile(() => skill.id === this.currentSkill?.id && action.id === this.currentAction?.id));
         this.currentActionSubscriber = this.currentActionInterval$.subscribe(() => this.ExecuteAction(skill, action));
         this.hasActiveAction = true;
+        return true;
     }
 
     ExecuteAction(skill: Skill, action: SkillAction) {
