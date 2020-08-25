@@ -2,6 +2,8 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+body * { font-family: Arial, Helvetica, sans-serif;}
+
 .snackBarInfo{
     max-width: 4rem !important;
     min-width: 4rem !important;

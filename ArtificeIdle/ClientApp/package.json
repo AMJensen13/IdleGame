@@ -28,6 +28,7 @@
     "angular-web-storage": "^10.0.0",
     "bootstrap": "^4.5.0",
     "component": "^1.1.0",
+    "ifvisible.js": "^1.0.6",
     "ngx-indexed-db": "^5.0.5",
     "ngx-order-pipe": "^2.1.0",
     "ngx-scrollbar": "^7.3.0",

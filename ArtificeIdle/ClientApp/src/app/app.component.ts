@@ -73,6 +73,8 @@ export class AppComponent {
   ngOnDestroy(): void{
     this.skillService.StopAction();
     this.toggleNavSubscription.unsubscribe();
+    this.skillLevelSubscription.unsubscribe();
+    this.playerCurrencySubscription.unsubscribe();
   }
 
   SetCurrentPage(page: string){

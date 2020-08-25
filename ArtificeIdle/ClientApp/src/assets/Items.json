@@ -3,49 +3,49 @@
         "id": 0,
         "name": "Balsa Logs",
         "value": 10,
-        "icon": "logs"
+        "icon": "balsalogs"
     },
     {
         "id": 1,
         "name": "Pine Logs",
         "value": 10,
-        "icon": "pinelog"
+        "icon": "pinelogs"
     },
     {
         "id": 2,
         "name": "Maple Logs",
         "value": 10,
-        "icon": "logs"
+        "icon": "maplelogs"
     },
     {
         "id": 3,
         "name": "Mahogany Logs",
         "value": 10,
-        "icon": "logs"
+        "icon": "mahoganylogs"
     },
     {
         "id": 4,
         "name": "Oak Logs",
         "value": 10,
-        "icon": "logs"
+        "icon": "oaklogs"
     },
     {
         "id": 5,
         "name": "Teak Logs",
         "value": 10,
-        "icon": "logs"
+        "icon": "teaklogs"
     },
     {
         "id": 6,
         "name": "Rosewood Logs",
         "value": 10,
-        "icon": "logs"
+        "icon": "rosewoodlogs"
     },
     {
         "id": 7,
         "name": "Ebony Logs",
         "value": 10,
-        "icon": "logs"
+        "icon": "ebonylogs"
     },
     {
         "id": 8,

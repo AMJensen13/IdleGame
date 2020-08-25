@@ -26,7 +26,7 @@
                 "name": "Maple Tree",
                 "levelRequirement": 30,
                 "productId": 2,
-                "baseExperience": 30,
+                "baseExperience": 300,
                 "baseInterval": 2000,
                 "icon": "tree"
             },
