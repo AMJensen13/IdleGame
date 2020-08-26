@@ -14,6 +14,10 @@ export class SkillAction {
     baseExperience: number;
     baseInterval: number;
     icon: string;
+
+    // Fishing
+    isBait?: boolean;
+    requiredUpgrade?: string;
 }
 
 export enum SkillEnum {

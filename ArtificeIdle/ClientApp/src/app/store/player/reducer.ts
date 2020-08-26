@@ -15,9 +15,13 @@ export function playerReducer(state=initialState, action: PlayerActions) {
         case PlayerActionTypes.ADD_UPGRADE:
             switch(action.payload.skill) {
                 case SkillEnum.Woodcutting:
-                    let upgrades = new Map(state.woodCuttingUpgrades);
-                    upgrades.set(action.payload.upgrade, true);
-                    return Object.assign({}, state, { woodCuttingUpgrades: upgrades });
+                    let woodUpgrades = new Map(state.woodCuttingUpgrades);
+                    woodUpgrades.set(action.payload.upgrade, true);
+                    return Object.assign({}, state, { woodCuttingUpgrades: woodUpgrades });
+                case SkillEnum.Fishing:
+                    let fishUpgrades = new Map(state.fishingUpgrades);
+                    fishUpgrades.set(action.payload.upgrade, true);
+                    return Object.assign({}, state, { fishingUpgrades: fishUpgrades });
                 default:
                     return state;
             }

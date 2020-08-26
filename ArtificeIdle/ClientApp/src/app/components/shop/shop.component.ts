@@ -13,7 +13,7 @@ import { ErrorComponent } from '../shared/error/error.component';
 import { SkillService } from 'src/app/services/skill/skill.service';
 import { SkillEnum } from 'src/app/models/Skill';
 import { ShopUpgrade } from 'src/app/models/Shop/ShopUpgrade';
-import { WoodcuttingUpgrade } from 'src/app/models/Upgrades';
+import { WoodcuttingUpgrade, FishingUpgrade } from 'src/app/models/Upgrades';
 
 @Component({
   selector: 'app-shop',
@@ -53,6 +53,64 @@ export class ShopComponent implements OnInit {
             }
           }
         ]
+    },
+    {
+        name: "Angler",
+        items: [ ],
+        upgrades: [
+          {
+            name: "Medium Net",
+            icon: "fishing",
+            skill: SkillEnum.Fishing,
+            levelRequired: 1,
+            upgrade: FishingUpgrade.MediumNet,
+            previousUpgrade: null,
+            cost:
+            {
+              currency: 100,
+              items: []
+            }
+          },
+          {
+            name: "Large Net",
+            icon: "fishing",
+            skill: SkillEnum.Fishing,
+            levelRequired: 1,
+            upgrade: FishingUpgrade.LargeNet,
+            previousUpgrade: FishingUpgrade.MediumNet,
+            cost:
+            {
+              currency: 100,
+              items: []
+            }
+          },
+          {
+            name: "Fishing Rod",
+            icon: "fishing",
+            skill: SkillEnum.Fishing,
+            levelRequired: 1,
+            upgrade: FishingUpgrade.FishingRod,
+            previousUpgrade: null,
+            cost:
+            {
+              currency: 100,
+              items: []
+            }
+          },
+          {
+            name: "Harpoon",
+            icon: "fishing",
+            skill: SkillEnum.Fishing,
+            levelRequired: 15,
+            upgrade: FishingUpgrade.Harpoon,
+            previousUpgrade: FishingUpgrade.FishingRod,
+            cost:
+            {
+              currency: 0,
+              items: [ { itemId: 10, quantity: 5 }, { itemId: 15, quantity: 5 }, { itemId: 1, quantity: 5 } ]
+            }
+          }
+        ]
     }
   ];
 
@@ -77,7 +135,7 @@ export class ShopComponent implements OnInit {
   }
 
   BuyUpgrade(upgrade: ShopUpgrade) {
-    if (upgrade.levelRequired && this.skillService.GetSkillLevelById(upgrade.skill) != upgrade.levelRequired) {
+    if (upgrade.levelRequired && this.skillService.GetSkillLevelById(upgrade.skill) < upgrade.levelRequired) {
         this.ShowErrorDialog('You do not meet the requirements to purchase this.');
         return;
     }

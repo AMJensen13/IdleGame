@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SkillAction, Skill, SkillEnum } from 'src/app/models/Skill';
 import { Observable, interval, Subscription } from 'rxjs';
-import { takeWhile } from 'rxjs/operators';
+import { takeWhile, min } from 'rxjs/operators';
 import { AddItemComponent } from 'src/app/components/shared/add-item/add-item.component';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
@@ -14,6 +14,7 @@ import { ItemService } from '../item/item.service';
 import { ErrorComponent } from 'src/app/components/shared/error/error.component';
 import { UpgradeService } from '../upgrade/upgrade.service';
 import { PlayerService } from '../player/player.service';
+import { FishingUpgrade } from 'src/app/models/Upgrades';
 
 const XP_CONSTANT = 1313;
 
@@ -73,12 +74,15 @@ export class SkillService {
             return false;
         }
 
-        var latestUpgrade = this.playerService.GetLatestSkillUpgrade(skill.id as SkillEnum)
-
         this.actionInterval = action.baseInterval;
 
+        if (skill.id === SkillEnum.Fishing) {
+            return this.StartFishing(skill, action);
+        }
+
+        var latestUpgrade = this.playerService.GetLatestSkillUpgrade(skill.id as SkillEnum)
+
         if (latestUpgrade) {
-            
             var upgradeDef = this.upgradeService.GetUpgradeDefinition(latestUpgrade);
             this.actionInterval = this.actionInterval * upgradeDef.intervalReduction;
         }
@@ -100,6 +104,49 @@ export class SkillService {
             snackConfig.panelClass = ['addItemContainer'];
             snackConfig.duration = 1000;
             snackConfig.data = {productId: action.productId, quantity: 1};
+
+            this._snackBar.openFromComponent(AddItemComponent, snackConfig);
+        }
+    }
+
+    StartFishing(skill: Skill, action: SkillAction){
+        if (action.requiredUpgrade && !this.playerService.HasUpgrade(action.requiredUpgrade as FishingUpgrade, SkillEnum.Fishing)) {
+            this.ShowError(skill, 'You do not have the required upgrade to fish here.');
+            return false;
+        }
+
+        this.currentAction = action;
+        this.currentSkill = skill;
+        this.currentActionInterval$ = interval(this.actionInterval).pipe(takeWhile(() => skill.id === this.currentSkill?.id && action.id === this.currentAction?.id));
+        this.currentActionSubscriber = this.currentActionInterval$.subscribe(() => this.ExecuteFishing(skill, action));
+        this.hasActiveAction = true;
+        return true;
+    }
+
+    ExecuteFishing(skill: Skill, action: SkillAction) {
+        if (this.currentSkill.id === skill.id && this.currentAction.id === action.id){
+            let maxQuantity = 3; // Modify this for bigger bait nets
+            let minQuantity = 1;
+
+            if(this.playerService.HasUpgrade(FishingUpgrade.MediumNet, skill.id as SkillEnum)){
+                maxQuantity = 6;
+                minQuantity = 4;
+            }
+
+            if(this.playerService.HasUpgrade(FishingUpgrade.LargeNet, skill.id as SkillEnum)){
+                maxQuantity = 9;
+                minQuantity = 7;
+            }
+
+            let quantity = action.isBait ? Math.floor(Math.random() * (maxQuantity - minQuantity + 1)) + minQuantity : 1;
+
+            this.addXP(this.currentSkill.id, action.baseExperience);
+            this.addItemToBank(action.productId, quantity);
+
+            let snackConfig = new MatSnackBarConfig();
+            snackConfig.panelClass = ['addItemContainer'];
+            snackConfig.duration = 1000;
+            snackConfig.data = {productId: action.productId, quantity: quantity};
 
             this._snackBar.openFromComponent(AddItemComponent, snackConfig);
         }

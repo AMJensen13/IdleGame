@@ -1,5 +1,5 @@
 <div class="shopsContainer">
-    <mat-expansion-panel *ngFor="let shop of shops">
+    <mat-expansion-panel class="shopExpander" *ngFor="let shop of shops">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 {{ shop.name }}
@@ -10,6 +10,7 @@
                 <mat-grid-tile *ngIf="ShowUpgrade(upgrade)">
                     <button mat-stroked-button class="itemButton" (click)="BuyUpgrade(upgrade)">
                         <h3>{{ upgrade.name }}</h3>
+                        <span class="levelRequirement" *ngIf="upgrade.levelRequired">Level Required: {{upgrade.levelRequired}}</span><br>
                         <img type="image/svg+xml" class="itemIcon" src='../../../assets/{{upgrade.icon}}.svg'/>
                         <app-cost [cost]="upgrade.cost"></app-cost>
                     </button>
