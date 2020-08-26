@@ -8,13 +8,14 @@ import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Store } from '@ngrx/store';
 import { PlayerSkill, PlayerSkillsEntity } from 'src/app/models/Player';
 import * as SkillActions from 'src/app/store/skills/actions';
-import { BankItem } from 'src/app/models/Item';
+import { BankItem, Item } from 'src/app/models/Item';
 import * as Bank from 'src/app/store/bank/actions';
 import { ItemService } from '../item/item.service';
 import { ErrorComponent } from 'src/app/components/shared/error/error.component';
 import { UpgradeService } from '../upgrade/upgrade.service';
 import { PlayerService } from '../player/player.service';
 import { FishingUpgrade } from 'src/app/models/Upgrades';
+import { BankService } from '../bank/bank.service';
 
 const XP_CONSTANT = 1313;
 
@@ -30,13 +31,15 @@ export class SkillService {
     hasActiveAction: boolean;
     skillsSubscription: Subscription;
     skillLevels: number[];
+    currentBait: Item;
 
     constructor(private _snackBar: MatSnackBar, 
                 private dbService: NgxIndexedDBService, 
                 private store: Store<any>,
                 private itemService: ItemService,
                 private upgradeService: UpgradeService,
-                private playerService: PlayerService) 
+                private playerService: PlayerService,
+                private bankService: BankService) 
     { 
         this.skillLevels = new Array<number>();
         this.dbService.getByID('skills', 1).then((skills: PlayerSkillsEntity) => {
@@ -115,6 +118,10 @@ export class SkillService {
             return false;
         }
 
+        if (!action.isBait && this.currentBait) {
+            this.actionInterval = this.actionInterval * this.currentBait.intervalMod;
+        }
+
         this.currentAction = action;
         this.currentSkill = skill;
         this.currentActionInterval$ = interval(this.actionInterval).pipe(takeWhile(() => skill.id === this.currentSkill?.id && action.id === this.currentAction?.id));
@@ -128,17 +135,20 @@ export class SkillService {
             let maxQuantity = 3; // Modify this for bigger bait nets
             let minQuantity = 1;
 
-            if(this.playerService.HasUpgrade(FishingUpgrade.MediumNet, skill.id as SkillEnum)){
+            if (this.playerService.HasUpgrade(FishingUpgrade.MediumNet, skill.id as SkillEnum)){
                 maxQuantity = 6;
                 minQuantity = 4;
             }
 
-            if(this.playerService.HasUpgrade(FishingUpgrade.LargeNet, skill.id as SkillEnum)){
+            if (this.playerService.HasUpgrade(FishingUpgrade.LargeNet, skill.id as SkillEnum)){
                 maxQuantity = 9;
                 minQuantity = 7;
             }
 
             let quantity = action.isBait ? Math.floor(Math.random() * (maxQuantity - minQuantity + 1)) + minQuantity : 1;
+            
+            // run out of bait check
+            if (!this.removeBait()) return;
 
             this.addXP(this.currentSkill.id, action.baseExperience);
             this.addItemToBank(action.productId, quantity);
@@ -150,6 +160,26 @@ export class SkillService {
 
             this._snackBar.openFromComponent(AddItemComponent, snackConfig);
         }
+    }
+
+    SetBait(bait: Item) {
+        this.currentBait = bait;
+    }
+
+    RestartAction(skillEnum: SkillEnum) {
+        if (this.currentAction.isBait) {
+            return;
+        }
+
+        if (this.currentSkill.id !== skillEnum) {
+            return;
+        }
+
+        let action = Object.assign({}, this.currentAction);
+        let skill = Object.assign({}, this.currentSkill);
+
+        this.StopAction();
+        this.StartAction(skill, action);
     }
 
     hasRequiredLevel (skill: Skill, action: SkillAction) {
@@ -182,6 +212,20 @@ export class SkillService {
         }
 
         this.store.dispatch(new Bank.AddItem(new BankItem(id, quantity)));
+    }
+
+    removeBait(){
+        if (!this.currentBait) return true;
+
+        if (!this.bankService.HasItem(this.currentBait.id, 1)) {
+            this.StopAction();
+            this.ShowError(this.currentSkill, `You have run out of ${this.currentBait.name}.`);
+            this.currentBait = null;
+            return false;
+        }
+        
+        this.store.dispatch(new Bank.RemoveItem(new BankItem(this.currentBait.id, 1)));
+        return true;
     }
 
     StopAction(){

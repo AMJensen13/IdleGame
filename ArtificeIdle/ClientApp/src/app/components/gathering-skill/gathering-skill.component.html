@@ -1,5 +1,12 @@
 <div class="skillPage">
     <app-skill-info [skill]="skill"></app-skill-info>
+    <mat-form-field class="baitSelector" appearance="fill" *ngIf="isFishing()">
+        <mat-label>Select a bait</mat-label>
+        <mat-select [(ngModel)]="selectedBait" (selectionChange)="setBait($event)">
+            <mat-option [value]="undefined">--</mat-option>
+            <mat-option *ngFor="let bait of GetBait()" [value]="bait">{{bait.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
     <mat-grid-list #grid cols="4" gutterSize="50px" class="actionsContainer">
         <mat-grid-tile class="actionButtonContainer" *ngFor="let action of skill.actions | orderBy: 'levelRequirement'">
             <button class="button" (click)="ToggleGathering(action)" mat-raised-button>

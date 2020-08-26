@@ -15,6 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
 import { PlayerService } from './services/player/player.service';
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
 import { BankComponent } from './components/bank/bank.component';
@@ -100,6 +101,7 @@ const dbConfig: DBConfig = {
     OrderModule,
     MatMenuModule,
     MatFormFieldModule,
+    MatSelectModule,
     NgScrollbarModule.withConfig({ visibility: "hover" }),
     NgxIndexedDBModule.forRoot(dbConfig),
     StoreModule.forRoot({ bank: bankReducer, skills: skillsReducer, player: playerReducer })

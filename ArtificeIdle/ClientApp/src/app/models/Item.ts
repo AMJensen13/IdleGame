@@ -3,6 +3,8 @@ export class Item {
     name: string;
     value: number;
     icon: string;
+    type: ItemTypes;
+    intervalMod: number;
 }
 
 export class BankItem {
@@ -13,4 +15,8 @@ export class BankItem {
         this.itemId = itemId;
         this.quantity = quantity;
     }
+}
+
+export enum ItemTypes {
+    Bait = "bait"
 }

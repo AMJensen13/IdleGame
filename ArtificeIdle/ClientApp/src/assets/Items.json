@@ -135,13 +135,17 @@
         "id": 22,
         "name": "Shrimp",
         "value": 5,
-        "icon": "shrimp"
+        "icon": "shrimp",
+        "type": "bait",
+        "intervalMod": 0.9
     },
     {
         "id": 23,
         "name": "Sardine",
         "value": 5,
-        "icon": "fishing"
+        "icon": "fishing",
+        "type": "bait",
+        "intervalMod": 0.8
     },
     {
         "id": 24,

@@ -7,6 +7,10 @@ import { PlayerService } from 'src/app/services/player/player.service';
 import { UpgradeService } from 'src/app/services/upgrade/upgrade.service';
 import { MatGridList } from '@angular/material/grid-list';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { Store } from '@ngrx/store';
+import { BankItem, Item, ItemTypes } from 'src/app/models/Item';
+import { ItemService } from 'src/app/services/item/item.service';
+import { MatSelect } from '@angular/material/select';
 
 @Component({
   selector: 'app-gathering-skill',
@@ -19,7 +23,11 @@ export class GatheringSkillComponent implements OnInit {
   @Output() toggleNav: EventEmitter<any> = new EventEmitter();
   @ViewChildren('actionProgress') progressBars: QueryList<ElementRef>;
   @ViewChild('grid') grid: MatGridList;
+  @ViewChild('baitSelect') baitSelect: MatSelect;
   skill: Skill;
+  bait: Item[];
+  selectedBait: Item;
+  baitSubscription: Subscription;
   actionSubscription: Subscription;
   Math: Math;
 
@@ -31,7 +39,12 @@ export class GatheringSkillComponent implements OnInit {
     xs: 1
   }
 
-  constructor(private skillService: SkillService, private playerService: PlayerService, private upgradeService: UpgradeService, private mediaObserver: MediaObserver) 
+  constructor(private skillService: SkillService, 
+              private playerService: PlayerService, 
+              private upgradeService: UpgradeService, 
+              private itemService: ItemService,
+              private mediaObserver: MediaObserver,
+              private store: Store<any>) 
   {
   }
 
@@ -39,13 +52,49 @@ export class GatheringSkillComponent implements OnInit {
   { 
     this.skill = Skills[this.skillEnum];
     this.Math = Math;
+
+    if (this.skillEnum === SkillEnum.Fishing) {
+      this.baitSubscription = this.store.select('bank').subscribe((x: BankItem[]) => {
+        this.bait = new Array<Item>();
+  
+        for(let item of x) {
+          var itemDef = this.itemService.GetById(item.itemId);
+  
+          if (itemDef.type === ItemTypes.Bait) {
+            this.bait.push(itemDef);
+          }
+        }
+      });
+    }
   }
 
   ngAfterContentInit() {
     this.mediaObserver.media$.subscribe((change: MediaChange) => {
       this.grid.cols = this.gridByBreakpoint[change.mqAlias];
-
     });
+  }
+
+  ngDoCheck() {
+    if (this.selectedBait && !this.skillService.currentBait) {
+      this.selectedBait = undefined;
+    }
+  }
+
+  isFishing() {
+    return this.skillEnum === SkillEnum.Fishing;
+  }
+
+  setBait(event) {
+    this.skillService.SetBait(event.value);
+    if (this.skillService.currentAction && !this.skillService.currentAction.isBait){
+      let currentAction = Object.assign({}, this.skillService.currentAction);
+      this.ToggleGathering(currentAction);
+      this.ToggleGathering(currentAction);
+    } 
+  }
+
+  GetBait() {
+    return this.bait;
   }
 
   GetActionInterval(action: SkillAction) {
