@@ -55,7 +55,7 @@ export class AppComponent {
     this.playerCurrency = 0;
     this.skillLevelSubscription = this.store.select('skills').subscribe((skills : PlayerSkill[]) => {
         for(let skill of skills) {
-            this.skillLevels[skill.skillId] = this.skillService.GetSkillLevel(skill.experience);
+            this.skillLevels[skill.skillId] = skills[skill.skillId].level;
         }
     });
 

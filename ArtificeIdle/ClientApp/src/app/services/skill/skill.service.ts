@@ -30,7 +30,7 @@ export class SkillService {
     currentActionSubscriber: Subscription;
     hasActiveAction: boolean;
     skillsSubscription: Subscription;
-    skillLevels: number[];
+    skills: PlayerSkill[];
     currentBait: Item;
 
     constructor(private _snackBar: MatSnackBar, 
@@ -41,11 +41,10 @@ export class SkillService {
                 private playerService: PlayerService,
                 private bankService: BankService) 
     { 
-        this.skillLevels = new Array<number>();
         this.dbService.getByID('skills', 1).then((skills: PlayerSkillsEntity) => {
             let pSkills = new Array<PlayerSkill>();
 
-            if (skills) {
+            if (skills && skills.skills) {
                 pSkills = skills.skills;
             }
 
@@ -53,17 +52,18 @@ export class SkillService {
                 var idNum = Number(x);
                 if (!(idNum >= 0)) return;
                 if (!pSkills.find(pSkill => pSkill.skillId === idNum)){
-                    pSkills.push(new PlayerSkill(idNum));
+                    var newSkill = new PlayerSkill(idNum);
+                    newSkill.nextLevelXp = SkillService.GetNextLevelXP(newSkill.level);
+                    pSkills.push(newSkill);
                 }
-            })
+            });
             
             this.store.dispatch(new SkillActions.LoadSkills(pSkills));
             this.skillsSubscription = this.store.select('skills').subscribe((skills: Array<PlayerSkill>) => 
                 {
                     if (skills && skills.length >= 0) {
-                        this.dbService.update('skills', { skills, id: 1});
-                        
-                        this.UpdateSkillLevels(skills);
+                        this.dbService.update('skills', { skills: skills, id: 1});
+                        this.skills = skills;
                     }
                 }
             );
@@ -183,13 +183,7 @@ export class SkillService {
     }
 
     hasRequiredLevel (skill: Skill, action: SkillAction) {
-        return this.skillLevels[skill.id] >= action.levelRequirement;
-    }
-
-    UpdateSkillLevels(skills: PlayerSkill[]) {
-        for (let skill of skills) {
-            this.skillLevels[skill.skillId] = this.GetSkillLevel(skill.experience) + 1;
-        }
+        return this.skills[skill.id].level >= action.levelRequirement;
     }
 
     ShowError(skill: Skill, message: string) {
@@ -238,24 +232,24 @@ export class SkillService {
     }
 
     GetSkillLevelById(skill: SkillEnum) {
-        return this.skillLevels[skill];
+        return this.skills[skill].level;
     }
 
-    GetSkillLevel(xp: number) {
-        var level = Math.floor((Math.sqrt((XP_CONSTANT*XP_CONSTANT)+(4*XP_CONSTANT*xp))-XP_CONSTANT)/(2*XP_CONSTANT));
+    static GetXpForLevel(level: number){
+        var summation = 0;
 
-        return level;
+        for(let i = 1; i < level; i++) {
+            summation += 230 * Math.pow(i, 3);
+        }
+
+        return Math.floor(64 + (summation/333));
     }
 
-    GetCurrentLevelXP(xp: number){
-        var currentLevel = this.GetSkillLevel(xp);
-
-        return XP_CONSTANT*currentLevel*(1+currentLevel);
+    static GetNextLevelXP(currentLevel: number) {
+        return this.GetXpForLevel(currentLevel + 1);
     }
 
-    GetNextLevelXP(xp: number) {
-        var currentLevel = this.GetSkillLevel(xp);
-
-        return Math.floor(XP_CONSTANT*(currentLevel+1)*(currentLevel+2));
+    GetSkillInfo(id: number){
+        return this.skills[id];
     }
 }

@@ -27,22 +27,13 @@ export class SkillInfoComponent implements OnInit {
         let currentSkill = skills.find(x=> x.skillId === this.skill.id);
 
         if (!currentSkill) return;
-        this.loaded = true
+        this.loaded = true;
 
-        if (this.currentXP === currentSkill.experience){
-            return;
-        }
 
+        this.currentLevel = currentSkill.level;
         this.currentXP = currentSkill.experience;
-        this.currentLevelXP = this.skillService.GetCurrentLevelXP(this.currentXP);
-
-        var updatedLevel = this.skillService.GetSkillLevel(this.currentXP);
-        if (updatedLevel === this.currentLevel) {
-            return;
-        }
-
-        this.currentLevel = updatedLevel;
-        this.nextLevelXP = this.skillService.GetNextLevelXP(this.currentXP);
+        this.nextLevelXP = currentSkill.nextLevelXp;
+        this.currentLevelXP = SkillService.GetXpForLevel(this.currentLevel);
       });
   }
 

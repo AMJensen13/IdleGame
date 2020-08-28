@@ -1,7 +1,7 @@
 <div class="skillInfoContainer col-12" *ngIf="loaded">
     <div class="row infoRow">
         <div class="col-4 lvlCol">
-            <span>Level: {{ currentLevel + 1 }}</span>
+            <span>Level: {{ currentLevel }}</span>
         </div>
         <div class="col-4 upgradeCol">
             <span *ngIf="GetUpgradeDisplay()">{{ GetUpgradeDisplay() }}</span>

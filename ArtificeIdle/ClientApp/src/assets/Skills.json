@@ -172,39 +172,39 @@
         "actions": [
             {
                 "id": 0,
-                "name": "Air",
+                "name": "Aero",
                 "levelRequirement": 1,
                 "productId": 16,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "airaether"
+                "icon": "aeroaether"
             },
             {
                 "id": 1,
-                "name": "Water",
+                "name": "Aqua",
                 "levelRequirement": 5,
                 "productId": 17,
                 "baseExperience": 10,
                 "baseInterval":2000,
-                "icon":"wateraether"
+                "icon":"aquaaether"
             },
             {
                 "id": 2,
-                "name": "Earth",
+                "name": "Terra",
                 "levelRequirement": 10,
                 "productId": 18,
                 "baseExperience": 10,
                 "baseInterval":2000,
-                "icon":"wateraether"
+                "icon":"terraaether"
             },
             {
                 "id": 3,
-                "name": "Fire",
+                "name": "Pyr",
                 "levelRequirement": 15,
                 "productId": 19,
                 "baseExperience": 10,
                 "baseInterval":2000,
-                "icon":"wateraether"
+                "icon":"pyraether"
             },
             {
                 "id": 4,
@@ -213,7 +213,7 @@
                 "productId": 20,
                 "baseExperience": 10,
                 "baseInterval":2000,
-                "icon":"wateraether"
+                "icon":"chaosaether"
             },
             {
                 "id": 5,
@@ -222,25 +222,25 @@
                 "productId": 21,
                 "baseExperience": 10,
                 "baseInterval":2000,
-                "icon":"wateraether"
+                "icon":"bloodaether"
             },
             {
                 "id": 6,
                 "name": "Void",
-                "levelRequirement": 1,
+                "levelRequirement": 30,
                 "productId": 30,
                 "baseExperience": 10,
                 "baseInterval":2000,
-                "icon":"airaether"
+                "icon":"voidaether"
             },
             {
                 "id": 7,
                 "name": "Spirit",
-                "levelRequirement": 1,
+                "levelRequirement": 35,
                 "productId": 31,
                 "baseExperience": 10,
                 "baseInterval":2000,
-                "icon":"airaether"
+                "icon":"spiritaether"
             }
         ]
     },

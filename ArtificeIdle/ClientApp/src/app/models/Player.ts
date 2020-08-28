@@ -15,11 +15,14 @@ export class Player {
 }
 
 export class PlayerSkill {
+    level: number;
     experience: number;
     skillId: number;
+    nextLevelXp: number;
 
     constructor(skillId: number){
         this.experience = 0;
+        this.level = 1;
         this.skillId = skillId;
     }
 }

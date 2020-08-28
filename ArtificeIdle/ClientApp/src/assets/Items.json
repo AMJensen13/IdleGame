@@ -99,37 +99,37 @@
         "id": 16,
         "name": "Aero Aether",
         "value": 5,
-        "icon": "airaether"
+        "icon": "aeroaether"
     },
     {
         "id": 17,
         "name": "Aqua Aether",
         "value": 5,
-        "icon": "wateraether"
+        "icon": "aquaaether"
     },
     {
         "id": 18,
         "name": "Terra Aether",
         "value": 5,
-        "icon": "wateraether"
+        "icon": "terraaether"
     },
     {
         "id": 19,
         "name": "Pyr Aether",
         "value": 5,
-        "icon": "wateraether"
+        "icon": "pyraether"
     },
     {
         "id": 20,
         "name": "Chaos Aether",
         "value": 5,
-        "icon": "wateraether"
+        "icon": "chaosaether"
     },
     {
         "id": 21,
         "name": "Blood Aether",
         "value": 5,
-        "icon": "wateraether"
+        "icon": "bloodaether"
     },
     {
         "id": 22,
@@ -187,13 +187,13 @@
         "id": 30,
         "name": "Spirit Aether",
         "value": 5,
-        "icon": "airaether"
+        "icon": "spiritaether"
     },
     {
         "id": 31,
         "name": "Void Aether",
         "value": 5,
-        "icon": "airaether"
+        "icon": "voidaether"
     },
     {
         "id": 32,
