@@ -88,7 +88,7 @@
                 "productId": 8,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "copperore"
             },
             {
                 "id": 1,
@@ -97,7 +97,7 @@
                 "productId": 9,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "tinore"
             },
             {
                 "id": 2,
@@ -106,7 +106,7 @@
                 "productId": 10,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "ironore"
             },
             {
                 "id": 3,
@@ -115,7 +115,7 @@
                 "productId": 11,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "vetriumore"
             },
             {
                 "id": 4,
@@ -124,7 +124,7 @@
                 "productId": 12,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "silverore"
             },
             {
                 "id": 5,
@@ -133,7 +133,7 @@
                 "productId": 13,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "goldore"
             },
             {
                 "id": 6,
@@ -142,7 +142,7 @@
                 "productId": 14,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "mithralore"
             },
             {
                 "id": 9,
@@ -151,7 +151,7 @@
                 "productId": 15,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "coalore"
             },
             {
                 "id": 10,
@@ -160,7 +160,7 @@
                 "productId": 29,
                 "baseExperience": 10,
                 "baseInterval": 2000,
-                "icon": "rock"
+                "icon": "solfurore"
             }
 
             

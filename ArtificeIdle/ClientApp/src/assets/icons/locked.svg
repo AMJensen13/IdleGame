@@ -1,49 +1,38 @@
-<?xml version="1.0" encoding="iso-8859-1"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-<path style="fill:#C7CFE2;" d="M365.463,283.767c-18.849,0-34.13-15.281-34.13-34.13V143.593c0-41.539-33.795-75.332-75.332-75.332
-	c-41.539,0-75.333,33.795-75.333,75.332v106.044c0,18.849-15.281,34.13-34.13,34.13s-34.13-15.281-34.13-34.13V143.593
-	C112.408,64.416,176.823,0,256,0s143.592,64.416,143.592,143.592v106.044C399.594,268.486,384.312,283.767,365.463,283.767z"/>
-<g style="opacity:0.1;">
-	<path d="M146.538,283.767c18.849,0,34.13-15.281,34.13-34.13v-76.023h-68.26v76.023
-		C112.408,268.486,127.688,283.767,146.538,283.767z"/>
-	<path d="M331.333,173.614v76.023c0,18.849,15.281,34.13,34.13,34.13s34.13-15.281,34.13-34.13v-76.023H331.333z"/>
-</g>
-<path style="fill:#FFD782;" d="M404.055,207.745H107.945c-17.577,0-31.825,14.249-31.825,31.825v240.605
-	c0,17.577,14.248,31.825,31.825,31.825h296.111c17.577,0,31.825-14.248,31.825-31.825V239.57
-	C435.882,221.993,421.632,207.745,404.055,207.745z"/>
-<path style="opacity:0.1;enable-background:new    ;" d="M295.213,337.119c0-21.657-17.557-39.213-39.213-39.213
-	s-39.213,17.557-39.213,39.213c0,12.519,5.874,23.66,15.009,30.839v74.598h48.408v-74.598
-	C289.338,360.778,295.213,349.638,295.213,337.119z"/>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="231.012" y1="176.85" x2="231.012" y2="276.812" id="gradient-2" gradientTransform="matrix(-0.744845, -0.667237, 0.478755, -0.53444, 299.632146, 622.154554)">
+      <stop offset="0" style="stop-color: rgb(171, 168, 168);"/>
+      <stop offset="1" style="stop-color: rgba(6, 7, 7, 1)"/>
+    </linearGradient>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="298.471" cy="115" r="100" id="gradient-3" gradientTransform="matrix(0.207518, -0.177881, 1.806539, 2.107528, -17.276152, -89.858978)">
+      <stop offset="0" style="stop-color: rgb(234, 229, 229);"/>
+      <stop offset="1" style="stop-color: rgb(132, 130, 130);"/>
+    </radialGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="188.317" y1="781.878" x2="188.317" y2="1008.635" id="gradient-1" gradientTransform="matrix(0.118261, 0.992983, -0.48433, 0.057682, 594.032843, 44.525663)">
+      <stop offset="0" style="stop-color: rgb(180, 161, 39);"/>
+      <stop offset="1" style="stop-color: rgb(110, 98, 21);"/>
+    </linearGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="250" y1="200.091" x2="250" y2="426.848" id="gradient-0" gradientTransform="matrix(0.227209, 0.973847, -1.432883, 0.334307, 603.779531, -102.139427)">
+      <stop offset="0" style="stop-color: rgba(180, 161, 39, 1)"/>
+      <stop offset="1" style="stop-color: rgba(96, 86, 21, 1)"/>
+    </linearGradient>
+    <radialGradient gradientUnits="userSpaceOnUse" cx="151.288" cy="136.203" r="100" id="gradient-5" gradientTransform="matrix(-0.187455, 0.159613, -2.364381, -2.776841, 584.82643, 433.009619)">
+      <stop offset="0" style="stop-color: rgb(224, 219, 219);"/>
+      <stop offset="1" style="stop-color: rgb(122, 120, 120);"/>
+    </radialGradient>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="250" y1="278" x2="250" y2="377.962" id="gradient-4" gradientTransform="matrix(0.691782, 0.722107, -0.697482, 0.668188, 272.98527, -51.053298)">
+      <stop offset="0" style="stop-color: rgba(0, 0, 0, 1)"/>
+      <stop offset="1" style="stop-color: rgb(185, 185, 185);"/>
+    </linearGradient>
+  </defs>
+  <path style="fill: url(#gradient-1); stroke-miterlimit: 19; stroke-width: 14px; stroke: url(#gradient-0);" d="M 223.949 200.092 L 270.203 200.092 L 382.439 200.092 C 391.907 200.092 400 210.826 400 219.755 L 400 419.568 C 400 426.827 400 426.848 393.657 426.848 L 104.762 426.848 C 100 426.848 100 426.833 100 422.842 L 100 218.17 C 100 207.538 108.002 200.006 120.201 200.092 L 223.949 200.092 Z">
+    <title>Lock Body</title>
+  </path>
+  <path style="fill: url(#gradient-3); stroke: url(#gradient-5); stroke-width: 4px;" d="M 350 200.092 L 310.884 199.983 C 309.578 47.671 189.333 49.033 190.204 199.983 L 150 200.092 C 149.94 77.306 206.945 41.405 249.97 41.734 C 299.063 42.107 350 77.306 350 200.092 Z">
+    <title>Lock Arch</title>
+  </path>
+  <path d="M 273.332 332.922 C 277.606 329.795 283.44 323.316 283.251 311.481 C 283.44 267.136 216.558 266.545 216.745 311.481 C 216.795 323.605 223.58 329.682 228.702 333.011 C 233.93 339.316 223.731 369.661 216.745 377.962 L 283.251 377.962 C 276.8 369.595 269.058 339.439 273.332 332.922 Z" style="fill: url(#gradient-2); stroke: url(#gradient-4);">
+    <title>Key Hole</title>
+  </path>
 </svg>

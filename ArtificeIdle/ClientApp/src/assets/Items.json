@@ -51,49 +51,49 @@
         "id": 8,
         "name": "Copper Ore",
         "value": 5,
-        "icon": "rock"
+        "icon": "copperore"
     },
     {
         "id": 9,
         "name": "Tin Ore",
         "value": 5,
-        "icon": "rock"
+        "icon": "tinore"
     },
     {
         "id": 10,
         "name": "Iron Ore",
         "value": 5,
-        "icon": "rock"
+        "icon": "ironore"
     },
     {
         "id": 11,
         "name": "Vetrium Ore",
         "value": 5,
-        "icon": "rock"
+        "icon": "vetriumore"
     },
     {
         "id": 12,
         "name": "Silver Ore",
         "value": 5,
-        "icon": "rock"
+        "icon": "silverore"
     },
     {
         "id": 13,
         "name": "Gold Ore",
         "value": 5,
-        "icon": "rock"
+        "icon": "goldore"
     },
     {
         "id": 14,
         "name": "Mithral Ore",
         "value": 5,
-        "icon": "rock"
+        "icon": "mithralore"
     },
     {
         "id": 15,
         "name": "Coal",
         "value": 5,
-        "icon": "rock"
+        "icon": "coalore"
     },
     {
         "id": 16,
@@ -181,7 +181,7 @@
         "id": 29,
         "name": "Sulfur",
         "value": 5,
-        "icon": "rock"
+        "icon": "sulfurore"
     },
     {
         "id": 30,
