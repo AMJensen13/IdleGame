@@ -123,7 +123,7 @@ export class GatheringSkillComponent implements OnInit {
       this.stopProgressBar();
       this.skillService.StopAction();
       return;
-    } else if (this.skillService.hasActiveAction && (this.skillService.currentAction.id !== action.id || this.skillService.currentSkill.id === this.skill.id)) 
+    } else if (this.skillService.hasActiveAction && (this.skillService.currentAction.id !== action.id && this.skillService.currentSkill.id === this.skill.id)) 
     {
         if (this.actionSubscription && !this.actionSubscription.closed) this.actionSubscription.unsubscribe();
         this.stopProgressBar();

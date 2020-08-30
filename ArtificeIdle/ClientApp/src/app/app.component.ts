@@ -1,15 +1,15 @@
 import { Component, Input, ViewChild, isDevMode, enableProdMode } from '@angular/core';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from "@angular/platform-browser";
 import { SkillService } from './services/skill/skill.service';
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { PlayerService } from './services/player/player.service';
 import { Store } from '@ngrx/store';
 import { PlayerSkill, Player } from './models/Player';
-import { SkillEnum, Skill } from './models/Skill';
+import { SkillEnum } from './models/Skill';
 import * as BankActions from './store/bank/actions';
 import * as PlayerActions from './store/player/actions';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,7 @@ export class AppComponent {
   @Input() navColor = 'accent-light';
   @ViewChild(SkillTitleComponent) titleBar: SkillTitleComponent;
   title = 'ArtificeIdle';
-  isHandset$ = false;
+  isHandset$: Observable<boolean>;
   opened = true;
   currentPage: string = 'Shop';
   toggleNavSubscription: Subscription;
@@ -29,7 +29,7 @@ export class AppComponent {
   skillLevelSubscription: Subscription;
   skillLevels: { [id: number]: number } = {};
   skillEnums = SkillEnum;
-  isDevMode;
+  isDevMode: boolean;
 
   // Dev Form
   idToAdd: number;
@@ -38,7 +38,8 @@ export class AppComponent {
 
   constructor(private skillService: SkillService,
               private store: Store<any>,
-              private playerService: PlayerService)
+              private playerService: PlayerService,
+              private mediaObserver: MediaObserver)
   {
     this.isDevMode = isDevMode();
   }
@@ -68,6 +69,12 @@ export class AppComponent {
     this.toggleNavSubscription = this.titleBar.toggleNav.subscribe(() => {
         this.opened = !this.opened;
     });
+
+    this.isHandset$ = this.mediaObserver.media$.pipe(
+      map((change: MediaChange) => {
+        return change.mqAlias === 'sm' || change.mqAlias === 'xs';
+      })
+    );
   }
 
   ngOnDestroy(): void{

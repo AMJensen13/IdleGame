@@ -14,6 +14,7 @@ import { ItemService } from 'src/app/services/item/item.service';
 })
 export class BankItemComponent implements OnInit {
   @Input('bankItem') bankItem: BankItem;
+  tooltip;
 
   constructor(private store: Store<any>, private itemService: ItemService) { }
 
@@ -22,7 +23,7 @@ export class BankItemComponent implements OnInit {
 
   ngAfterViewInit() {
     let self = this;
-    tippy('[bankTippy]', 
+    this.tooltip = tippy('[bankTippy]', 
     {
         content(reference) {
             const id = +reference.getAttribute('bankTippy');
@@ -36,6 +37,12 @@ export class BankItemComponent implements OnInit {
         duration: 0,
         allowHTML: true
     });
+  }
+
+  menuOpened() {
+    if (this.tooltip && this.tooltip.length > 0){
+      this.tooltip[0].hide();
+    }
   }
   
   GetItemName(itemId: number) {

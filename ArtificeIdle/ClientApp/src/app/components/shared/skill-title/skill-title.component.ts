@@ -18,7 +18,6 @@ export class SkillTitleComponent implements OnInit {
 
   ngAfterContentInit() {
     this.mediaObserver.media$.subscribe((change: MediaChange) => {
-      this.showNavToggle = change.mqAlias === 'sm' || change.mqAlias === 'xs';
     });
   }
 }
