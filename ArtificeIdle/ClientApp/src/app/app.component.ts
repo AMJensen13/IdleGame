@@ -20,7 +20,7 @@ export class AppComponent {
   @Input() navColor = 'accent-light';
   @ViewChild(SkillTitleComponent) titleBar: SkillTitleComponent;
   title = 'ArtificeIdle';
-  isHandset$: Observable<boolean>;
+  isHandset: boolean;
   opened = false;
   currentPage: string = 'Shop';
   toggleNavSubscription: Subscription;
@@ -70,11 +70,9 @@ export class AppComponent {
         this.opened = !this.opened;
     });
 
-    this.isHandset$ = this.mediaObserver.media$.pipe(
-      map((change: MediaChange) => {
-        return change.mqAlias === 'sm' || change.mqAlias === 'xs';
-      })
-    );
+    this.mediaObserver.media$.subscribe((change: MediaChange) => {
+        this.isHandset = change.mqAlias === 'sm' || change.mqAlias === 'xs';
+      });
   }
 
   ngOnDestroy(): void{
@@ -86,7 +84,7 @@ export class AppComponent {
 
   SetCurrentPage(page: string){
     this.currentPage = page;
-    this.opened = false;
+    if (this.isHandset) this.opened = false;
   }
 
   GetPageDisplay(page: string) {

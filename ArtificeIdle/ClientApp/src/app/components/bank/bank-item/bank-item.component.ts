@@ -28,7 +28,7 @@ export class BankItemComponent implements OnInit {
     this.tooltip = tippy(`[bankTippy${this.bankItem.itemId}]`, 
     {
         content(reference) {
-            const id = +reference.getAttribute('bankTippy');
+            const id = +reference.getAttribute(`bankTippy${self.bankItem.itemId}`);
             var itemName = self.GetItemName(id);
             var itemValue = self.GetItemValue(id);
             return `<div><span>${itemName} : ${itemValue}gp</span></div>`;
