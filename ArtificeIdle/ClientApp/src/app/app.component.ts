@@ -21,7 +21,7 @@ export class AppComponent {
   @ViewChild(SkillTitleComponent) titleBar: SkillTitleComponent;
   title = 'ArtificeIdle';
   isHandset$: Observable<boolean>;
-  opened = true;
+  opened = false;
   currentPage: string = 'Shop';
   toggleNavSubscription: Subscription;
   playerCurrencySubscription: Subscription;
@@ -86,6 +86,7 @@ export class AppComponent {
 
   SetCurrentPage(page: string){
     this.currentPage = page;
+    this.opened = false;
   }
 
   GetPageDisplay(page: string) {
