@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { BankItem } from 'src/app/models/Item';
 
 import tippy from 'tippy.js';
@@ -14,6 +14,7 @@ import { ItemService } from 'src/app/services/item/item.service';
 })
 export class BankItemComponent implements OnInit {
   @Input('bankItem') bankItem: BankItem;
+  @ViewChild('bankItemContainer') bankItemElement: ElementRef;
   tooltip;
 
   constructor(private store: Store<any>, private itemService: ItemService) { }
@@ -23,7 +24,8 @@ export class BankItemComponent implements OnInit {
 
   ngAfterViewInit() {
     let self = this;
-    this.tooltip = tippy('[bankTippy]', 
+    this.bankItemElement.nativeElement.setAttribute(`bankTippy${this.bankItem.itemId}`, `${this.bankItem.itemId}`);
+    this.tooltip = tippy(`[bankTippy${this.bankItem.itemId}]`, 
     {
         content(reference) {
             const id = +reference.getAttribute('bankTippy');

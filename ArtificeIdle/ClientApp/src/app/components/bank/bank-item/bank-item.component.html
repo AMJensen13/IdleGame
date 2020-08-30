@@ -1,4 +1,4 @@
-<div class="bankItem" attr.bankTippy="{{bankItem.itemId}}">
+<div #bankItemContainer class="bankItem">
     <mat-card [matMenuTriggerFor]="itemMenu" #matTrigger="matMenuTrigger" class="bankCard" (menuOpened)="menuOpened()">
         <mat-card-content>
             <img type="image/svg+xml" src='../../../../assets/icons/{{GetItemIcon(bankItem.itemId)}}.svg' />
