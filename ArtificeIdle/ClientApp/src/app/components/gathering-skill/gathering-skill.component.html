@@ -7,17 +7,23 @@
             <mat-option *ngFor="let bait of GetBait()" [value]="bait">{{bait.name}}</mat-option>
         </mat-select>
     </mat-form-field>
-    <mat-grid-list #grid cols="4" gutterSize="50px" class="actionsContainer">
-        <mat-grid-tile class="actionButtonContainer" *ngFor="let action of skill.actions | orderBy: 'levelRequirement'">
-            <button class="button" (click)="ToggleGathering(action)" mat-raised-button>
-                <div>
-                    <h2 style="margin: 0">{{ action.name }}</h2>
-                    <span class="actionDescription">Level: {{action.levelRequirement}}<br>{{action.baseExperience}}xp / {{GetActionInterval(action)}}s</span>
-                </div>
-                <img type="image/svg+xml" class="skillIcon" src='../../../assets/icons/{{action.icon}}.svg'/>
+    <mat-grid-list #grid cols="4" gutterSize="50px" class="actionsContainer" [ngStyle]="!isFishing() && { 'margin-top':'2em' }">
+        <mat-grid-tile *ngFor="let action of skill.actions | orderBy: 'levelRequirement'">
+            <button class="button" [ngClass]="{ 'redBorder': !hasRequiredLevel(action) }" (click)="ToggleGathering(action)" mat-raised-button [disabled]="!hasRequiredLevel(action)">
+                <img *ngIf="hasRequiredLevel(action)" type="image/svg+xml" class="skillIcon" src='../../../assets/icons/{{action.icon}}.svg'/>
                 
-                <div class="progress">
+                <img *ngIf="!hasRequiredLevel(action)" type="image/svg+xml" class="skillIcon" src='../../../assets/icons/locked.svg'/>
+                
+                <div class="progress" *ngIf="hasRequiredLevel(action)">
                     <div class="progress-bar" id="action{{action.id}}" #actionProgress role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="row actionInfo">
+                    <div class="col-4"></div>
+                    <span class="actionName col-4">{{ action.name }}</span>
+                    <span class="actionDescription col-4"> <ng-container *ngIf="hasRequiredLevel(action)">{{action.baseExperience}}xp / {{GetActionInterval(action)}}s</ng-container></span>
+                </div>
+                <div class="levelDisplay" *ngIf="!hasRequiredLevel(action)">
+                    Required Level: {{action.levelRequirement}}
                 </div>
             </button>
         </mat-grid-tile>

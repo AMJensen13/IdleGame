@@ -5,7 +5,7 @@
         "actions": [
             {
                 "id": 0,
-                "name": "Balsa Tree",
+                "name": "Balsa",
                 "levelRequirement": 1,
                 "productId": 0,
                 "baseExperience": 150,
@@ -14,7 +14,7 @@
             },
             {
                 "id": 1,
-                "name": "Pine Tree",
+                "name": "Pine",
                 "levelRequirement": 5,
                 "productId": 1,
                 "baseExperience": 200,
@@ -23,7 +23,7 @@
             },
             {
                 "id": 2,
-                "name": "Maple Tree",
+                "name": "Maple",
                 "levelRequirement": 30,
                 "productId": 2,
                 "baseExperience": 300,
@@ -32,7 +32,7 @@
             },
             {
                 "id": 3,
-                "name": "Mahogany Tree",
+                "name": "Mahogany",
                 "levelRequirement": 35,
                 "productId": 3,
                 "baseExperience": 40,
@@ -41,7 +41,7 @@
             },
             {
                 "id": 4,
-                "name": "Oak Tree",
+                "name": "Oak",
                 "levelRequirement": 45,
                 "productId": 4,
                 "baseExperience": 50,
@@ -50,7 +50,7 @@
             },
             {
                 "id": 5,
-                "name": "Teak Tree",
+                "name": "Teak",
                 "levelRequirement": 55,
                 "productId": 5,
                 "baseExperience": 60,
@@ -59,7 +59,7 @@
             },
             {
                 "id": 6,
-                "name": "Rosewood Tree",
+                "name": "Rosewood",
                 "levelRequirement": 65,
                 "productId": 6,
                 "baseExperience": 70,
@@ -68,7 +68,7 @@
             },
             {
                 "id": 7,
-                "name": "Ebony Tree",
+                "name": "Ebony",
                 "levelRequirement": 75,
                 "productId": 7,
                 "baseExperience": 80,

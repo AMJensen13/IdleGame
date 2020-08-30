@@ -183,6 +183,8 @@ export class SkillService {
     }
 
     hasRequiredLevel (skill: Skill, action: SkillAction) {
+        if (!this.skills) return false;
+
         return this.skills[skill.id].level >= action.levelRequirement;
     }
 

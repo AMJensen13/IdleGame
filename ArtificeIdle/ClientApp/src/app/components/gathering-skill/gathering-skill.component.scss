@@ -13,6 +13,7 @@
 .progress {
     width: 100%;
     background-color: #babbbb;
+    margin-top: 1em;
 }
 
 .progress-bar {
@@ -20,8 +21,7 @@
 }
 
 .skillIcon {
-    width: 45%;
-    height: 45%;
+    width: 75%;
 }
 
 .skillPage {
@@ -31,10 +31,34 @@
     padding-top: 2rem;
 }
 
+.redBorder {
+    border: 2px solid rgb(139, 26, 26);
+}
+
 .actionDescription {
-    font-size: smaller;
+    font-size: small;
+    font-style: italic;
+    text-align: end;
+}
+
+.actionName {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.actionInfo {
+    margin-top: 0.75em;
+}
+
+.levelDisplay {
+    justify-content: center;
 }
 
 .baitSelector {
     margin-top: 2em
+}
+
+.redText {
+    color: rgb(204, 80, 80);
 }

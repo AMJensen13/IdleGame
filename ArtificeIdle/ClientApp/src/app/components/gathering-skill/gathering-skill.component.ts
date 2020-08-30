@@ -80,6 +80,10 @@ export class GatheringSkillComponent implements OnInit {
     }
   }
 
+  hasRequiredLevel(action: SkillAction) {
+    return this.skillService.hasRequiredLevel(this.skill, action);
+  }
+
   isFishing() {
     return this.skillEnum === SkillEnum.Fishing;
   }
