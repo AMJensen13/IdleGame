@@ -33,7 +33,7 @@ export class SkillInfoComponent implements OnInit {
         this.currentLevel = currentSkill.level;
         this.currentXP = currentSkill.experience;
         this.nextLevelXP = currentSkill.nextLevelXp;
-        this.currentLevelXP = SkillService.GetXpForLevel(this.currentLevel);
+        this.currentLevelXP = currentSkill.level === 1 ? 0: SkillService.GetXpForLevel(this.currentLevel);
       });
   }
 
