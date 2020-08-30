@@ -1,7 +1,7 @@
 import { Component, Input, ViewChild, isDevMode, enableProdMode } from '@angular/core';
 import { SkillService } from './services/skill/skill.service';
 import { SkillTitleComponent } from './components/shared/skill-title/skill-title.component';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, of } from 'rxjs';
 import { PlayerService } from './services/player/player.service';
 import { Store } from '@ngrx/store';
 import { PlayerSkill, Player } from './models/Player';
@@ -62,7 +62,7 @@ export class AppComponent {
 
     this.playerCurrencySubscription = this.store.select('player').subscribe((player: Player) => {
         if (player.currency !== undefined) this.playerCurrency = player.currency;
-    })
+    });
   }
 
   ngAfterViewInit() {

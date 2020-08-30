@@ -5,27 +5,23 @@
                 {{ shop.name }}
             </mat-panel-title>
         </mat-expansion-panel-header>
-        <mat-grid-list cols="4" gutterSize="3rem">
+        <div class="row shopItemsContainer">
             <ng-container *ngFor="let upgrade of shop.upgrades">
-                <mat-grid-tile *ngIf="ShowUpgrade(upgrade)">
-                    <button mat-stroked-button class="itemButton" (click)="BuyUpgrade(upgrade)">
-                        <h3>{{ upgrade.name }}</h3>
-                        <span class="levelRequirement" *ngIf="upgrade.levelRequired">Level Required: {{upgrade.levelRequired}}</span><br>
-                        <img type="image/svg+xml" class="itemIcon" src='../../../assets/icons/{{upgrade.icon}}.svg'/>
-                        <app-cost [cost]="upgrade.cost"></app-cost>
-                    </button>
-                </mat-grid-tile>
+                <button mat-stroked-button class="itemButton" *ngIf="ShowUpgrade(upgrade)" (click)="BuyUpgrade(upgrade)">
+                    <h3>{{ upgrade.name }}</h3>
+                    <span class="levelRequirement" *ngIf="upgrade.levelRequired">Level Required: {{upgrade.levelRequired}}</span><br>
+                    <img type="image/svg+xml" class="itemIcon" src='../../../assets/icons/{{upgrade.icon}}.svg'/>
+                    <app-cost [cost]="upgrade.cost"></app-cost>
+                </button>
             </ng-container>
             <ng-container *ngFor="let item of shop.items">
-                <mat-grid-tile>
-                    <button mat-stroked-button class="itemButton" (click)="BuyItem(item)">
-                        <h3>{{ item.name }}</h3>
-                        <img type="image/svg+xml" class="itemIcon" src='../../../assets/icons/{{item.icon}}.svg'/>
-                        <app-cost [cost]="item.cost"></app-cost>
-                    </button>
-                </mat-grid-tile>
+                <button mat-stroked-button class="itemButton" (click)="BuyItem(item)">
+                    <h3>{{ item.name }}</h3>
+                    <img type="image/svg+xml" class="itemIcon" src='../../../assets/icons/{{item.icon}}.svg'/>
+                    <app-cost [cost]="item.cost"></app-cost>
+                </button>
             </ng-container>
 
-        </mat-grid-list>
+        </div>
     </mat-expansion-panel>
 </div>

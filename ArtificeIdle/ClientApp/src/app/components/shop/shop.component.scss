@@ -6,13 +6,21 @@
     padding-top: 2rem;
 }
 
+.shopItemsContainer {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
 .mat-expansion-panel {
     width: 100%
 }
 
 .itemButton {
-    width: 100%;
-    height: 100%;
+    width: 175px;
+    height: 175px;
+    padding: 0;
+    margin: 1em;
 }
 
 .itemIcon {
